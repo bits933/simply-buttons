@@ -12,16 +12,19 @@ type Tile = { x: number; y: number; width: number; height: number; noise: number
 const COLUMNS = 42;
 const ROWS = 13;
 const GUTTER = 1.25;
-const RIPPLE_SPEED = 1;
+const RIPPLE_SPEED = 0.72;
 const TRAIL_LIFETIME = 640;
-const RIPPLE_LIFETIME = 720;
+const RIPPLE_LIFETIME = 960;
 const TOP_BLUE = [73, 112, 225];
 const BOTTOM_BLUE = [39, 79, 207];
-const POINTER_BLUE = [126, 155, 242];
 const RIPPLE_BLUE = [220, 247, 255];
 
 function mix(from: number[], to: number[], amount: number) {
   return from.map((value, index) => Math.round(value + (to[index] - value) * amount));
+}
+
+function addLift(base: number[], amount: number) {
+  return base.map((value) => Math.min(255, value + 255 * amount));
 }
 
 function color(rgb: number[]) {
@@ -46,9 +49,7 @@ const STYLES = `
 .pixel-ripple-button__flash { position:absolute; inset:0; opacity:0; background:rgb(219 242 255 / 58%); pointer-events:none; transition:opacity 120ms ease; }
 .pixel-ripple-button--flash .pixel-ripple-button__flash { opacity:1; }
 .pixel-ripple-button__label { position:relative; z-index:1; pointer-events:none; text-shadow:0 1px 1px rgb(19 54 144 / 28%); }
-.pixel-ripple-demo { position:relative; display:grid; width:100%; min-height:172px; place-items:center; overflow:hidden; isolation:isolate; background:#F7FAFD; }
-.pixel-ripple-demo::before,.pixel-ripple-demo::after { content:""; position:absolute; z-index:-1; width:390px; height:390px; border:1px solid rgb(73 112 225 / 8%); border-radius:50%; }
-.pixel-ripple-demo::after { width:255px; height:255px; border-color:rgb(73 112 225 / 11%); }
+.pixel-ripple-demo { position:relative; display:grid; width:100%; min-height:172px; place-items:center; overflow:hidden; isolation:isolate; background:transparent; }
 @media (prefers-reduced-motion:reduce) { .pixel-ripple-button { transition:background-color 120ms ease,box-shadow 120ms ease; } .pixel-ripple-button:active { transform:none; } }
 `;
 
@@ -168,12 +169,14 @@ export default function PixelRippleButton({
         for (const ripple of ripplesRef.current) {
           const impact = time - ripple.time - distance(ripple, centerX, centerY) / RIPPLE_SPEED;
           if (impact < 0) continue;
-          const crest = Math.exp(-Math.pow(impact / 13, 2));
+          const crest = Math.exp(-Math.pow(impact / 32, 2));
           const afterglow = 0.3 * Math.exp(-impact / 200);
-          rippleStrength = Math.max(rippleStrength, Math.min(1, crest + afterglow));
+          const travel = distance(ripple, centerX, centerY) / Math.hypot(width, height);
+          const travelAttenuation = Math.max(0, 1 - travel);
+          rippleStrength = Math.max(rippleStrength, Math.min(1, (crest + afterglow) * travelAttenuation));
         }
 
-        const lit = mix(base, POINTER_BLUE, Math.min(0.82, pointerStrength * 0.8));
+        const lit = addLift(base, pointerStrength * 0.10);
         context.fillStyle = color(mix(lit, RIPPLE_BLUE, Math.min(0.98, rippleStrength)));
         context.beginPath();
         context.roundRect(tile.x, tile.y, tile.width, tile.height, 1);
