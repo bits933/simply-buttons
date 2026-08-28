@@ -170,6 +170,11 @@ import {
   DOT_MATRIX_COMPRESS_META,
   DOT_MATRIX_COMPRESS_SNIPPETS,
 } from "./buttons/dot-matrix-compress.snippets.js";
+import { PixelRipplePreview } from "./buttons/PixelRippleButton.tsx";
+import {
+  PIXEL_RIPPLE_META,
+  PIXEL_RIPPLE_SNIPPETS,
+} from "./buttons/pixel-ripple-button.snippets.js";
 
 const RAW = [
   {
@@ -583,6 +588,15 @@ const RAW = [
         keywords: DOT_MATRIX_COMPRESS_META.keywords,
         preview: DotMatrixCompressPreview,
         snippets: DOT_MATRIX_COMPRESS_SNIPPETS,
+      },
+      {
+        id: "pixel-ripple",
+        name: PIXEL_RIPPLE_META.name,
+        blurb: PIXEL_RIPPLE_META.blurb,
+        states: PIXEL_RIPPLE_META.states,
+        keywords: PIXEL_RIPPLE_META.keywords,
+        preview: PixelRipplePreview,
+        snippets: PIXEL_RIPPLE_SNIPPETS,
       },
     ],
   },
