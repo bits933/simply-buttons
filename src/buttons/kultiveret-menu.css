@@ -1,0 +1,218 @@
+.btn-kult-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.btn-kult-btn {
+  --btn-kult-bg: #000000;
+  --btn-kult-fg: #ffffff;
+  --btn-kult-line: #ffffff;
+  --btn-kult-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  appearance: none;
+  border: none;
+  outline: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  background-color: var(--btn-kult-bg);
+  color: var(--btn-kult-fg);
+  padding: 0 18px;
+  height: 38px;
+  min-width: 108px;
+  font-family: "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0px;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.btn-kult-btn *,
+.btn-kult-btn *::before,
+.btn-kult-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-kult-btn:focus {
+  outline: none;
+}
+
+.btn-kult-btn:focus-visible {
+  outline: 2px solid var(--btn-kult-fg);
+  outline-offset: 3px;
+}
+
+.btn-kult-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Rolling Text Effect */
+.btn-kult-text-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  height: 1.25em;
+  line-height: 1.25;
+}
+
+.btn-kult-text {
+  display: inline-block;
+  will-change: transform;
+  transform: translateY(0);
+  transition: transform 0.38s var(--btn-kult-ease);
+}
+
+.btn-kult-text--dup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  transform: translateY(0);
+  transition: transform 0.38s var(--btn-kult-ease);
+}
+
+@media (hover: hover) {
+  .btn-kult-btn:hover:not(:disabled) .btn-kult-text {
+    transform: translateY(-100%);
+  }
+}
+
+.btn-kult-btn:focus-visible .btn-kult-text {
+  transform: translateY(-100%);
+}
+
+/* Burger Icon */
+.btn-kult-icon {
+  flex: none;
+  position: relative;
+  width: 18px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Open Lines (2 Parallel Bars) */
+.btn-kult-open {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  width: 100%;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.btn-kult-open-line {
+  width: 100%;
+  height: 1.5px;
+  overflow: hidden;
+}
+
+.btn-kult-line {
+  display: block;
+  background-color: var(--btn-kult-line, currentColor);
+  width: 100%;
+  height: 100%;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.btn-kult-open-line:first-child .btn-kult-line {
+  transform-origin: left;
+}
+
+.btn-kult-open-line:last-child .btn-kult-line {
+  transform-origin: right;
+}
+
+@media (hover: hover) {
+  .btn-kult-btn:hover:not(:disabled) .btn-kult-open {
+    transform: scaleX(0.86);
+  }
+}
+
+/* Close Lines (X) */
+.btn-kult-close {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 1.5px;
+  transition: transform 0.25s ease;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.btn-kult-close-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-kult-close-line--left {
+  transform: rotate(45deg);
+}
+
+.btn-kult-close-line--right {
+  transform: rotate(-45deg);
+}
+
+.btn-kult-close .btn-kult-line {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .btn-kult-btn.is-open:hover:not(:disabled) .btn-kult-close {
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+}
+
+/* Opened State Morph */
+.btn-kult-btn.is-open .btn-kult-open .btn-kult-line {
+  transform: scaleX(0);
+}
+
+.btn-kult-btn.is-open .btn-kult-close .btn-kult-line {
+  transform: scaleX(1);
+  transition-delay: 0.05s;
+}
+
+/* Theme Integration */
+:root[data-theme="dark"] .btn-kult-btn {
+  --btn-kult-bg: #ffffff;
+  --btn-kult-fg: #000000;
+  --btn-kult-line: #000000;
+}
+
+:root[data-theme="light"] .btn-kult-btn {
+  --btn-kult-bg: #000000;
+  --btn-kult-fg: #ffffff;
+  --btn-kult-line: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-kult-text,
+  .btn-kult-open,
+  .btn-kult-close,
+  .btn-kult-line {
+    transition: none !important;
+  }
+}

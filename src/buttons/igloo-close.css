@@ -1,0 +1,121 @@
+/* igloo close — scramble text + hashed X-shear on corner strokes only */
+
+.btn-igloo-root,
+.btn-igloo-btn {
+  --igloo-ink: #171717;
+  --igloo-focus: #171717;
+}
+
+:root[data-theme="dark"] .btn-igloo-root,
+:root[data-theme="dark"] .btn-igloo-btn {
+  --igloo-ink: #f4f4f5;
+  --igloo-focus: #f5f5f5;
+}
+
+.btn-igloo-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-igloo-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  display: inline-grid;
+  place-items: center;
+  min-width: 132px;
+  min-height: 52px;
+  padding: 16px 28px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--igloo-ink);
+  font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-igloo-btn *,
+.btn-igloo-btn *::before,
+.btn-igloo-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-igloo-label {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-width: 5ch;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-igloo-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.btn-igloo-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+}
+
+.btn-igloo-arm {
+  position: absolute;
+  background: currentColor;
+  will-change: transform;
+}
+
+.btn-igloo-arm--h {
+  width: 14px;
+  height: 2px;
+}
+
+.btn-igloo-arm--v {
+  width: 2px;
+  height: 5px;
+}
+
+.btn-igloo-corner--tl { top: 0; left: 0; }
+.btn-igloo-corner--tl .btn-igloo-arm--h { top: 0; left: 0; }
+.btn-igloo-corner--tl .btn-igloo-arm--v0 { top: 0; left: 0; }
+.btn-igloo-corner--tl .btn-igloo-arm--v1 { top: 4.5px; left: 0; }
+.btn-igloo-corner--tl .btn-igloo-arm--v2 { top: 9px; left: 0; }
+
+.btn-igloo-corner--tr { top: 0; right: 0; }
+.btn-igloo-corner--tr .btn-igloo-arm--h { top: 0; right: 0; }
+.btn-igloo-corner--tr .btn-igloo-arm--v0 { top: 0; right: 0; }
+.btn-igloo-corner--tr .btn-igloo-arm--v1 { top: 4.5px; right: 0; }
+.btn-igloo-corner--tr .btn-igloo-arm--v2 { top: 9px; right: 0; }
+
+.btn-igloo-corner--bl { bottom: 0; left: 0; }
+.btn-igloo-corner--bl .btn-igloo-arm--h { bottom: 0; left: 0; }
+.btn-igloo-corner--bl .btn-igloo-arm--v0 { bottom: 9px; left: 0; }
+.btn-igloo-corner--bl .btn-igloo-arm--v1 { bottom: 4.5px; left: 0; }
+.btn-igloo-corner--bl .btn-igloo-arm--v2 { bottom: 0; left: 0; }
+
+.btn-igloo-corner--br { bottom: 0; right: 0; }
+.btn-igloo-corner--br .btn-igloo-arm--h { bottom: 0; right: 0; }
+.btn-igloo-corner--br .btn-igloo-arm--v0 { bottom: 9px; right: 0; }
+.btn-igloo-corner--br .btn-igloo-arm--v1 { bottom: 4.5px; right: 0; }
+.btn-igloo-corner--br .btn-igloo-arm--v2 { bottom: 0; right: 0; }
+
+.btn-igloo-btn:focus {
+  outline: none;
+}
+
+.btn-igloo-btn:focus-visible {
+  outline: 2px solid var(--igloo-focus);
+  outline-offset: 6px;
+}
+
+.btn-igloo-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}

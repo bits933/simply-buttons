@@ -1,0 +1,94 @@
+.btn-ascii-scramble-preview {
+  display: grid;
+  width: 100%;
+  place-items: center;
+}
+
+.btn-ascii-scramble-button {
+  --ascii-surface: #ffffff;
+  --ascii-ink: #111111;
+  --ascii-active-surface: #000000;
+  --ascii-active-ink: #ffffff;
+  appearance: none;
+  position: relative;
+  display: grid;
+  width: 172px;
+  height: 90px;
+  place-items: center;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background-color: var(--ascii-surface);
+  color: var(--ascii-ink);
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  transition:
+    background-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  touch-action: manipulation;
+  user-select: none;
+}
+
+[data-theme="dark"] .btn-ascii-scramble-button {
+  --ascii-surface: #000000;
+  --ascii-ink: #ffffff;
+  --ascii-active-surface: #ffffff;
+  --ascii-active-ink: #111111;
+}
+
+.btn-ascii-scramble-button.is-active {
+  background-color: var(--ascii-active-surface);
+  color: var(--ascii-active-ink);
+}
+
+.btn-ascii-scramble-visual {
+  display: flex;
+  gap: 1.3ch;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.btn-ascii-scramble-label {
+  display: flex;
+  flex: 0 0 4ch;
+  width: 4ch;
+  min-height: 1em;
+  white-space: nowrap;
+  font-variant-ligatures: none;
+}
+
+.btn-ascii-scramble-cell {
+  display: block;
+  flex: 0 0 1ch;
+  width: 1ch;
+  height: 1em;
+  line-height: 1;
+  text-align: center;
+}
+
+.btn-ascii-scramble-symbol {
+  white-space: nowrap;
+}
+
+.btn-ascii-scramble-button:focus {
+  outline: none;
+}
+
+.btn-ascii-scramble-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.btn-ascii-scramble-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.46;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-ascii-scramble-button {
+    transition: none;
+  }
+}

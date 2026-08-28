@@ -1,0 +1,115 @@
+.btn-wipe-root,
+.btn-wipe-btn {
+  --wipe-fill: #080b08;
+  --wipe-ink: #ecebe5;
+  --wipe-hover-fill: #ecebe5;
+  --wipe-hover-ink: #080b08;
+  --wipe-focus: #171717;
+  --wipe-clip-ease: cubic-bezier(0.25, 0, 0, 1);
+  --wipe-press-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-theme="dark"] .btn-wipe-root,
+:root[data-theme="dark"] .btn-wipe-btn {
+  --wipe-fill: #ecebe5;
+  --wipe-ink: #080b08;
+  --wipe-hover-fill: #080b08;
+  --wipe-hover-ink: #ecebe5;
+  --wipe-focus: #f5f5f5;
+}
+
+.btn-wipe-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-wipe-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid var(--wipe-fill);
+  border-radius: 0;
+  background: var(--wipe-fill);
+  background-clip: padding-box;
+  color: var(--wipe-ink);
+  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  font-variation-settings: "wght" 620;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.14s var(--wipe-press-ease);
+}
+
+.btn-wipe-btn *,
+.btn-wipe-btn *::before,
+.btn-wipe-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-wipe-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.btn-wipe-copy--hover {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  padding: inherit;
+  background: var(--wipe-hover-fill);
+  color: var(--wipe-hover-ink);
+  clip-path: polygon(0% 0%, 0% 0%, -100% 100%, 0% 100%);
+  pointer-events: none;
+  transition: clip-path 0.4s var(--wipe-clip-ease);
+}
+
+@media (hover: hover) {
+  .btn-wipe-btn:hover:not(:disabled) .btn-wipe-copy--hover {
+    clip-path: polygon(0% 0%, 200% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+.btn-wipe-btn:focus-visible .btn-wipe-copy--hover {
+  clip-path: polygon(0% 0%, 200% 0%, 100% 100%, 0% 100%);
+}
+
+.btn-wipe-btn:focus-visible {
+  outline: 2px solid var(--wipe-focus);
+  outline-offset: 3px;
+}
+
+.btn-wipe-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-wipe-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-wipe-btn,
+  .btn-wipe-copy--hover {
+    transition: none;
+  }
+
+  .btn-wipe-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

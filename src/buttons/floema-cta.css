@@ -1,0 +1,188 @@
+.btn-floema-root {
+  display: grid;
+  place-items: center;
+  max-width: 100%;
+}
+
+.btn-floema-button {
+  --btn-floema-bg: #ffffff;
+  --btn-floema-color: #241f21;
+  --btn-floema-ease: cubic-bezier(0.19, 1, 0.22, 1);
+  --btn-floema-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --btn-floema-icon-spring: cubic-bezier(0.12, 1.2, 0.16, 2.35);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms var(--btn-floema-ease);
+}
+
+.btn-floema-button.theme-dark {
+  --btn-floema-bg: #241f21;
+  --btn-floema-color: #ebe7df;
+}
+
+.btn-floema-button.theme-light {
+  --btn-floema-bg: #ffffff;
+  --btn-floema-color: #241f21;
+}
+
+.btn-floema-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+}
+
+/* Gooey Background Filter Layer */
+.btn-floema-goo-layer {
+  position: absolute;
+  inset: -12px -16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  filter: url(#floema-goo-effect);
+  -webkit-filter: url(#floema-goo-effect);
+  z-index: 1;
+}
+
+.btn-floema-blob {
+  display: block;
+  height: 44px;
+  background: var(--btn-floema-bg);
+  box-sizing: border-box;
+}
+
+.btn-floema-blob--icon {
+  width: 44px;
+  border-radius: 12px;
+  margin-right: 0px;
+  flex: 0 0 44px;
+  transition: margin-right 480ms var(--btn-floema-spring);
+}
+
+.btn-floema-blob--label {
+  height: 44px;
+  border-radius: 22px;
+  flex: 0 0 auto;
+}
+
+/* Crisp Content Layer */
+.btn-floema-content-layer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.btn-floema-icon-side {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: 0px;
+  flex: 0 0 44px;
+  box-sizing: border-box;
+  transition: margin-right 480ms var(--btn-floema-spring);
+}
+
+.btn-floema-icon {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: var(--btn-floema-color);
+  transform: scale(1);
+  transition: transform 480ms var(--btn-floema-icon-spring), color 300ms var(--btn-floema-ease);
+}
+
+.btn-floema-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.btn-floema-label-side {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px 0 16px;
+  box-sizing: border-box;
+}
+
+.btn-floema-label {
+  position: relative;
+  color: var(--btn-floema-color);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  transition: color 300ms var(--btn-floema-ease);
+}
+
+/* Hover State */
+@media (hover: hover) {
+  .btn-floema-button:hover:not(:disabled) .btn-floema-blob--icon,
+  .btn-floema-button.is-hover .btn-floema-blob--icon,
+  .btn-floema-button:hover:not(:disabled) .btn-floema-icon-side,
+  .btn-floema-button.is-hover .btn-floema-icon-side {
+    margin-right: 14px;
+  }
+
+  .btn-floema-button:hover:not(:disabled) .btn-floema-icon,
+  .btn-floema-button.is-hover .btn-floema-icon {
+    transform: scale(1.07);
+  }
+}
+
+/* Active / Press State */
+.btn-floema-button:active:not(:disabled) {
+  transform: scale(0.975);
+  transition-duration: 80ms;
+}
+
+/* Focus Visible */
+.btn-floema-button:focus-visible {
+  outline: 2px solid var(--btn-floema-color);
+  outline-offset: 4px;
+  border-radius: 22px;
+}
+
+/* Disabled State */
+.btn-floema-button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-floema-button,
+  .btn-floema-blob--icon,
+  .btn-floema-icon-side,
+  .btn-floema-icon,
+  .btn-floema-label {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A specimen lab of live button styles, loaders, and states. Search by name, type, or motion. Copy HTML, React, or Node for every tray."
+    />
+    <meta
+      name="keywords"
+      content="css buttons, react buttons, animated buttons, cta, loaders, hover effects, microinteraction, glass button, neumorphic, download button"
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Simply Buttons — interactive button specimens" />
+    <meta
+      property="og:description"
+      content="Live CSS, React, and Node button trays. Search by type or motion, then copy a stack."
+    />
+    <meta name="twitter:card" content="summary" />
+    <title>Simply Buttons — interactive CSS, React, and Node button specimens</title>
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

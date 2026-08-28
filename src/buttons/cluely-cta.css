@@ -1,0 +1,229 @@
+/* Cluely Main CTA Button */
+
+.btn-cluely-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-cluely-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(1px);
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms ease;
+  box-shadow:
+    rgba(0, 15, 154, 0.65) -1px -1px 4px inset,
+    rgba(119, 133, 164, 0.32) 0 8px 16px -4px,
+    rgba(0, 0, 0, 0.25) 0 2px 4px,
+    rgba(255, 255, 255, 0.35) -0.5px -0.5px 1px inset;
+}
+
+.btn-cluely-btn *,
+.btn-cluely-btn *::before,
+.btn-cluely-btn *::after {
+  box-sizing: border-box;
+}
+
+/* Outer Gradient Hairline Border */
+.btn-cluely-btn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 9px;
+  background: radial-gradient(
+    115% 115% at 10% 15%,
+    rgba(119, 198, 255, 0.85) 15%,
+    rgb(111, 127, 220) 100%
+  );
+  filter: blur(0.4px);
+  pointer-events: none;
+}
+
+/* Inner Background Radial Base Gradient */
+.btn-cluely-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 7px;
+  background:
+    radial-gradient(98% 98% at 65% 82%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(86% 86% at 10% 17%, rgb(73, 126, 233) 0%, rgb(95, 134, 230) 100%);
+  background-blend-mode: overlay;
+  overflow: hidden;
+  transition: opacity 300ms ease-in-out;
+}
+
+/* Hover Gradient Layer */
+.btn-cluely-hover-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 7px;
+  background:
+    radial-gradient(98% 98% at 65% 82%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(86% 86% at 10% 17%, rgb(20, 78, 194) 0%, rgb(95, 134, 230) 100%);
+  background-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Ambient Cyan Glow Light Particles */
+.btn-cluely-glow {
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  border-radius: 7px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.btn-cluely-glow span {
+  position: absolute;
+  border-radius: 100%;
+  background: #7df0f8;
+  opacity: 0.38;
+  mix-blend-mode: lighten;
+  filter: blur(14px);
+}
+
+.btn-cluely-glow span:nth-child(1) {
+  top: -30px;
+  right: 4px;
+  width: 55px;
+  height: 55px;
+}
+
+.btn-cluely-glow span:nth-child(2) {
+  top: 2px;
+  right: 6px;
+  width: 50px;
+  height: 22px;
+}
+
+.btn-cluely-glow span:nth-child(3) {
+  bottom: -25px;
+  left: -12px;
+  width: 55px;
+  height: 55px;
+}
+
+/* Noise Texture Overlay */
+.btn-cluely-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.24;
+  border-radius: 7px;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  mix-blend-mode: overlay;
+}
+
+/* Inner Rim Highlight */
+.btn-cluely-rim {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: 7px;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0.45;
+  background: linear-gradient(
+    177deg,
+    rgba(255, 255, 255, 0.6) 8%,
+    rgba(255, 255, 255, 0) 85%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Foreground Label & Vector Icon */
+.btn-cluely-content {
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 15, 80, 0.35);
+}
+
+.btn-cluely-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: currentColor;
+  transform: translateY(-0.5px);
+}
+
+/* Interactive States */
+@media (hover: hover) {
+  .btn-cluely-btn:hover:not(:disabled) .btn-cluely-hover-bg {
+    opacity: 1;
+  }
+
+  .btn-cluely-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow:
+      rgba(0, 15, 154, 0.75) -1px -1px 5px inset,
+      rgba(119, 133, 164, 0.45) 0 12px 24px -6px,
+      rgba(0, 0, 0, 0.3) 0 3px 6px,
+      rgba(255, 255, 255, 0.45) -0.5px -0.5px 1px inset;
+  }
+}
+
+.btn-cluely-btn:focus {
+  outline: none;
+}
+
+.btn-cluely-btn:focus-visible {
+  outline: 2px solid #7df0f8;
+  outline-offset: 3px;
+}
+
+.btn-cluely-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-cluely-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-cluely-btn,
+  .btn-cluely-hover-bg {
+    transition: none;
+  }
+
+  .btn-cluely-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

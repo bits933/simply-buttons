@@ -1,0 +1,116 @@
+.btn-directional-root,
+.btn-directional-btn {
+  --directional-ink: #0b0b0b;
+  --directional-fill-color: #0b0b0b;
+  --directional-on-fill: #f1f1f1;
+  --directional-focus: #171717;
+  --directional-ease: cubic-bezier(.65, 0, .35, 1);
+}
+
+:root[data-theme="dark"] .btn-directional-root,
+:root[data-theme="dark"] .btn-directional-btn {
+  --directional-ink: #f1f1f1;
+  --directional-fill-color: #f1f1f1;
+  --directional-on-fill: #0b0b0b;
+  --directional-focus: #f5f5f5;
+}
+
+.btn-directional-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-directional-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 228px;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--directional-ink) 20%, transparent);
+  background: transparent;
+  color: var(--directional-ink);
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-directional-btn *,
+.btn-directional-btn *::before,
+.btn-directional-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-directional-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--directional-fill-color);
+  transform: translateY(102%);
+  transition: none;
+  pointer-events: none;
+}
+
+.btn-directional-btn[data-motion="active"] .btn-directional-fill,
+.btn-directional-btn[data-motion="exiting"] .btn-directional-fill {
+  transition: transform 0.6s var(--directional-ease);
+}
+
+.btn-directional-btn[data-motion="active"] .btn-directional-fill {
+  transform: translateY(0);
+}
+
+.btn-directional-btn[data-motion="exiting"] .btn-directional-fill {
+  transform: translateY(-102%);
+}
+
+.btn-directional-label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  transition: color 0.6s var(--directional-ease);
+}
+
+.btn-directional-btn[data-motion="active"] {
+  color: var(--directional-on-fill);
+}
+
+.btn-directional-btn:focus {
+  outline: none;
+}
+
+.btn-directional-btn:focus-visible {
+  outline: 2px solid var(--directional-focus);
+  outline-offset: 4px;
+}
+
+.btn-directional-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-directional-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.btn-directional-btn:disabled .btn-directional-fill {
+  transform: translateY(102%);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-directional-btn,
+  .btn-directional-fill,
+  .btn-directional-label {
+    transition: none;
+  }
+}

@@ -1,0 +1,169 @@
+.btn-fill-root,
+.btn-fill-btn {
+  --fill-face: #171717;
+  --fill-bar: #f5f5f5;
+  --fill-stroke: color-mix(in srgb, var(--fill-face) 10%, transparent);
+  --fill-focus: #171717;
+  --fill-ease: cubic-bezier(0.338, 0.015, 0.395, 0.959);
+  --fill-stagger: 45ms;
+  --fill-roll: 320ms;
+}
+
+:root[data-theme="dark"] .btn-fill-root,
+:root[data-theme="dark"] .btn-fill-btn {
+  --fill-face: #f5f5f5;
+  --fill-bar: #171717;
+  --fill-stroke: color-mix(in srgb, var(--fill-face) 10%, transparent);
+  --fill-focus: #f5f5f5;
+}
+
+.btn-fill-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-fill-btn {
+  --fill: 0%;
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 168px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--fill-stroke);
+  border-radius: 8px;
+  background: var(--fill-face);
+  background-clip: padding-box;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    filter 120ms cubic-bezier(0, 0, 0.2, 1),
+    transform 90ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.btn-fill-btn *,
+.btn-fill-btn *::before,
+.btn-fill-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-fill-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 0;
+  width: var(--fill);
+  background: var(--fill-bar);
+  pointer-events: none;
+  opacity: 0;
+  border-start-start-radius: inherit;
+  border-end-start-radius: inherit;
+}
+
+.btn-fill-btn.is-loading .btn-fill-bar {
+  opacity: 1;
+}
+
+.btn-fill-label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.15em;
+  color: #fff;
+  mix-blend-mode: difference;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-fill-window {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 9.6em;
+  height: 1.15em;
+  overflow: hidden;
+}
+
+.btn-fill-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-fill-char {
+  overflow: hidden;
+  height: 1.15em;
+  line-height: 1.15em;
+}
+
+.btn-fill-char.is-space {
+  width: 0.32em;
+}
+
+.btn-fill-glyph {
+  display: block;
+  transform: translateY(0);
+  transition: transform var(--fill-roll) var(--fill-ease);
+  transition-delay: calc(var(--i, 0) * var(--fill-stagger));
+}
+
+.btn-fill-line--in .btn-fill-glyph {
+  transform: translateY(100%);
+}
+
+.btn-fill-btn.is-exiting .btn-fill-line--out .btn-fill-glyph {
+  transform: translateY(-100%);
+}
+
+.btn-fill-btn.is-entering .btn-fill-line--in .btn-fill-glyph {
+  transform: translateY(0);
+}
+
+.btn-fill-btn:focus {
+  outline: none;
+}
+
+.btn-fill-btn:focus-visible {
+  outline: 2px solid var(--fill-focus);
+  outline-offset: 3px;
+}
+
+.btn-fill-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btn-fill-btn:active:not(:disabled):not([aria-busy="true"]) {
+  transform: scale(0.98);
+}
+
+.btn-fill-btn:disabled:not([aria-busy="true"]) {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.btn-fill-btn[aria-busy="true"] {
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-fill-btn,
+  .btn-fill-glyph {
+    transition: none;
+  }
+
+  .btn-fill-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

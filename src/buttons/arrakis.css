@@ -1,0 +1,108 @@
+@font-face {
+  font-family: "terraneSans";
+  src: url("./fonts/terrane-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.btn-arrakis-root,
+.btn-arrakis-btn {
+  --arrakis-dust: #fbf6ec;
+  --arrakis-sand: #fbefd6;
+  --arrakis-night: #1b1613;
+  --arrakis-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --arrakis-focus: #1b1613;
+}
+
+.btn-arrakis-root {
+  display: inline-flex;
+}
+
+:root[data-theme="dark"] .btn-arrakis-root,
+:root[data-theme="dark"] .btn-arrakis-btn {
+  --arrakis-focus: #fbf6ec;
+}
+
+.btn-arrakis-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  border-radius: 0.125rem;
+  padding: 0.5625rem 0.875rem;
+  background-color: var(--arrakis-dust);
+  color: var(--arrakis-night);
+  border: 1px solid var(--arrakis-dust);
+  transition:
+    color 0.25s var(--arrakis-ease),
+    background-color 0.25s var(--arrakis-ease),
+    border-color 0.25s var(--arrakis-ease),
+    transform 80ms var(--arrakis-ease);
+}
+
+.btn-arrakis-btn:hover:not(:disabled) {
+  background-color: var(--arrakis-sand);
+}
+
+.btn-arrakis-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-arrakis-btn:focus {
+  outline: none;
+}
+
+.btn-arrakis-btn:focus-visible {
+  outline: 2px solid var(--arrakis-focus);
+  outline-offset: 4px;
+}
+
+.btn-arrakis-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.btn-arrakis-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-arrakis-fx canvas {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease-out;
+}
+
+.btn-arrakis-label {
+  position: relative;
+  z-index: 10;
+  font-family: "terraneSans", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: clamp(0.875rem, 0.8375rem + 0.125vw, 0.9375rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-arrakis-btn,
+  .btn-arrakis-fx canvas {
+    transition: none;
+  }
+
+  .btn-arrakis-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

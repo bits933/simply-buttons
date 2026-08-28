@@ -1,0 +1,107 @@
+.btn-stroke-group-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-stroke-group {
+  position: relative;
+  display: grid;
+  width: 360px;
+  height: 38px;
+  grid-template-columns: repeat(3, 120px);
+  border-radius: 3px;
+}
+
+.btn-stroke-group-item {
+  position: relative;
+  box-sizing: border-box;
+  width: 120px;
+  height: 38px;
+  padding: 10px 15px;
+  border: 0;
+  margin: 0;
+  background-color: rgba(255, 255, 255, .2);
+  color: rgb(15, 15, 15);
+  cursor: pointer;
+  font: 400 12px/18px "Krissai", sans-serif;
+  letter-spacing: 0;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+.btn-stroke-group-item:first-child {
+  border-radius: 3px 0 0 3px;
+}
+
+.btn-stroke-group-item:last-of-type {
+  border-radius: 0 3px 3px 0;
+}
+
+.btn-stroke-group-item:hover,
+.btn-stroke-group:not(:hover) .btn-stroke-group-item:focus-visible {
+  z-index: 1;
+  background-color: white;
+  color: rgb(15, 15, 15);
+}
+
+.btn-stroke-group-item:focus-visible {
+  z-index: 1;
+  outline: 1px solid rgba(255, 255, 255, .9);
+  outline-offset: -2px;
+}
+
+.btn-stroke-group-border {
+  position: absolute;
+  inset: -11px;
+  pointer-events: none;
+}
+
+.btn-stroke-group-svg {
+  display: block;
+  width: 382px;
+  height: 60px;
+  overflow: visible;
+}
+
+.btn-stroke-group-segment {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.btn-stroke-group-segment--thick {
+  stroke: white;
+  stroke-width: 3;
+}
+
+.btn-stroke-group-segment--faint {
+  stroke: rgba(255, 255, 255, .3);
+  stroke-width: 1;
+}
+
+[data-theme="light"] .btn-stroke-group-item {
+  background-color: #222326;
+  color: #f3f4f6;
+}
+
+[data-theme="light"] .btn-stroke-group-item:hover,
+[data-theme="light"] .btn-stroke-group:not(:hover) .btn-stroke-group-item:focus-visible {
+  background-color: #050505;
+  color: #ffffff;
+}
+
+[data-theme="light"] .btn-stroke-group-item:focus-visible {
+  outline-color: #050505;
+}
+
+[data-theme="light"] .btn-stroke-group-segment--thick {
+  stroke: #050505;
+}
+
+[data-theme="light"] .btn-stroke-group-segment--faint {
+  stroke: rgba(0, 0, 0, .3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-stroke-group-item {
+    transition: none;
+  }
+}

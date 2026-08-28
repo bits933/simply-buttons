@@ -1,0 +1,289 @@
+/** Shipped tokens for the Dribbble / Framer GitHub-style star button. */
+
+export const STAR_BUTTON = {
+  label: "Star",
+  labelOn: "Starred",
+  countOff: 38,
+  countOn: 39,
+  plus: "+1",
+  gold: "rgb(232, 168, 12)",
+  inactiveInk: "#545454",
+  activeInk: "#171717",
+  face: "#ffffff",
+  hoverMs: "280ms",
+  popMs: "520ms",
+  fadeMs: "200ms",
+  ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+};
+
+export const STAR_PATH =
+  "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
+
+export const STAR_LOTTIE_FILE = "wired-flat-237-star-hover-pinch.json";
+
+export function buildStarButtonCss() {
+  const t = STAR_BUTTON;
+  return `
+.btn-star-root {
+  --star-face: ${t.face};
+  --star-ink: ${t.inactiveInk};
+  --star-active-ink: ${t.activeInk};
+  --star-gold: ${t.gold};
+  --star-line: rgba(0, 0, 0, 0.08);
+  --star-focus: #171717;
+  --star-ease: ${t.ease};
+  --star-count: ${t.inactiveInk};
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+.btn-star-root *,
+.btn-star-root *::before,
+.btn-star-root *::after { box-sizing: border-box; }
+.btn-star-btn {
+  appearance: none;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  display: inline-flex;
+  align-items: stretch;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid var(--star-line);
+  border-radius: 999px;
+  background: var(--star-face);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.07),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  color: var(--star-ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  cursor: pointer;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform ${t.hoverMs} var(--star-ease), color ${t.fadeMs} ease, box-shadow ${t.fadeMs} ease;
+}
+:root[data-theme="dark"] .btn-star-root {
+  --star-face: #ffffff;
+  --star-ink: #545454;
+  --star-active-ink: #171717;
+  --star-line: rgba(0, 0, 0, 0.12);
+  --star-focus: #171717;
+  --star-count: #545454;
+}
+:root[data-theme="dark"] .btn-star-btn {
+  background: #ffffff;
+  color: var(--star-ink);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.btn-star-btn:hover:not(:disabled),
+.btn-star-btn:focus-visible,
+.btn-star-btn[aria-pressed="true"] {
+  color: var(--star-active-ink);
+}
+.btn-star-btn:hover:not(:disabled) {
+  transform: scale(1.03);
+}
+.btn-star-side {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  transition: color ${t.fadeMs} ease;
+}
+.btn-star-side--label {
+  padding-left: 14px;
+  padding-right: 12px;
+}
+.btn-star-side--count {
+  padding-left: 12px;
+  padding-right: 14px;
+  color: var(--star-count);
+  font-variant-numeric: tabular-nums;
+}
+.btn-star-btn:hover:not(:disabled) .btn-star-side--count,
+.btn-star-btn:focus-visible .btn-star-side--count {
+  color: var(--star-active-ink);
+}
+.btn-star-btn[aria-pressed="true"]:hover:not(:disabled) .btn-star-side--count,
+.btn-star-btn[aria-pressed="true"]:focus-visible .btn-star-side--count {
+  color: var(--star-gold);
+}
+.btn-star-rule {
+  position: relative;
+  z-index: 1;
+  width: 1px;
+  align-self: stretch;
+  margin: 9px 0;
+  background: rgba(84, 84, 84, 0.22);
+  pointer-events: none;
+}
+.btn-star-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-star-silhouette,
+.btn-star-lottie {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  overflow: visible;
+  pointer-events: none;
+}
+.btn-star-silhouette {
+  fill: #545454;
+  transition: opacity ${t.fadeMs} var(--star-ease), fill ${t.fadeMs} ease;
+}
+.btn-star-lottie {
+  opacity: 0;
+  transition: opacity ${t.fadeMs} var(--star-ease);
+}
+.btn-star-lottie svg { overflow: visible; }
+.btn-star-btn:hover:not(:disabled) .btn-star-silhouette,
+.btn-star-btn:focus-visible .btn-star-silhouette,
+.btn-star-btn[aria-pressed="true"] .btn-star-silhouette {
+  opacity: 0;
+}
+.btn-star-btn:hover:not(:disabled) .btn-star-lottie,
+.btn-star-btn:focus-visible .btn-star-lottie,
+.btn-star-btn[aria-pressed="true"] .btn-star-lottie {
+  opacity: 1;
+}
+
+/* Label horizontal right-to-left text swap & dynamic width expansion */
+.btn-star-swap {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+  overflow: hidden;
+  height: 1.2em;
+  line-height: 1.2;
+}
+.btn-star-swap--label {
+  width: 29px;
+  transition: width ${t.hoverMs} var(--star-ease);
+}
+.btn-star-btn[aria-pressed="true"] .btn-star-swap--label {
+  width: 53px;
+}
+.btn-star-swap--count {
+  justify-items: center;
+  min-width: 1.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Horizontal slide for label */
+.btn-star-swap--label .btn-star-line {
+  grid-area: 1 / 1;
+  display: block;
+  white-space: nowrap;
+  transition:
+    transform ${t.hoverMs} var(--star-ease),
+    opacity ${t.fadeMs} ease;
+}
+.btn-star-swap--label .btn-star-line--out {
+  transform: translateX(0);
+  opacity: 1;
+}
+.btn-star-swap--label .btn-star-line--in {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.btn-star-btn[aria-pressed="true"] .btn-star-swap--label .btn-star-line--out {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.btn-star-btn[aria-pressed="true"] .btn-star-swap--label .btn-star-line--in {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Vertical slide for count */
+.btn-star-swap--count .btn-star-line {
+  grid-area: 1 / 1;
+  display: block;
+  white-space: nowrap;
+  transition:
+    transform ${t.hoverMs} var(--star-ease),
+    opacity ${t.fadeMs} ease;
+}
+.btn-star-swap--count .btn-star-line--out {
+  transform: translateY(0);
+  opacity: 1;
+}
+.btn-star-swap--count .btn-star-line--in {
+  transform: translateY(110%);
+  opacity: 0;
+}
+.btn-star-btn[aria-pressed="true"] .btn-star-swap--count .btn-star-line--out {
+  transform: translateY(-110%);
+  opacity: 0;
+}
+.btn-star-btn[aria-pressed="true"] .btn-star-swap--count .btn-star-line--in {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.btn-star-plus {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  color: var(--star-gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  pointer-events: none;
+}
+.btn-star-btn.is-popping .btn-star-plus {
+  animation: btn-star-plus-pop ${t.popMs} var(--star-ease) forwards;
+}
+.btn-star-btn:focus-visible {
+  outline: 2px solid var(--star-focus);
+  outline-offset: 3px;
+}
+.btn-star-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+@keyframes btn-star-plus-pop {
+  0% { opacity: 0; transform: translate(-50%, 6px); }
+  35% { opacity: 1; transform: translate(-50%, -10px); }
+  100% { opacity: 0; transform: translate(-50%, -16px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-star-silhouette,
+  .btn-star-lottie,
+  .btn-star-line,
+  .btn-star-swap--label,
+  .btn-star-btn { transition: none; }
+  .btn-star-btn:hover:not(:disabled) { transform: none; }
+  .btn-star-btn.is-popping .btn-star-plus { animation: none; opacity: 1; transform: translate(-50%, -10px); }
+}
+`.trim();
+}

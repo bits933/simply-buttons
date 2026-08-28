@@ -1,0 +1,272 @@
+/* Huly Solar Flare CTA Button - High Performance GPU Optimized */
+
+.btn-huly-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 12px;
+  contain: layout style;
+}
+
+/* Outer Atmosphere Halo Glow Ring Base */
+.btn-huly-blur-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* Right Glow (normal orientation) */
+.btn-huly-glow-right {
+  transform: translate3d(-50%, -50%, 0);
+  opacity: var(--glow-right-op, 0.64);
+}
+
+/* Left Glow (horizontally flipped, shows on left side) */
+.btn-huly-glow-left {
+  transform: translate3d(-50%, -50%, 0) scaleX(-1);
+  opacity: var(--glow-left-op, 0);
+}
+
+/* Compact Inner Glow Layer */
+.btn-huly-blur-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 10;
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  filter: blur(2.5px);
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(97.68deg, rgba(255, 177, 153, 0) 35%, rgba(255, 177, 153, 0.4) 75%, #ff7950 94%) border-box;
+  opacity: 0.95;
+}
+
+/* Compact Outer Atmosphere Drop Glow */
+.btn-huly-blur-ring::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: 20;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  filter: blur(8px);
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(91.88deg, rgba(255, 137, 100, 0) 38%, rgba(255, 137, 100, 0.5) 65%, #cd3100 98%) border-box;
+  opacity: 0.8;
+}
+
+/* Precision Inner Edge Light Ring */
+.btn-huly-light-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(103.7deg, rgba(215, 185, 175, 0.15) 38%, rgba(233, 132, 99, 0.25) 68%, #e98463 85%, #ffffff 93%) border-box;
+}
+
+.btn-huly-light-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 30;
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  filter: blur(5px);
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(91.96deg, rgba(255, 177, 153, 0) 6%, rgba(255, 177, 153, 0.45) 53%, #ff7950 94%) border-box;
+  opacity: 0.85;
+}
+
+/* Main Button */
+.btn-huly-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 178px;
+  height: 44px;
+  padding: 0 28px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: #d1d1d1;
+  color: #5a250a;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1;
+  box-shadow:
+    0 4px 14px rgba(255, 105, 50, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    inset 0 1px 1px #ffffff,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.14);
+  transition:
+    transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease,
+    box-shadow 250ms ease;
+  contain: paint layout;
+}
+
+.btn-huly-btn *,
+.btn-huly-btn *::before,
+.btn-huly-btn *::after {
+  box-sizing: border-box;
+}
+
+/* Precision Outer Rim Stroke */
+.btn-huly-btn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(
+    104deg,
+    rgba(215, 185, 175, 0.2) 38%,
+    rgba(233, 132, 99, 0.25) 68%,
+    #e98463 85%,
+    #ffffff 93%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Solar Flare Pod with pure GPU compositing */
+.btn-huly-flare {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: -1;
+  transform: translate3d(calc(var(--flare-x, 82%) - 90px), -50%, 0);
+  will-change: transform;
+}
+
+.btn-huly-flare-core {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 100%;
+  will-change: transform;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #fffff5 4%,
+    #ffaa81 27%,
+    #ffda9f 38%,
+    rgba(255, 170, 129, 0.5) 50%,
+    rgba(210, 106, 58, 0) 92%
+  );
+}
+
+.btn-huly-flare-glow {
+  position: absolute;
+  width: 180px;
+  height: 96px;
+  border-radius: 100%;
+  will-change: transform;
+  background: radial-gradient(
+    44% 44% at 50% 50%,
+    #fffff7 28%,
+    #fffacd 48%,
+    #f4d2bf 61%,
+    rgba(214, 211, 210, 0) 100%
+  );
+  filter: blur(4px);
+}
+
+/* Foreground Label & Arrow Icon */
+.btn-huly-label {
+  position: relative;
+  z-index: 2;
+  color: #5a250a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-huly-arrow {
+  position: relative;
+  z-index: 2;
+  width: 16px;
+  height: 9px;
+  color: #5a250a;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover & Focus Interactions */
+@media (hover: hover) {
+  .btn-huly-root:hover .btn-huly-arrow {
+    transform: translateX(3px);
+  }
+
+  .btn-huly-root:hover .btn-huly-btn {
+    transform: translateY(-1px);
+    border-color: #ffffff;
+    box-shadow:
+      0 6px 18px rgba(255, 105, 50, 0.32),
+      0 3px 8px rgba(0, 0, 0, 0.22),
+      inset 0 1px 1px #ffffff,
+      inset 0 -1px 2px rgba(0, 0, 0, 0.14);
+  }
+}
+
+.btn-huly-btn:focus {
+  outline: none;
+}
+
+.btn-huly-btn:focus-visible {
+  outline: 2px solid #ff7950;
+  outline-offset: 4px;
+}
+
+.btn-huly-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-huly-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-huly-btn,
+  .btn-huly-arrow,
+  .btn-huly-flare,
+  .btn-huly-glow-right,
+  .btn-huly-glow-left {
+    transition: none !important;
+  }
+
+  .btn-huly-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

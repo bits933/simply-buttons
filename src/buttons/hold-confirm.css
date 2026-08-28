@@ -1,0 +1,286 @@
+.btn-hold-root,
+.btn-hold-btn {
+  --hold-face: #171717;
+  --hold-bar: #f5f5f5;
+  --hold-stroke: color-mix(in srgb, var(--hold-face) 10%, transparent);
+  --hold-focus: #171717;
+  --hold-success-bg: #d1fae5;
+  --hold-success-ink: #065f46;
+  --hold-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme="dark"] .btn-hold-root,
+:root[data-theme="dark"] .btn-hold-btn {
+  --hold-face: #f5f5f5;
+  --hold-bar: #171717;
+  --hold-stroke: color-mix(in srgb, var(--hold-face) 10%, transparent);
+  --hold-focus: #f5f5f5;
+}
+
+.btn-hold-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-hold-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.btn-hold-btn {
+  --hold: 0%;
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 190px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--hold-stroke);
+  border-radius: 8px;
+  background: var(--hold-face);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  transition:
+    background-color 320ms var(--hold-ease),
+    border-color 320ms var(--hold-ease),
+    filter 120ms cubic-bezier(0, 0, 0.2, 1),
+    transform 120ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.btn-hold-btn *,
+.btn-hold-btn *::before,
+.btn-hold-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-hold-btn.is-holding {
+  transform: scale(0.985);
+  cursor: progress;
+}
+
+.btn-hold-btn.is-done {
+  background: var(--hold-success-bg);
+  border-color: color-mix(in srgb, var(--hold-success-ink) 22%, transparent);
+  animation: btn-hold-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-hold-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 0;
+  width: var(--hold);
+  background: var(--hold-bar);
+  border-radius: 7px 0 0 7px;
+  pointer-events: none;
+  transition: opacity 240ms var(--hold-ease);
+}
+
+.btn-hold-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -2px;
+  width: 16px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--hold-face) 22%, var(--hold-bar))
+  );
+  opacity: 0;
+  transition: opacity 180ms var(--hold-ease);
+}
+
+.btn-hold-btn.is-holding .btn-hold-bar::after {
+  opacity: 1;
+}
+
+.btn-hold-btn.is-done .btn-hold-bar {
+  opacity: 0;
+}
+
+.btn-hold-btn.is-draining .btn-hold-bar {
+  transition:
+    opacity 240ms var(--hold-ease),
+    width 240ms var(--hold-ease);
+}
+
+.btn-hold-label {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-height: 1.15em;
+  mix-blend-mode: difference;
+  white-space: nowrap;
+}
+
+.btn-hold-word {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    opacity 260ms var(--hold-ease),
+    transform 320ms var(--hold-ease);
+}
+
+.btn-hold-word--done {
+  opacity: 0;
+  transform: translateY(8px) scale(0.92);
+}
+
+.btn-hold-btn.is-done .btn-hold-label {
+  mix-blend-mode: normal;
+  color: var(--hold-success-ink);
+}
+
+.btn-hold-btn.is-done .btn-hold-word--idle {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.btn-hold-btn.is-done .btn-hold-word--done {
+  opacity: 1;
+  transform: none;
+}
+
+.btn-hold-check {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+.btn-hold-check path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 21;
+  stroke-dashoffset: 0;
+}
+
+.btn-hold-btn.is-done .btn-hold-check path {
+  stroke-dashoffset: 21;
+  animation: btn-hold-draw 340ms 130ms var(--hold-ease) forwards;
+}
+
+.btn-hold-confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.btn-hold-confetti i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--pw, 4px);
+  height: var(--ph, 4px);
+  background: var(--pcolor, #22c55e);
+  border-radius: var(--shp, 999px);
+  opacity: 0;
+}
+
+.btn-hold-wrap.is-bursting .btn-hold-confetti i {
+  animation: btn-hold-confetti var(--cdur, 720ms)
+    cubic-bezier(0.16, 1, 0.3, 1) var(--cdelay, 0ms) forwards;
+}
+
+.btn-hold-btn:focus {
+  outline: none;
+}
+
+.btn-hold-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--hold-focus) 10%, transparent);
+  outline-offset: 3px;
+}
+
+.btn-hold-btn:hover:not(:disabled):not(.is-done) {
+  filter: brightness(1.08);
+}
+
+.btn-hold-btn:active:not(:disabled):not(.is-holding):not(.is-done) {
+  transform: scale(0.98);
+}
+
+.btn-hold-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@keyframes btn-hold-pop {
+  0% {
+    transform: scale(0.985);
+  }
+  45% {
+    transform: scale(1.035);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes btn-hold-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes btn-hold-confetti {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.4);
+  }
+  14% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--tx, 0px)),
+        calc(-50% + var(--ty, -20px))
+      )
+      rotate(var(--rot, 180deg)) scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-hold-btn,
+  .btn-hold-bar,
+  .btn-hold-bar::after,
+  .btn-hold-word {
+    transition: none;
+  }
+
+  .btn-hold-btn.is-done,
+  .btn-hold-btn.is-done .btn-hold-check path,
+  .btn-hold-confetti i {
+    animation: none;
+  }
+
+  .btn-hold-btn.is-done .btn-hold-check path {
+    stroke-dashoffset: 0;
+  }
+
+  .btn-hold-confetti i {
+    display: none;
+  }
+}

@@ -1,0 +1,143 @@
+/* rise fill — nabilissa chapter bar, S-curve fill from the bottom */
+
+.btn-rise-root,
+.btn-rise-btn {
+  --rise-ink: #0b0b0b;
+  --rise-fill: #0b0b0b;
+  --rise-on-fill: #f1f1f1;
+  --rise-line: rgba(11, 11, 11, 0.2);
+  --rise-mark: rgba(11, 11, 11, 0.2);
+  --rise-focus: #171717;
+  --rise-ease: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+:root[data-theme="dark"] .btn-rise-root,
+:root[data-theme="dark"] .btn-rise-btn {
+  --rise-ink: #f1f1f1;
+  --rise-fill: #f1f1f1;
+  --rise-on-fill: #0b0b0b;
+  --rise-line: rgba(241, 241, 241, 0.2);
+  --rise-mark: rgba(241, 241, 241, 0.2);
+  --rise-focus: #f5f5f5;
+}
+
+.btn-rise-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-rise-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  min-width: 228px;
+  min-height: 36px;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--rise-ink);
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-rise-btn *,
+.btn-rise-btn *::before,
+.btn-rise-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-rise-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--rise-fill);
+  transform: translateY(110%);
+  transition: transform 0.6s var(--rise-ease);
+  pointer-events: none;
+}
+
+.btn-rise-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 0 12px 0 10px;
+  transition: color 0.6s var(--rise-ease);
+}
+
+.btn-rise-label {
+  white-space: nowrap;
+}
+
+.btn-rise-mark {
+  flex: 0 0 auto;
+  width: 11px;
+  height: 11px;
+  background: var(--rise-mark);
+  transition: background 0.6s var(--rise-ease);
+}
+
+.btn-rise-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 1px;
+  background: var(--rise-line);
+  pointer-events: none;
+}
+
+.btn-rise-btn:hover:not(:disabled) .btn-rise-fill,
+.btn-rise-btn:focus-visible .btn-rise-fill {
+  transform: translateY(0);
+}
+
+.btn-rise-btn:hover:not(:disabled),
+.btn-rise-btn:focus-visible {
+  color: var(--rise-on-fill);
+}
+
+.btn-rise-btn:hover:not(:disabled) .btn-rise-mark,
+.btn-rise-btn:focus-visible .btn-rise-mark {
+  background: var(--rise-on-fill);
+}
+
+.btn-rise-btn:focus {
+  outline: none;
+}
+
+.btn-rise-btn:focus-visible {
+  outline: 2px solid var(--rise-focus);
+  outline-offset: 4px;
+}
+
+.btn-rise-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-rise-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-rise-fill,
+  .btn-rise-copy,
+  .btn-rise-mark,
+  .btn-rise-btn {
+    transition: none;
+  }
+}

@@ -1,0 +1,162 @@
+.split-flap-text {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  perspective: 700px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.split-flap-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.split-flap-slot {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: 0.72em;
+  height: 1.15em;
+  background: #1c1e21;
+  color: #f5f5f5;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  font-family: var(--mono, monospace);
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+:root:not([data-theme="dark"]) .split-flap-slot {
+  background: #171717;
+  color: #ffffff;
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.split-flap-slot.is-space {
+  width: 0.38em;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.split-flap-slot.is-space::before,
+.split-flap-slot.is-space::after {
+  display: none;
+}
+
+.split-flap-text:hover .split-flap-slot:not(.is-space) {
+  transform: translateY(-1px);
+}
+
+/* Mechanical side notches */
+.split-flap-slot::before,
+.split-flap-slot::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  width: 3px;
+  height: 4px;
+  background: var(--bg, #161719);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.split-flap-slot::before {
+  left: 0;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.split-flap-slot::after {
+  right: 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+/* Top & bottom card halves */
+.split-flap-half {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: inherit;
+  color: inherit;
+}
+
+.split-flap-top {
+  align-items: flex-end;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+}
+
+.split-flap-top .split-flap-glyph {
+  transform: translateY(50%);
+}
+
+.split-flap-bottom {
+  align-items: flex-start;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
+}
+
+.split-flap-bottom .split-flap-glyph {
+  transform: translateY(-50%);
+}
+
+/* Central dividing seam */
+.split-flap-divider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* 3D Flap flip animation */
+.split-flap-slot.is-flipping .split-flap-top {
+  animation: flap-top-down 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom center;
+}
+
+@keyframes flap-top-down {
+  0% {
+    transform: rotateX(0deg);
+    filter: brightness(1);
+  }
+  50% {
+    transform: rotateX(-85deg);
+    filter: brightness(0.7);
+  }
+  100% {
+    transform: rotateX(0deg);
+    filter: brightness(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-flap-slot.is-flipping .split-flap-top {
+    animation: none;
+  }
+  .split-flap-text:hover .split-flap-slot {
+    transform: none;
+  }
+}

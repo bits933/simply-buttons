@@ -1,0 +1,143 @@
+.btn-lapa-root {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-lapa-btn {
+  --lapa-fill: #ffffff;
+  --lapa-ink: #111111;
+  --lapa-track: #d9d9d9;
+  --lapa-run: #111111;
+  --lapa-focus: #171717;
+  --lapa-icon-ms: 720ms;
+  --lapa-stroke-ms: 1100ms;
+  --lapa-ease: cubic-bezier(0.92, 0, 0.08, 1);
+  --lapa-stroke-ease: cubic-bezier(0.92, 0, 0.08, 1);
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lapa-fill);
+  color: var(--lapa-ink);
+  cursor: pointer;
+}
+
+:root[data-theme="dark"] .btn-lapa-btn {
+  --lapa-fill: #161719;
+  --lapa-ink: #f3f3f3;
+  --lapa-track: #3a3c40;
+  --lapa-run: #f3f3f3;
+  --lapa-focus: #f5f5f5;
+}
+
+.btn-lapa-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.btn-lapa-track,
+.btn-lapa-run {
+  fill: none;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+
+.btn-lapa-track {
+  stroke: var(--lapa-track);
+  stroke-width: 1.5;
+}
+
+.btn-lapa-run {
+  stroke: var(--lapa-run);
+  stroke-width: 1.5;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 101;
+  opacity: 0;
+  transform-origin: 29px 29px;
+  transform: rotate(180deg);
+  transition:
+    stroke-dashoffset var(--lapa-stroke-ms) var(--lapa-stroke-ease),
+    opacity 0ms linear;
+}
+
+.btn-lapa-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.btn-lapa-icon {
+  grid-area: 1 / 1;
+  display: block;
+  width: 20px;
+  height: 20px;
+  transform-origin: 50% 50%;
+  transition: transform var(--lapa-icon-ms) var(--lapa-ease);
+}
+
+.btn-lapa-icon--out {
+  transform: translateX(0) scale(1);
+}
+
+.btn-lapa-icon--in {
+  transform: translateX(-120%) scale(0.78);
+}
+
+.btn-lapa-btn:hover .btn-lapa-run,
+.btn-lapa-btn:focus-visible .btn-lapa-run {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+.btn-lapa-btn:hover .btn-lapa-icon--out,
+.btn-lapa-btn:focus-visible .btn-lapa-icon--out {
+  transform: translateX(120%) scale(0.78);
+}
+
+.btn-lapa-btn:hover .btn-lapa-icon--in,
+.btn-lapa-btn:focus-visible .btn-lapa-icon--in {
+  transform: translateX(0) scale(1);
+}
+
+.btn-lapa-btn:focus {
+  outline: none;
+}
+
+.btn-lapa-btn:focus-visible {
+  outline: 2px solid var(--lapa-focus);
+  outline-offset: 4px;
+}
+
+.btn-lapa-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.btn-lapa-btn:disabled .btn-lapa-run,
+.btn-lapa-btn:disabled .btn-lapa-icon {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-lapa-run,
+  .btn-lapa-icon {
+    transition: none;
+  }
+}

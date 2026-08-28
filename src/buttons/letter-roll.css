@@ -1,0 +1,146 @@
+.btn-roll-root,
+.btn-roll-btn {
+  --roll-bg: #171717;
+  --roll-fg: #ffffff;
+  --roll-edge: #171717;
+  --roll-focus: #171717;
+  --roll-dur: 0.28s;
+  --roll-stagger: 0.055s;
+  --roll-ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+:root[data-theme="dark"] .btn-roll-root,
+:root[data-theme="dark"] .btn-roll-btn {
+  --roll-bg: #f5f5f5;
+  --roll-fg: #171717;
+  --roll-edge: #f5f5f5;
+  --roll-focus: #f5f5f5;
+}
+
+.btn-roll-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-roll-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  min-height: 42px;
+  padding: 0 22px;
+  border: 1px solid var(--roll-edge);
+  border-radius: 9999px;
+  background-color: var(--roll-bg);
+  color: var(--roll-fg);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 90ms cubic-bezier(0, 0, 0.2, 1),
+    filter 140ms ease;
+}
+
+.btn-roll-btn *,
+.btn-roll-btn *::before,
+.btn-roll-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-roll-btn:focus {
+  outline: none;
+}
+
+.btn-roll-btn:focus-visible {
+  outline: 2px solid var(--roll-focus);
+  outline-offset: 3px;
+}
+
+.btn-roll-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-roll-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+  transform: none;
+}
+
+.btn-roll-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.25em;
+  overflow: hidden;
+}
+
+.btn-roll-mother,
+.btn-roll-mother2 {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.btn-roll-mother span,
+.btn-roll-mother2 span {
+  display: inline-block;
+  will-change: transform;
+  transition: transform var(--roll-dur) var(--roll-ease);
+  transition-delay: calc(var(--i, 0) * var(--roll-stagger));
+}
+
+.btn-roll-mother span {
+  transform: translateY(0);
+}
+
+.btn-roll-mother2 {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-roll-mother2 span {
+  transform: translateY(-140%);
+}
+
+@media (hover: hover) {
+  .btn-roll-btn:hover:not(:disabled) .btn-roll-mother span {
+    transform: translateY(140%);
+  }
+
+  .btn-roll-btn:hover:not(:disabled) .btn-roll-mother2 span {
+    transform: translateY(0);
+  }
+}
+
+.btn-roll-btn:focus-visible .btn-roll-mother span {
+  transform: translateY(140%);
+}
+
+.btn-roll-btn:focus-visible .btn-roll-mother2 span {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-roll-btn,
+  .btn-roll-mother span,
+  .btn-roll-mother2 span {
+    transition: none;
+  }
+
+  .btn-roll-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

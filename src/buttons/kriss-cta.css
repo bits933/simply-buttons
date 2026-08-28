@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Krissai";
+  src: url("./fonts/krissai-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.btn-kriss-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-kriss-button {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-grid;
+  width: 120px;
+  height: 38px;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 3px;
+  place-items: center;
+  margin: 0;
+  background-color: rgba(255, 255, 255, .2);
+  color: rgb(15, 15, 15);
+  cursor: pointer;
+  font: 400 12px/18px "Krissai", sans-serif;
+  letter-spacing: 0;
+  transition: background-color 300ms ease;
+}
+
+.btn-kriss-button:hover:not(:disabled),
+.btn-kriss-button:focus-visible:not(:disabled) {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.btn-kriss-button:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, .9);
+  outline-offset: 3px;
+}
+
+.btn-kriss-button:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.btn-kriss-label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.btn-kriss-border {
+  position: absolute;
+  inset: -11px;
+  pointer-events: none;
+}
+
+.btn-kriss-border-svg {
+  display: block;
+  width: 142px;
+  height: 60px;
+  overflow: visible;
+}
+
+.btn-kriss-segment {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.btn-kriss-segment--thick {
+  stroke: white;
+  stroke-width: 3;
+}
+
+.btn-kriss-segment--faint {
+  stroke: rgba(255, 255, 255, .3);
+  stroke-width: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-kriss-button {
+    transition: none;
+  }
+}

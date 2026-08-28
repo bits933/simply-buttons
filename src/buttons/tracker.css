@@ -1,0 +1,161 @@
+.btn-track-root {
+  --track-bg: transparent;
+  --track-face: #171717;
+  --track-ink: #f5f5f5;
+  --track-press: #ea580c;
+  --track-dot: #171717;
+  --track-corner: #171717;
+  --track-focus: #171717;
+  --track-halo: none;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--track-bg);
+  user-select: none;
+}
+
+:root[data-theme="dark"] .btn-track-root {
+  --track-bg: #121315;
+  --track-face: #ffffff;
+  --track-ink: #111111;
+  --track-dot: #dcdcdc;
+  --track-corner: #f2f2f2;
+  --track-focus: #ffffff;
+  --track-halo: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.55));
+}
+
+.btn-track-root.is-live,
+.btn-track-root.is-live * {
+  cursor: none;
+}
+
+.btn-track-btn {
+  --press: 1;
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 154px;
+  min-height: 48px;
+  padding: 16px 44px;
+  border: 0;
+  border-radius: 1px;
+  background: var(--track-press);
+  color: var(--track-ink);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  cursor: pointer;
+  transform: scale(var(--press));
+}
+
+.btn-track-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--track-face);
+  border-radius: inherit;
+  clip-path: inset(0);
+  pointer-events: none;
+  transition: clip-path 400ms cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.btn-track-btn.is-pressed::before {
+  clip-path: inset(50%);
+}
+
+.btn-track-label {
+  position: relative;
+  z-index: 1;
+  color: var(--track-ink);
+  mix-blend-mode: normal;
+}
+
+.btn-track-btn.is-pressed .btn-track-label,
+.btn-track-btn:active .btn-track-label {
+  color: #ffffff;
+}
+
+.btn-track-btn:focus {
+  outline: none;
+}
+
+.btn-track-btn:focus-visible {
+  outline: 2px solid var(--track-focus);
+  outline-offset: 5px;
+}
+
+.btn-track-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.btn-track-dot,
+.btn-track-corner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+
+.btn-track-root.is-live .btn-track-dot,
+.btn-track-root.is-live .btn-track-corner {
+  opacity: 1;
+}
+
+.btn-track-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--track-dot);
+  transition: opacity 180ms ease;
+}
+
+.btn-track-root.is-live .btn-track-dot.is-hidden {
+  opacity: 0;
+}
+
+.btn-track-corner {
+  width: 14px;
+  height: 14px;
+  filter: var(--track-halo);
+}
+
+.btn-track-corner--tl {
+  border-top: 2px solid var(--track-corner);
+  border-left: 2px solid var(--track-corner);
+}
+
+.btn-track-corner--tr {
+  border-top: 2px solid var(--track-corner);
+  border-right: 2px solid var(--track-corner);
+}
+
+.btn-track-corner--bl {
+  border-bottom: 2px solid var(--track-corner);
+  border-left: 2px solid var(--track-corner);
+}
+
+.btn-track-corner--br {
+  border-bottom: 2px solid var(--track-corner);
+  border-right: 2px solid var(--track-corner);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-track-dot,
+  .btn-track-btn::before {
+    transition: none;
+  }
+}

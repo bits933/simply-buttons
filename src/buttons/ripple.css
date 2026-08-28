@@ -1,0 +1,85 @@
+/* material ripple — ink expands from the press point */
+
+.btn-ripple-root,
+.btn-ripple-btn {
+  --ripple-fill: #111111;
+  --ripple-ink: #f5f5f5;
+  --ripple-wave: rgba(245, 245, 245, 0.45);
+  --ripple-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+  --ripple-focus: #171717;
+}
+
+:root[data-theme="dark"] .btn-ripple-root,
+:root[data-theme="dark"] .btn-ripple-btn {
+  --ripple-fill: #ecebe5;
+  --ripple-ink: #0a0a0a;
+  --ripple-wave: rgba(10, 10, 10, 0.28);
+  --ripple-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --ripple-focus: #f5f5f5;
+}
+
+.btn-ripple-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-ripple-btn {
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 13px 32px;
+  border: none;
+  border-radius: 8px;
+  background: var(--ripple-fill);
+  color: var(--ripple-ink);
+  box-shadow: var(--ripple-shadow);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.btn-ripple-btn *,
+.btn-ripple-btn *::before,
+.btn-ripple-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--ripple-wave);
+  transform: scale(0);
+  animation: btn-ripple-rip 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes btn-ripple-rip {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.btn-ripple-btn:focus-visible {
+  outline: 2px solid var(--ripple-focus);
+  outline-offset: 3px;
+}
+
+.btn-ripple-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-ripple-wave {
+    animation: none;
+    opacity: 0;
+  }
+}

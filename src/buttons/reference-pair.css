@@ -1,0 +1,196 @@
+.btn-ref-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-orbit,
+.btn-signal {
+  appearance: none;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 0;
+  background: #ffffff;
+  color: #080808;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: #080808;
+  pointer-events: none;
+  border-radius: inherit;
+  transform: scale(0);
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-orbit {
+  width: 60px;
+  height: 60px;
+  border: 1.5px solid #080808;
+  border-radius: 50%;
+}
+
+.btn-orbit-icon-window {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.btn-orbit-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition:
+    color 180ms ease,
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-orbit-icon--next {
+  color: #ffffff;
+  transform: translateY(-100%);
+}
+
+.btn-signal-wrap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+
+.btn-signal-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1.5px solid rgba(8, 8, 8, 0.48);
+  pointer-events: none;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+:root[data-theme="dark"] .btn-signal-pulse {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-signal-wrap.is-pulsing .btn-signal-pulse {
+  animation: btn-signal-pulse-out 580ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes btn-signal-pulse-out {
+  0% {
+    inset: 0;
+    opacity: 0.85;
+  }
+  100% {
+    inset: -15px;
+    opacity: 0;
+  }
+}
+
+.btn-signal {
+  --signal-stroke: #c9c9c9;
+  width: 156px;
+  height: 44px;
+  border: 1.5px solid var(--signal-stroke);
+  border-radius: 999px;
+  background-clip: padding-box;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease;
+}
+
+:root[data-theme="dark"] .btn-signal {
+  --signal-stroke: rgba(255, 255, 255, 0.4);
+}
+
+.btn-signal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #080808;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-signal-label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  transition: color 220ms ease;
+}
+
+@media (hover: hover) {
+  .btn-orbit:hover::before {
+    transform: scale(1);
+  }
+
+  .btn-orbit:hover .btn-orbit-icon--current {
+    color: #ffffff;
+    transform: translateY(100%);
+  }
+
+  .btn-orbit:hover .btn-orbit-icon--next {
+    transform: translateY(0);
+  }
+
+  .btn-signal:hover {
+    border-color: #383838;
+  }
+
+  .btn-signal:hover::before {
+    transform: scaleX(1);
+  }
+
+  .btn-signal:hover .btn-signal-label {
+    color: #ffffff;
+  }
+}
+
+.btn-orbit:active,
+.btn-signal:active {
+  transform: scale(0.92);
+  transition-duration: 80ms;
+}
+
+.btn-orbit:focus-visible,
+.btn-signal:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.btn-orbit:disabled,
+.btn-signal:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-orbit,
+  .btn-signal,
+  .btn-orbit::before,
+  .btn-signal::before,
+  .btn-orbit-icon,
+  .btn-signal-label,
+  .btn-signal-pulse {
+    transition-duration: 0.01ms;
+    animation: none !important;
+  }
+}

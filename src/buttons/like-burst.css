@@ -1,0 +1,216 @@
+/* like burst — red liked heart, 10/12 side padding */
+.btn-like-root,
+.btn-like-btn {
+  --like-face: #171717;
+  --like-ink: #f5f5f5;
+  --like-ink-3: #a3a3a3;
+  --like-edge: #171717;
+  --like-focus: #171717;
+  --like-color: #f40051;
+  --like-fill: 150ms;
+  --like-pop: 350ms;
+  --like-pop-ease: cubic-bezier(0.34, 1.96, 0.64, 1);
+  --like-spring: 380ms;
+  --like-spring-ease: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --like-particle-dur: 600ms;
+  --like-particle-size: 2.5px;
+  --like-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme="dark"] .btn-like-root,
+:root[data-theme="dark"] .btn-like-btn {
+  --like-face: #f5f5f5;
+  --like-ink: #171717;
+  --like-ink-3: #525252;
+  --like-edge: #f5f5f5;
+  --like-focus: #f5f5f5;
+  --like-color: #f40051;
+}
+
+.btn-like-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-like-btn {
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px 0 14px;
+  border: 1px solid var(--like-edge);
+  border-radius: 999px;
+  background: var(--like-face);
+  color: var(--like-ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-like-btn *,
+.btn-like-btn *::before,
+.btn-like-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-like-icon {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.btn-like-heart {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+  transition: color var(--like-fill) var(--like-ease);
+}
+
+.btn-like-heart path {
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  transition:
+    fill var(--like-fill) var(--like-ease),
+    stroke var(--like-fill) var(--like-ease);
+}
+
+.btn-like-btn[data-liked="true"] .btn-like-heart {
+  color: var(--like-color);
+}
+
+.btn-like-btn[data-liked="true"] .btn-like-heart path {
+  fill: currentColor;
+}
+
+.btn-like-btn[data-liked="true"] .btn-like-icon {
+  animation: btn-like-pop var(--like-pop) var(--like-pop-ease);
+}
+
+.btn-like-btn.is-sprung {
+  animation: btn-like-spring var(--like-spring) var(--like-spring-ease);
+}
+
+.btn-like-particles {
+  position: absolute;
+  left: 19px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  color: var(--like-color);
+}
+
+.btn-like-particles i {
+  position: absolute;
+  left: calc(var(--like-particle-size) * var(--psize, 1) / -2);
+  top: calc(var(--like-particle-size) * var(--psize, 1) / -2);
+  width: calc(var(--like-particle-size) * var(--psize, 1));
+  height: calc(var(--like-particle-size) * var(--psize, 1));
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+}
+
+.btn-like-btn.is-bursting .btn-like-particles i {
+  animation: btn-like-burst var(--pdur, var(--like-particle-dur)) ease-out var(--pdelay, 0ms) forwards;
+}
+
+.btn-like-label {
+  white-space: nowrap;
+}
+
+.btn-like-btn:focus {
+  outline: none;
+}
+
+.btn-like-btn:focus-visible {
+  outline: 2px solid var(--like-focus);
+  outline-offset: 3px;
+}
+
+.btn-like-btn:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.btn-like-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@keyframes btn-like-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(0.82);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes btn-like-spring {
+  0% {
+    transform: scale(1);
+  }
+
+  28% {
+    transform: scale(0.96);
+  }
+
+  68% {
+    transform: scale(1.025);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes btn-like-burst {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(calc(var(--px) * 0.25), calc(var(--py) * 0.25)) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--px), var(--py)) scale(var(--p-end-scale, 0.6));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .btn-like-icon,
+  .btn-like-btn.is-sprung,
+  .btn-like-particles i {
+    animation: none !important;
+  }
+
+  .btn-like-heart,
+  .btn-like-heart path {
+    transition: none;
+  }
+}

@@ -1,0 +1,53 @@
+.btn-neu-root,
+.btn-neu-hover {
+  --neu-surface: #e0e5ec;
+  --neu-ink: #6c7686;
+  --neu-shadow-dark: rgb(163 177 198 / 65%);
+  --neu-shadow-light: #fff;
+  --neu-focus: #4b5563;
+}
+
+:root[data-theme="dark"] .btn-neu-root,
+:root[data-theme="dark"] .btn-neu-hover {
+  --neu-surface: #20242b;
+  --neu-ink: #bac3d0;
+  --neu-shadow-dark: rgb(5 7 10 / 72%);
+  --neu-shadow-light: rgb(255 255 255 / 5%);
+  --neu-focus: #e5e7eb;
+}
+
+.btn-neu-root {
+  display: grid;
+  place-items: center;
+}
+
+.btn-neu-hover {
+  appearance: none;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 12px;
+  background: var(--neu-surface);
+  color: var(--neu-ink);
+  box-shadow: 7px 7px 16px var(--neu-shadow-dark), -7px -7px 16px var(--neu-shadow-light);
+  font: 500 14px/1.2 var(--font);
+  cursor: pointer;
+  transition: box-shadow 200ms ease;
+}
+
+.btn-neu-hover:hover:not(:disabled) {
+  box-shadow: inset 5px 5px 10px var(--neu-shadow-dark), inset -5px -5px 10px var(--neu-shadow-light);
+}
+
+.btn-neu-hover:focus-visible {
+  outline: 2px solid var(--neu-focus);
+  outline-offset: 4px;
+}
+
+.btn-neu-hover:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-neu-hover { transition: none; }
+}

@@ -1,0 +1,186 @@
+.btn-rive-rocket-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-rive-rocket {
+  --rocket-base: #0f0f0f;
+  --rocket-face: #f8f8f8;
+  --rocket-ink: #0f0f0f;
+  --rocket-press: #ebe9e5;
+  --rocket-focus: #171717;
+  --btn-x: 0;
+  --btn-y: 0;
+  --lift: 0;
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 252px;
+  height: 64px;
+  margin: 0;
+  padding: 1px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: var(--rocket-base);
+  color: var(--rocket-ink);
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root[data-theme="dark"] .btn-rive-rocket {
+  --rocket-base: #ecebe5;
+  --rocket-face: #161616;
+  --rocket-ink: #f8f8f8;
+  --rocket-press: #2a2a2a;
+  --rocket-focus: #f5f5f5;
+}
+
+.btn-rive-rocket-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: var(--rocket-face);
+  border: 1px solid var(--rocket-base);
+  box-sizing: border-box;
+  color: var(--rocket-ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.5em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  transform: translate3d(
+    calc(var(--lift) * 0.8em + var(--btn-x) * -0.5em),
+    calc(var(--lift) * -0.8em + var(--btn-y) * -0.5em),
+    0
+  );
+  will-change: transform;
+}
+
+.btn-rive-rocket.is-press .btn-rive-rocket-panel {
+  transform: translate3d(0, 0, 0);
+  background: var(--rocket-press);
+}
+
+.btn-rive-rocket-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1.5em 2em;
+  overflow: hidden;
+}
+
+.btn-rive-rocket-inner * {
+  pointer-events: none;
+}
+
+.btn-rive-rocket-arrow {
+  position: absolute;
+  left: 2em;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  overflow: hidden;
+  color: currentColor;
+  transform: translateX(-4em);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+.btn-rive-rocket.is-hot .btn-rive-rocket-arrow {
+  transform: translateX(-0.2em);
+  transition-delay: 0.12s;
+}
+
+.btn-rive-rocket-label {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  padding-right: 2.2em;
+  text-align: left;
+  white-space: nowrap;
+  transform: translateX(0);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.06s;
+}
+
+.btn-rive-rocket.is-hot .btn-rive-rocket-label {
+  transform: translateX(2em);
+  transition-delay: 0.1s;
+}
+
+.btn-rive-rocket-icon {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: -0.4em;
+  overflow: visible;
+}
+
+.btn-rive-rocket-lottie,
+.btn-rive-rocket-rest {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-rive-rocket-lottie {
+  opacity: 0;
+  transition: opacity 0.4s ease 0.08s;
+}
+
+.btn-rive-rocket-rest {
+  display: block;
+  transition: opacity 0.4s ease 0.08s;
+}
+
+.btn-rive-rocket-rest path {
+  stroke: currentColor;
+}
+
+.btn-rive-rocket.is-hot .btn-rive-rocket-rest {
+  opacity: 0;
+}
+
+.btn-rive-rocket.is-hot .btn-rive-rocket-lottie {
+  opacity: 1;
+}
+
+:root[data-theme="dark"] .btn-rive-rocket-lottie {
+  filter: invert(1);
+}
+
+.btn-rive-rocket:focus-visible {
+  outline: 2px solid var(--rocket-focus);
+  outline-offset: 3px;
+}
+
+.btn-rive-rocket:disabled {
+  cursor: not-allowed;
+}
+
+.btn-rive-rocket:disabled .btn-rive-rocket-inner {
+  opacity: 0.66;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-rive-rocket-panel,
+  .btn-rive-rocket-arrow,
+  .btn-rive-rocket-label,
+  .btn-rive-rocket-lottie,
+  .btn-rive-rocket-rest {
+    transition: none;
+  }
+}

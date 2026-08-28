@@ -1,0 +1,128 @@
+/* form studio — split-cap oval that completes on hover */
+
+@property --form-mask {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 8px;
+}
+
+.btn-form-root,
+.btn-form-btn {
+  --form-ink: #111111;
+  --form-focus: #171717;
+  --form-mask: 8px;
+  --form-ease: cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+:root[data-theme="dark"] .btn-form-root,
+:root[data-theme="dark"] .btn-form-btn {
+  --form-ink: #ecebe5;
+  --form-focus: #f5f5f5;
+}
+
+.btn-form-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-form-btn {
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 41px;
+  padding: 4px 12px;
+  border: none;
+  border-radius: 40px;
+  background: transparent;
+  color: var(--form-ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-form-btn *,
+.btn-form-btn *::before,
+.btn-form-btn *::after {
+  box-sizing: border-box;
+}
+
+.btn-form-border {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask:
+    linear-gradient(
+        to right,
+        #000 var(--form-mask),
+        transparent var(--form-mask)
+      )
+      left center / 51% 100% no-repeat,
+    linear-gradient(
+        to left,
+        #000 var(--form-mask),
+        transparent var(--form-mask)
+      )
+      right center / 51% 100% no-repeat;
+  mask:
+    linear-gradient(
+        to right,
+        #000 var(--form-mask),
+        transparent var(--form-mask)
+      )
+      left center / 51% 100% no-repeat,
+    linear-gradient(
+        to left,
+        #000 var(--form-mask),
+        transparent var(--form-mask)
+      )
+      right center / 51% 100% no-repeat;
+  transition: --form-mask 0.5s var(--form-ease);
+}
+
+.btn-form-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+}
+
+.btn-form-label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn-form-btn:hover:not(:disabled) .btn-form-border,
+.btn-form-btn:focus-visible .btn-form-border {
+  --form-mask: 100%;
+}
+
+.btn-form-btn:focus-visible {
+  outline: 2px solid var(--form-focus);
+  outline-offset: 3px;
+}
+
+.btn-form-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-form-border {
+    transition: none;
+  }
+}
