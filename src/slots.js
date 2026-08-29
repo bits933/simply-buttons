@@ -175,6 +175,11 @@ import {
   PIXEL_RIPPLE_META,
   PIXEL_RIPPLE_SNIPPETS,
 } from "./buttons/pixel-ripple-button.snippets.js";
+import { OrbitStrokePreview } from "./buttons/OrbitStrokeButton.jsx";
+import {
+  ORBIT_STROKE_META,
+  ORBIT_STROKE_SNIPPETS,
+} from "./buttons/orbit-stroke.snippets.js";
 
 const RAW = [
   {
@@ -597,6 +602,15 @@ const RAW = [
         keywords: PIXEL_RIPPLE_META.keywords,
         preview: PixelRipplePreview,
         snippets: PIXEL_RIPPLE_SNIPPETS,
+      },
+      {
+        id: "orbit-stroke",
+        name: ORBIT_STROKE_META.name,
+        blurb: ORBIT_STROKE_META.blurb,
+        states: ORBIT_STROKE_META.states,
+        keywords: ORBIT_STROKE_META.keywords,
+        preview: OrbitStrokePreview,
+        snippets: ORBIT_STROKE_SNIPPETS,
       },
     ],
   },
