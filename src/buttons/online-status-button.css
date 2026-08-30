@@ -1,0 +1,221 @@
+/* Online status button — green-dot "Online" chip that toggles to a red-accent
+   "Offline" state: the dot bursts into a ring and an X draws itself inside.
+   Original specimen for the Simply Buttons gallery (not a replica). */
+.online-status-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.125rem;
+}
+
+.btn-online-status {
+  --accent: #22c55e;
+  --text-c: #1c2733;
+  --border-c: #e5e7ec;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625em;
+  padding: 0.75em 1.125em;
+  border: 1px solid var(--border-c);
+  border-radius: 0.75em;
+  background: #fff;
+  color: var(--text-c);
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 0.0625em 0.1875em rgba(15, 23, 42, 0.06);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-online-status:hover {
+  border-color: #d2d7de;
+  box-shadow: 0 0.125em 0.375em rgba(15, 23, 42, 0.1);
+}
+
+.btn-online-status:active {
+  scale: 0.98;
+}
+
+.btn-online-status:focus-visible {
+  outline: none;
+}
+
+.btn-online-status:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -0.3125em;
+  border-radius: 1em;
+  box-shadow: 0 0 0 0.1875em color-mix(in srgb, var(--accent) 35%, transparent);
+  pointer-events: none;
+}
+
+.btn-online-status.is--offline {
+  --accent: #ef4444;
+  --text-c: #dc2626;
+  --border-c: #f3c1c1;
+  background: #fef2f2;
+}
+
+.btn-online-status__icon {
+  position: relative;
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+}
+
+.btn-online-status__dot {
+  position: absolute;
+  inset: 0.1875em;
+  border-radius: 50%;
+  background: var(--accent);
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 1, 1),
+    opacity 0.18s ease,
+    background-color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-online-status:not(.is--offline) .btn-online-status__dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: btn-online-status-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes btn-online-status-pulse {
+  0% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+.btn-online-status__mark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.btn-online-status__ring,
+.btn-online-status__x {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke 0.25s ease;
+}
+
+.btn-online-status__ring {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: center;
+  transition:
+    opacity 0.2s ease,
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    stroke 0.25s ease;
+}
+
+.btn-online-status__x {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition:
+    stroke-dashoffset 0.2s cubic-bezier(0.3, 0, 0.2, 1),
+    stroke 0.25s ease;
+}
+
+.btn-online-status.is--offline .btn-online-status__dot {
+  transform: scale(1.8);
+  opacity: 0;
+}
+
+.btn-online-status.is--offline .btn-online-status__ring {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.btn-online-status.is--offline .btn-online-status__x {
+  stroke-dashoffset: 0;
+}
+
+.btn-online-status.is--offline .btn-online-status__x.is--second {
+  transition-delay: 0.08s;
+}
+
+.btn-online-status__ping {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  margin: -0.625em 0 0 -0.625em;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-online-status__labels {
+  position: relative;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+}
+
+.btn-online-status__label {
+  position: static;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  transition:
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease;
+}
+
+.btn-online-status__label.is--off {
+  position: absolute;
+  transform: translateY(130%);
+  opacity: 0;
+}
+
+.btn-online-status.is--offline .btn-online-status__label.is--on {
+  position: absolute;
+  transform: translateY(-130%);
+  opacity: 0;
+}
+
+.btn-online-status.is--offline .btn-online-status__label.is--off {
+  position: static;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-online-status,
+  .btn-online-status__label,
+  .btn-online-status__dot,
+  .btn-online-status__ring,
+  .btn-online-status__x {
+    transition: none;
+    animation: none !important;
+  }
+}

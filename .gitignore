@@ -4,6 +4,5 @@ dist
 *.local
 graphify-out
 .vercel
-.worktrees/
 .env
 .env.*

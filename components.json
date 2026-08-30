@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": false,
+  "tailwind": {
+    "config": "",
+    "css": "src/index.css",
+    "baseColor": "neutral",
+    "cssVariables": false
+  },
+  "aliases": {
+    "components": "src/buttons",
+    "utils": "src/buttons",
+    "ui": "src/buttons",
+    "lib": "src/buttons",
+    "hooks": "src/buttons"
+  },
+  "registries": {
+    "@canvas-ui": "https://canvasui.dev/r/{name}.json",
+    "@loading-ui": "https://loading-ui.com/r/{name}.json"
+  }
+}

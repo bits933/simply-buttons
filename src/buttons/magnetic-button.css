@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob037-root {
+
+    --button-037-color: #131313;
+    --button-037-color-background: #fff;
+    --button-037-color-focus: #000;
+    --button-037-padding: 1.15em 1.75em;
+    --button-037-border-radius: 2.5em;
+    --button-037-focus-inset: -0.125em;
+    --button-037-hover-scale: 1.065 1.095;
+    --button-037-click-scale: 0.955, 0.925;
+    --button-037-focus-scale: 1.165 1.195;
+    --button-037-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+    --button-037-ease-hover: cubic-bezier(0.34, 2.27, 0.64, 1);
+    --button-037-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob037-root *,
+.ob037-root *::after,
+.ob037-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob037-root .button-037 {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob037-root .button-037:is(:hover, :focus-visible) .button-037__bg,
+.ob037-root [data-hover]:is(:hover, :focus-visible) .button-037 .button-037__bg {
+      scale: var(--button-037-hover-scale);
+      transition:
+        scale 0.425s 0.05s var(--button-037-ease-hover),
+        transform 0.15s var(--button-037-ease-click);
+    }
+
+  }.ob037-root .button-037:active .button-037__bg {
+    transform: scale(var(--button-037-click-scale));
+  }
+.ob037-root .button-037:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-037-color-focus);
+    scale: var(--button-037-hover-scale);
+    transition:
+      box-shadow 0.3s var(--button-037-ease-focus),
+      scale 0.425s 0.05s var(--button-037-ease-hover);
+  }
+.ob037-root .button-037::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-037-focus-inset);
+    border-radius: var(--button-037-border-radius);
+    transition:
+      box-shadow 0.3s var(--button-037-ease-focus),
+      scale 0.4s var(--button-037-ease-hover);
+    pointer-events: none;
+    z-index: 1;
+  }
+.ob037-root .button-037__bg {
+    transition:
+      scale 0.4s var(--button-037-ease-hover),
+      transform 0.15s var(--button-037-ease-click);
+  }
+.ob037-root .button-037 { -webkit-user-select: none; user-select: none; color: var(--button-037-color); background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }
+.ob037-root .button-037__bg { pointer-events: none; border-radius: var(--button-037-border-radius); background-color: var(--button-037-color-background); grid-area: 1 / 1; width: 100%; height: 100%; padding: 0; }
+.ob037-root .button-037__inner { grid-column-gap: .125em; grid-row-gap: .125em; pointer-events: none; width: 100%; height: 100%; padding: var(--button-037-padding); z-index: 1; grid-area: 1 / 1; justify-content: center; align-items: center; display: flex; }
+.ob037-root .button-037__icon { flex: none; width: .75em; height: .75em; }
+
+.ob037-root .button-037 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }

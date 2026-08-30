@@ -370,6 +370,7 @@ app.get("/", function (req, res) { res.type("html").send(PAGE); });
 app.listen(3000, function () { console.log("http://localhost:3000"); });
 `,
 };
+
 export const IGLOO_CLOSE_META = {
   id: "igloo-close",
   name: "Glitch",

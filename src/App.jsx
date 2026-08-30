@@ -104,8 +104,11 @@ export function App() {
             </div>
             <div className="intro-side">
               <p className="lede">
-                Each tray is a live preview plus HTML, React, and Node. Search by
-                name, type, or motion — then copy three stacks.
+                Each tray is a live preview plus{" "}
+                <strong>HTML, React, and Node</strong>. Search by name, type, or
+                motion — then copy three stacks. Not all buttons look good in
+                dark mode as well as light mode — experiment by changing the
+                theme to check them on light and dark themes.
               </p>
             </div>
           </div>

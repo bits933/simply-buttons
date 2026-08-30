@@ -1,0 +1,171 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob079-root {
+
+    --button-079-color: #131313;
+    --button-079-color-background: #ffce16;
+    --button-079-shine-color: #fff;
+    --button-079-color-focus: #fff;
+    --button-079-border-radius: 2.5em;
+    --button-079-padding: 0.75em 1em;
+    --button-079-focus-inset: -0.125em;
+    --button-079-ease-hover: linear(0, 0.255, 0.4449, 0.6079, 0.7355, 0.8513, 0.9525, 1.0413, 1.1195, 1.1881, 1.2484, 1.3011, 1.3468, 1.3862, 1.4198, 1.4479, 1.4709, 1.4892, 1.503, 1.5126, 1.5182, 1.52, 1.5189, 1.5156, 1.5101, 1.5025, 1.4929, 1.4817, 1.469, 1.4552, 1.4406, 1.4254, 1.4099, 1.3943, 1.3787, 1.3633, 1.3481, 1.3333, 1.3188, 1.3048, 1.2912, 1.278, 1.2653, 1.253, 1.2412, 1.2298, 1.2188, 1.2083, 1.1981, 1.1883, 1.1789, 1.1698, 1.1611, 1.1528, 1.1447, 1.137, 1.1296, 1.1225, 1.1156, 1.1091, 1.1028, 1.0967, 1.0909, 1.0854, 1.0801, 1.075, 1.0701, 1.0654, 1.061, 1.0567, 1.0526, 1.0488, 1.0451, 1.0415, 1.0382, 1.035, 1.032, 1.0292, 1.0265, 1.0239, 1.0215, 1.0193, 1.0172, 1.0152, 1.0134, 1.0117, 1.0101, 1.0086, 1.0073, 1.0061, 1.005, 1.004, 1.0032, 1.0024, 1.0079, 1.0012, 1.0008, 1.0004, 1.0002, 1, 1);
+    --button-079-ease-animation: cubic-bezier(0.6, 0.05, 0, 0.85);
+    --button-079-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob079-root *,
+.ob079-root *::after,
+.ob079-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob079-root .button-079 {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob079-root .button-079:is(:hover, :focus-visible) .button-079__inner,
+.ob079-root [data-hover]:is(:hover, :focus-visible) .button-079 .button-079__inner {
+      transition:
+        scale 0.55s 0.05s var(--button-079-ease-hover),
+        rotate 0.55s 0.05s var(--button-079-ease-hover);
+      scale: 1.025;
+      rotate: 2deg;
+    }
+.ob079-root .button-079:is(:hover, :focus-visible) .button-079__bg,
+.ob079-root .button-079:is(:hover, :focus-visible) .button-079__bg-animation,
+.ob079-root [data-hover]:is(:hover, :focus-visible) .button-079 .button-079__bg,
+.ob079-root [data-hover]:is(:hover, :focus-visible) .button-079 .button-079__bg-animation {
+      scale: var(--button-079-scale-x) var(--button-079-scale-y);
+      rotate: 2deg;
+      transition:
+        scale 0.55s 0.05s var(--button-079-ease-hover),
+        rotate 0.55s 0.05s var(--button-079-ease-hover);
+    }
+
+  }.ob079-root .button-079:active .button-079__bg,
+.ob079-root .button-079:active .button-079__bg-animation {
+    scale: calc(2 - var(--button-079-scale-x)) calc(2 - var(--button-079-scale-y));
+  }
+
+  
+  @media (hover: hover) and (pointer: fine) {.ob079-root .button-079:active .button-079__bg,
+.ob079-root .button-079:active .button-079__bg-animation {
+      scale: 1 1;
+      rotate: -2deg;
+    }
+
+  }.ob079-root .button-079:active .button-079__inner {
+    scale: 0.975;
+    rotate: -2deg;
+  }
+.ob079-root .button-079:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-079-color-focus);
+    scale: var(--button-079-scale-x) var(--button-079-scale-y);
+    rotate: 2deg;
+    transition:
+      box-shadow 0.3s var(--button-079-ease-focus),
+      scale 0.55s 0.05s var(--button-079-ease-hover),
+      rotate 0.55s 0.05s var(--button-079-ease-hover);
+  }
+.ob079-root .button-079::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-079-focus-inset);
+    border-radius: var(--button-079-border-radius);
+    transition:
+      box-shadow 0.3s var(--button-079-ease-focus),
+      scale 0.45s var(--button-079-ease-hover),
+      rotate 0.45s var(--button-079-ease-hover);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  
+  @media (prefers-reduced-motion: no-preference) {.ob079-root .button-079.is--inview .button-079__bg-shine-wrap {
+      animation-play-state: running;
+    }
+
+  }.ob079-root .button-079__inner {
+    transition:
+      scale 0.45s var(--button-079-ease-hover),
+      rotate 0.45s var(--button-079-ease-hover);
+  }
+.ob079-root .button-079__bg,
+.ob079-root .button-079__bg-animation {
+    transition:
+      scale 0.45s var(--button-079-ease-hover),
+      rotate 0.45s var(--button-079-ease-hover);
+  }
+.ob079-root .button-079__bg-shine-wrap {
+    animation:
+      button-079-shine 1.5s var(--button-079-ease-animation) infinite,
+      button-079-pause-between-iterations 3s var(--button-079-ease-animation) infinite;
+    animation-play-state: paused;
+  }
+
+  
+  @keyframes button-079-shine {
+    from {
+      translate: -135% -15%;
+      rotate: 60deg;
+    }
+    to {
+      translate: 135% 15%;
+      rotate: 60deg;
+    }
+  }
+  
+  @keyframes button-079-pause-between-iterations {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    50.1% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+    
+  
+
+.button-079__bg { background-color: var(--button-079-color-background); border-radius: var(--button-079-border-radius); grid-area: 1 / 1; width: 100%; height: 100%; padding: 0; }.ob079-root .button-079__bg-animation { border-radius: var(--button-079-border-radius); z-index: 2; grid-area: 1 / 1; width: 100%; height: 100%; display: flex; overflow: clip; }
+.ob079-root .button-079 { color: var(--button-079-color); -webkit-user-select: none; user-select: none; background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }
+.ob079-root .button-079__bg-shine { background-color: var(--button-079-shine-color); grid-area: 1 / 1; place-self: center; width: 150%; height: 50%; padding: 0; }
+.ob079-root .button-079__bg-shine.is--second { place-self: flex-start center; height: 25%; }
+.ob079-root .button-079__bg-shine.is--first { place-self: flex-end center; height: 65%; }
+.ob079-root .button-079__bg-shine-wrap { pointer-events: none; width: 100%; height: 100%; display: grid; }
+.ob079-root .button-079__inner { grid-column-gap: .125em; grid-row-gap: .125em; width: 100%; height: 100%; padding: var(--button-079-padding); z-index: 1; grid-area: 1 / 1; justify-content: center; align-items: center; display: flex; }
+.ob079-root .button-079__icon { flex: none; width: .75em; height: .75em; }
+
+.ob079-root .button-079 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }

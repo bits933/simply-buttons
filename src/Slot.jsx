@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { RectangleDashed } from "@phosphor-icons/react";
+import { CornersOut, RectangleDashed } from "@phosphor-icons/react";
 import { CodeModal } from "./CodeModal.jsx";
 import { CopyButton } from "./CopyButton.jsx";
+import { PreviewModal } from "./PreviewModal.jsx";
 import { STACKS } from "./slots.js";
 
 const TAB_KEYS = ["html", "react", "node"];
@@ -10,6 +11,7 @@ export function Slot({ index, slot }) {
   const number = String(index).padStart(2, "0");
   const filled = Boolean(slot.preview);
   const [open, setOpen] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const copyTimer = useRef(0);
   const componentCode = slot.snippets?.react ?? "";
@@ -33,32 +35,23 @@ export function Slot({ index, slot }) {
       itemScope
       itemType="https://schema.org/SoftwareSourceCode"
     >
-      <svg className="slot-stroke-frame" aria-hidden="true">
-        <rect
-          className="slot-stroke-line slot-stroke-line--tr"
-          x="1"
-          y="1"
-          width="calc(100% - 2px)"
-          height="calc(100% - 2px)"
-          rx="7"
-          ry="7"
-          pathLength="100"
-        />
-        <rect
-          className="slot-stroke-line slot-stroke-line--bl"
-          x="1"
-          y="1"
-          width="calc(100% - 2px)"
-          height="calc(100% - 2px)"
-          rx="7"
-          ry="7"
-          pathLength="100"
-        />
-      </svg>
       <div className={filled ? "slot-preview is-filled" : "slot-preview"}>
         <span className="slot-index" aria-hidden="true">
           {number}
         </span>
+        {filled ? (
+          <button
+            type="button"
+            className="slot-expand"
+            aria-label={`View ${slot.name} fullscreen`}
+            onClick={() => {
+              setOpen(null);
+              setPreviewOpen(true);
+            }}
+          >
+            <CornersOut size={16} weight="bold" />
+          </button>
+        ) : null}
         <div className="slot-preview-stage">
           {filled ? (
             <slot.preview />
@@ -100,7 +93,10 @@ export function Slot({ index, slot }) {
                 key={stack}
                 type="button"
                 className="code-open"
-                onClick={() => setOpen(i)}
+                onClick={() => {
+                  setPreviewOpen(false);
+                  setOpen(i);
+                }}
               >
                 <span className="code-open-window" aria-hidden="true">
                   <span className="code-open-line code-open-line--out">
@@ -125,6 +121,17 @@ export function Slot({ index, slot }) {
           code={slot.snippets?.[TAB_KEYS[open]] ?? `// ${slot.id}`}
           onClose={() => setOpen(null)}
         />
+      ) : null}
+
+      {previewOpen && filled ? (
+        <PreviewModal
+          title={slot.name}
+          copied={copied}
+          onCopy={copyComponent}
+          onClose={() => setPreviewOpen(false)}
+        >
+          <slot.preview />
+        </PreviewModal>
       ) : null}
     </article>
   );

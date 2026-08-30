@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob049-root {
+
+    --button-049-color: #131313;
+    --button-049-color-background: #fff;
+    --button-049-hover-color: #fff;
+    --button-049-hover-color-background: #00562f;
+    --button-049-border-radius: 2.5em;
+    --button-049-color-focus: #000;
+    --button-049-padding: 0.75em 1em;
+    --button-049-text-duplicate-distance: -2em;
+    --button-049-focus-inset: -0.125em;
+    --button-049-click-scale: 0.955 0.925;
+    --button-049-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+    --button-049-ease-hover: cubic-bezier(0.21, 1, 0.34, 1);
+    --button-049-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob049-root *,
+.ob049-root *::after,
+.ob049-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob049-root .button-049 {
+    -webkit-tap-highlight-color: transparent;
+    transition: scale 0.15s var(--button-049-ease-click);
+  }
+
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob049-root .button-049:is(:hover, :focus-visible) .button-049__text,
+.ob049-root [data-hover]:is(:hover, :focus-visible) .button-049 .button-049__text {
+      translate: 0 calc(var(--button-049-text-duplicate-distance) * -1) 0;
+      transition-delay: 0.05s;
+    }
+.ob049-root .button-049:is(:hover, :focus-visible) .button-049__bg-hover,
+.ob049-root [data-hover]:is(:hover, :focus-visible) .button-049 .button-049__bg-hover {
+      clip-path: inset(0 0 0 0 round var(--button-049-border-radius));
+      transition-delay: 0.05s;
+    }
+
+  }.ob049-root .button-049:active {
+    scale: var(--button-049-click-scale);
+  }
+.ob049-root .button-049:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-049-color-focus);
+  }
+.ob049-root .button-049::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-049-focus-inset);
+    border-radius: var(--button-049-border-radius);
+    transition: box-shadow 0.3s var(--button-049-ease-focus);
+    pointer-events: none;
+    z-index: 1;
+  }
+.ob049-root .button-049__text {
+    text-shadow: 0 var(--button-049-text-duplicate-distance) 0 var(--button-049-hover-color);
+    transition: translate 0.45s var(--button-049-ease-hover);
+  }
+.ob049-root .button-049__bg-hover {
+    clip-path: inset(0.5em 1em calc(100% - 0.5em) 1em round 0.25em);
+    transition: clip-path 0.45s var(--button-049-ease-hover);
+  }
+.ob049-root .button-049 { color: var(--button-049-color); -webkit-user-select: none; user-select: none; background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }
+.ob049-root .button-049__bg-hover { background-color: var(--button-049-hover-color-background); border-radius: var(--button-049-border-radius); z-index: 1; grid-area: 1 / 1; place-self: center; width: calc(100% + 1px); height: calc(100% + 1px); padding: 0; }
+.ob049-root .button-049__bg { background-color: var(--button-049-color-background); border-radius: var(--button-049-border-radius); grid-area: 1 / 1; width: 100%; height: 100%; padding: 0; }
+.ob049-root .button-049__inner { grid-column-gap: .125em; grid-row-gap: .125em; z-index: 2; width: 100%; height: 100%; padding: var(--button-049-padding); border-radius: var(--button-049-border-radius); grid-area: 1 / 1; justify-content: center; align-items: center; display: flex; overflow: clip; }
+
+.ob049-root .button-049 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }

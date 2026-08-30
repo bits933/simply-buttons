@@ -1,0 +1,15 @@
+/* Light-mode variant for the Run compiler button (gallery only — the snippet
+   pages stay dark). Black frame and caret so the terminal reads on the light
+   stage; the XP green loader chunks work on both. */
+html:not([data-theme="dark"]) .btn-run-compiler {
+  border-color: #131313;
+  color: #131313;
+}
+
+html:not([data-theme="dark"]) .btn-run-compiler__caret {
+  background: #131313;
+}
+
+html:not([data-theme="dark"]) .btn-run-compiler:focus-visible::after {
+  border-color: rgba(0, 0, 0, 0.55);
+}

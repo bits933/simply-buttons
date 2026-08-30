@@ -180,6 +180,163 @@ import {
   ORBIT_STROKE_META,
   ORBIT_STROKE_SNIPPETS,
 } from "./buttons/orbit-stroke.snippets.js";
+import {
+  OsmoButton003DefaultPreview,
+  OsmoButton003AltPreview,
+  OsmoButton003LongPreview,
+  OsmoButton003IconCirclePreview,
+  OsmoButton003TextPreview,
+  OsmoButton003IconPreview,
+} from "./buttons/OsmoButton003.jsx";
+import {
+  OSMO_003_DEFAULT_META,
+  OSMO_003_DEFAULT_SNIPPETS,
+  OSMO_003_ALT_META,
+  OSMO_003_ALT_SNIPPETS,
+  OSMO_003_LONG_META,
+  OSMO_003_LONG_SNIPPETS,
+  OSMO_003_ICON_CIRCLE_META,
+  OSMO_003_ICON_CIRCLE_SNIPPETS,
+  OSMO_003_TEXT_META,
+  OSMO_003_TEXT_SNIPPETS,
+  OSMO_003_ICON_META,
+  OSMO_003_ICON_SNIPPETS,
+} from "./buttons/osmo-button-003.snippets.js";
+import { TetrisStackButtonPreview } from "./buttons/TetrisStackButton.jsx";
+import {
+  TETRIS_STACK_META,
+  TETRIS_STACK_SNIPPETS,
+} from "./buttons/tetris-stack-button.snippets.js";
+import { DiagonalRevealButtonPreview } from "./buttons/DiagonalRevealButton.jsx";
+import {
+  DIAGONAL_REVEAL_META,
+  DIAGONAL_REVEAL_SNIPPETS,
+} from "./buttons/diagonal-reveal-button.snippets.js";
+import { MagneticButtonPreview } from "./buttons/MagneticButton.jsx";
+import {
+  MAGNETIC_META,
+  MAGNETIC_SNIPPETS,
+} from "./buttons/magnetic-button.snippets.js";
+import { DoodleWiggleButtonPreview } from "./buttons/DoodleWiggleButton.jsx";
+import {
+  DOODLE_WIGGLE_META,
+  DOODLE_WIGGLE_SNIPPETS,
+} from "./buttons/doodle-wiggle-button.snippets.js";
+import { BlurStaggerButtonPreview } from "./buttons/BlurStaggerButton.jsx";
+import {
+  BLUR_STAGGER_META,
+  BLUR_STAGGER_SNIPPETS,
+} from "./buttons/blur-stagger-button.snippets.js";
+import { IconSweepButtonPreview } from "./buttons/IconSweepButton.jsx";
+import {
+  ICON_SWEEP_META,
+  ICON_SWEEP_SNIPPETS,
+} from "./buttons/icon-sweep-button.snippets.js";
+import { ElasticPulseButtonPreview } from "./buttons/ElasticPulseButton.jsx";
+import {
+  ELASTIC_PULSE_META,
+  ELASTIC_PULSE_SNIPPETS,
+} from "./buttons/elastic-pulse-button.snippets.js";
+import { CursorCircleButtonPreview } from "./buttons/CursorCircleButton.jsx";
+import {
+  CURSOR_CIRCLE_META,
+  CURSOR_CIRCLE_SNIPPETS,
+} from "./buttons/cursor-circle-button.snippets.js";
+import { RollFillButtonPreview } from "./buttons/RollFillButton.jsx";
+import {
+  ROLL_FILL_META,
+  ROLL_FILL_SNIPPETS,
+} from "./buttons/roll-fill-button.snippets.js";
+import { ClipFillButtonPreview } from "./buttons/ClipFillButton.jsx";
+import {
+  CLIP_FILL_META,
+  CLIP_FILL_SNIPPETS,
+} from "./buttons/clip-fill-button.snippets.js";
+import { ArrowSwapButtonPreview } from "./buttons/ArrowSwapButton.jsx";
+import {
+  ARROW_SWAP_META,
+  ARROW_SWAP_SNIPPETS,
+} from "./buttons/arrow-swap-button.snippets.js";
+import { DirectionStaggerButtonPreview } from "./buttons/DirectionStaggerButton.jsx";
+import {
+  DIRECTION_STAGGER_META,
+  DIRECTION_STAGGER_SNIPPETS,
+} from "./buttons/direction-stagger-button.snippets.js";
+import { ChromaticRiseButtonPreview } from "./buttons/ChromaticRiseButton.jsx";
+import {
+  CHROMATIC_RISE_META,
+  CHROMATIC_RISE_SNIPPETS,
+} from "./buttons/chromatic-rise-button.snippets.js";
+import { ItemBoxButtonPreview } from "./buttons/ItemBoxButton.jsx";
+import {
+  ITEM_BOX_META,
+  ITEM_BOX_SNIPPETS,
+} from "./buttons/item-box-button.snippets.js";
+import { LetterRotateButtonPreview } from "./buttons/LetterRotateButton.jsx";
+import {
+  LETTER_ROTATE_META,
+  LETTER_ROTATE_SNIPPETS,
+} from "./buttons/letter-rotate-button.snippets.js";
+import { CornerFrameButtonPreview } from "./buttons/CornerFrameButton.jsx";
+import {
+  CORNER_FRAME_META,
+  CORNER_FRAME_SNIPPETS,
+} from "./buttons/corner-frame-button.snippets.js";
+import { CharRollButtonPreview } from "./buttons/CharRollButton.jsx";
+import {
+  CHAR_ROLL_META,
+  CHAR_ROLL_SNIPPETS,
+} from "./buttons/char-roll-button.snippets.js";
+import { RandomRiseButtonPreview } from "./buttons/RandomRiseButton.jsx";
+import {
+  RANDOM_RISE_META,
+  RANDOM_RISE_SNIPPETS,
+} from "./buttons/random-rise-button.snippets.js";
+import { DualBlockFillButtonPreview } from "./buttons/DualBlockFillButton.jsx";
+import {
+  DUAL_BLOCK_FILL_META,
+  DUAL_BLOCK_FILL_SNIPPETS,
+} from "./buttons/dual-block-fill-button.snippets.js";
+import { DrawArrowButtonPreview } from "./buttons/DrawArrowButton.jsx";
+import {
+  DRAW_ARROW_META,
+  DRAW_ARROW_SNIPPETS,
+} from "./buttons/draw-arrow-button.snippets.js";
+import { JumpBurstButtonPreview } from "./buttons/JumpBurstButton.jsx";
+import {
+  JUMP_BURST_META,
+  JUMP_BURST_SNIPPETS,
+} from "./buttons/jump-burst-button.snippets.js";
+import { ShineScaleButtonPreview } from "./buttons/ShineScaleButton.jsx";
+import {
+  SHINE_SCALE_META,
+  SHINE_SCALE_SNIPPETS,
+} from "./buttons/shine-scale-button.snippets.js";
+import { StripeScrollButtonPreview } from "./buttons/StripeScrollButton.jsx";
+import {
+  STRIPE_SCROLL_META,
+  STRIPE_SCROLL_SNIPPETS,
+} from "./buttons/stripe-scroll-button.snippets.js";
+import { LineBloomButtonPreview } from "./buttons/LineBloomButton.jsx";
+import {
+  LINE_BLOOM_META,
+  LINE_BLOOM_SNIPPETS,
+} from "./buttons/line-bloom-button.snippets.js";
+import { OnlineStatusButtonPreview } from "./buttons/OnlineStatusButton.jsx";
+import {
+  ONLINE_STATUS_META,
+  ONLINE_STATUS_SNIPPETS,
+} from "./buttons/online-status-button.snippets.js";
+import { RunCompilerButtonPreview } from "./buttons/RunCompilerButton.jsx";
+import {
+  RUN_COMPILER_META,
+  RUN_COMPILER_SNIPPETS,
+} from "./buttons/run-compiler-button.snippets.js";
+import { ExploreNowButtonPreview } from "./buttons/ExploreNowButton.jsx";
+import {
+  EXPLORE_NOW_META,
+  EXPLORE_NOW_SNIPPETS,
+} from "./buttons/explore-now-button.snippets.js";
 
 const RAW = [
   {
@@ -611,6 +768,303 @@ const RAW = [
         keywords: ORBIT_STROKE_META.keywords,
         preview: OrbitStrokePreview,
         snippets: ORBIT_STROKE_SNIPPETS,
+      },
+      {
+        id: "osmo-003-default",
+        name: OSMO_003_DEFAULT_META.name,
+        blurb: OSMO_003_DEFAULT_META.blurb,
+        states: OSMO_003_DEFAULT_META.states,
+        keywords: OSMO_003_DEFAULT_META.keywords,
+        preview: OsmoButton003DefaultPreview,
+        snippets: OSMO_003_DEFAULT_SNIPPETS,
+      },
+      {
+        id: "osmo-003-alt",
+        name: OSMO_003_ALT_META.name,
+        blurb: OSMO_003_ALT_META.blurb,
+        states: OSMO_003_ALT_META.states,
+        keywords: OSMO_003_ALT_META.keywords,
+        preview: OsmoButton003AltPreview,
+        snippets: OSMO_003_ALT_SNIPPETS,
+      },
+      {
+        id: "osmo-003-long",
+        name: OSMO_003_LONG_META.name,
+        blurb: OSMO_003_LONG_META.blurb,
+        states: OSMO_003_LONG_META.states,
+        keywords: OSMO_003_LONG_META.keywords,
+        preview: OsmoButton003LongPreview,
+        snippets: OSMO_003_LONG_SNIPPETS,
+      },
+      {
+        id: "osmo-003-icon-circle",
+        name: OSMO_003_ICON_CIRCLE_META.name,
+        blurb: OSMO_003_ICON_CIRCLE_META.blurb,
+        states: OSMO_003_ICON_CIRCLE_META.states,
+        keywords: OSMO_003_ICON_CIRCLE_META.keywords,
+        preview: OsmoButton003IconCirclePreview,
+        snippets: OSMO_003_ICON_CIRCLE_SNIPPETS,
+      },
+      {
+        id: "osmo-003-text",
+        name: OSMO_003_TEXT_META.name,
+        blurb: OSMO_003_TEXT_META.blurb,
+        states: OSMO_003_TEXT_META.states,
+        keywords: OSMO_003_TEXT_META.keywords,
+        preview: OsmoButton003TextPreview,
+        snippets: OSMO_003_TEXT_SNIPPETS,
+      },
+      {
+        id: "osmo-003-icon",
+        name: OSMO_003_ICON_META.name,
+        blurb: OSMO_003_ICON_META.blurb,
+        states: OSMO_003_ICON_META.states,
+        keywords: OSMO_003_ICON_META.keywords,
+        preview: OsmoButton003IconPreview,
+        snippets: OSMO_003_ICON_SNIPPETS,
+      },
+      {
+        id: "tetris-stack",
+        name: TETRIS_STACK_META.name,
+        blurb: TETRIS_STACK_META.blurb,
+        states: TETRIS_STACK_META.states,
+        keywords: TETRIS_STACK_META.keywords,
+        preview: TetrisStackButtonPreview,
+        snippets: TETRIS_STACK_SNIPPETS,
+      },
+      {
+        id: "diagonal-reveal",
+        name: DIAGONAL_REVEAL_META.name,
+        blurb: DIAGONAL_REVEAL_META.blurb,
+        states: DIAGONAL_REVEAL_META.states,
+        keywords: DIAGONAL_REVEAL_META.keywords,
+        preview: DiagonalRevealButtonPreview,
+        snippets: DIAGONAL_REVEAL_SNIPPETS,
+      },
+      {
+        id: "magnetic",
+        name: MAGNETIC_META.name,
+        blurb: MAGNETIC_META.blurb,
+        states: MAGNETIC_META.states,
+        keywords: MAGNETIC_META.keywords,
+        preview: MagneticButtonPreview,
+        snippets: MAGNETIC_SNIPPETS,
+      },
+      {
+        id: "doodle-wiggle",
+        name: DOODLE_WIGGLE_META.name,
+        blurb: DOODLE_WIGGLE_META.blurb,
+        states: DOODLE_WIGGLE_META.states,
+        keywords: DOODLE_WIGGLE_META.keywords,
+        preview: DoodleWiggleButtonPreview,
+        snippets: DOODLE_WIGGLE_SNIPPETS,
+      },
+      {
+        id: "blur-stagger",
+        name: BLUR_STAGGER_META.name,
+        blurb: BLUR_STAGGER_META.blurb,
+        states: BLUR_STAGGER_META.states,
+        keywords: BLUR_STAGGER_META.keywords,
+        preview: BlurStaggerButtonPreview,
+        snippets: BLUR_STAGGER_SNIPPETS,
+      },
+      {
+        id: "icon-sweep",
+        name: ICON_SWEEP_META.name,
+        blurb: ICON_SWEEP_META.blurb,
+        states: ICON_SWEEP_META.states,
+        keywords: ICON_SWEEP_META.keywords,
+        preview: IconSweepButtonPreview,
+        snippets: ICON_SWEEP_SNIPPETS,
+      },
+      {
+        id: "elastic-pulse",
+        name: ELASTIC_PULSE_META.name,
+        blurb: ELASTIC_PULSE_META.blurb,
+        states: ELASTIC_PULSE_META.states,
+        keywords: ELASTIC_PULSE_META.keywords,
+        preview: ElasticPulseButtonPreview,
+        snippets: ELASTIC_PULSE_SNIPPETS,
+      },
+      {
+        id: "cursor-circle",
+        name: CURSOR_CIRCLE_META.name,
+        blurb: CURSOR_CIRCLE_META.blurb,
+        states: CURSOR_CIRCLE_META.states,
+        keywords: CURSOR_CIRCLE_META.keywords,
+        preview: CursorCircleButtonPreview,
+        snippets: CURSOR_CIRCLE_SNIPPETS,
+      },
+      {
+        id: "roll-fill",
+        name: ROLL_FILL_META.name,
+        blurb: ROLL_FILL_META.blurb,
+        states: ROLL_FILL_META.states,
+        keywords: ROLL_FILL_META.keywords,
+        preview: RollFillButtonPreview,
+        snippets: ROLL_FILL_SNIPPETS,
+      },
+      {
+        id: "clip-fill",
+        name: CLIP_FILL_META.name,
+        blurb: CLIP_FILL_META.blurb,
+        states: CLIP_FILL_META.states,
+        keywords: CLIP_FILL_META.keywords,
+        preview: ClipFillButtonPreview,
+        snippets: CLIP_FILL_SNIPPETS,
+      },
+      {
+        id: "arrow-swap",
+        name: ARROW_SWAP_META.name,
+        blurb: ARROW_SWAP_META.blurb,
+        states: ARROW_SWAP_META.states,
+        keywords: ARROW_SWAP_META.keywords,
+        preview: ArrowSwapButtonPreview,
+        snippets: ARROW_SWAP_SNIPPETS,
+      },
+      {
+        id: "direction-stagger",
+        name: DIRECTION_STAGGER_META.name,
+        blurb: DIRECTION_STAGGER_META.blurb,
+        states: DIRECTION_STAGGER_META.states,
+        keywords: DIRECTION_STAGGER_META.keywords,
+        preview: DirectionStaggerButtonPreview,
+        snippets: DIRECTION_STAGGER_SNIPPETS,
+      },
+      {
+        id: "chromatic-rise",
+        name: CHROMATIC_RISE_META.name,
+        blurb: CHROMATIC_RISE_META.blurb,
+        states: CHROMATIC_RISE_META.states,
+        keywords: CHROMATIC_RISE_META.keywords,
+        preview: ChromaticRiseButtonPreview,
+        snippets: CHROMATIC_RISE_SNIPPETS,
+      },
+      {
+        id: "item-box",
+        name: ITEM_BOX_META.name,
+        blurb: ITEM_BOX_META.blurb,
+        states: ITEM_BOX_META.states,
+        keywords: ITEM_BOX_META.keywords,
+        preview: ItemBoxButtonPreview,
+        snippets: ITEM_BOX_SNIPPETS,
+      },
+      {
+        id: "letter-rotate",
+        name: LETTER_ROTATE_META.name,
+        blurb: LETTER_ROTATE_META.blurb,
+        states: LETTER_ROTATE_META.states,
+        keywords: LETTER_ROTATE_META.keywords,
+        preview: LetterRotateButtonPreview,
+        snippets: LETTER_ROTATE_SNIPPETS,
+      },
+      {
+        id: "corner-frame",
+        name: CORNER_FRAME_META.name,
+        blurb: CORNER_FRAME_META.blurb,
+        states: CORNER_FRAME_META.states,
+        keywords: CORNER_FRAME_META.keywords,
+        preview: CornerFrameButtonPreview,
+        snippets: CORNER_FRAME_SNIPPETS,
+      },
+      {
+        id: "char-roll",
+        name: CHAR_ROLL_META.name,
+        blurb: CHAR_ROLL_META.blurb,
+        states: CHAR_ROLL_META.states,
+        keywords: CHAR_ROLL_META.keywords,
+        preview: CharRollButtonPreview,
+        snippets: CHAR_ROLL_SNIPPETS,
+      },
+      {
+        id: "random-rise",
+        name: RANDOM_RISE_META.name,
+        blurb: RANDOM_RISE_META.blurb,
+        states: RANDOM_RISE_META.states,
+        keywords: RANDOM_RISE_META.keywords,
+        preview: RandomRiseButtonPreview,
+        snippets: RANDOM_RISE_SNIPPETS,
+      },
+      {
+        id: "dual-block-fill",
+        name: DUAL_BLOCK_FILL_META.name,
+        blurb: DUAL_BLOCK_FILL_META.blurb,
+        states: DUAL_BLOCK_FILL_META.states,
+        keywords: DUAL_BLOCK_FILL_META.keywords,
+        preview: DualBlockFillButtonPreview,
+        snippets: DUAL_BLOCK_FILL_SNIPPETS,
+      },
+      {
+        id: "draw-arrow",
+        name: DRAW_ARROW_META.name,
+        blurb: DRAW_ARROW_META.blurb,
+        states: DRAW_ARROW_META.states,
+        keywords: DRAW_ARROW_META.keywords,
+        preview: DrawArrowButtonPreview,
+        snippets: DRAW_ARROW_SNIPPETS,
+      },
+      {
+        id: "jump-burst",
+        name: JUMP_BURST_META.name,
+        blurb: JUMP_BURST_META.blurb,
+        states: JUMP_BURST_META.states,
+        keywords: JUMP_BURST_META.keywords,
+        preview: JumpBurstButtonPreview,
+        snippets: JUMP_BURST_SNIPPETS,
+      },
+      {
+        id: "shine-scale",
+        name: SHINE_SCALE_META.name,
+        blurb: SHINE_SCALE_META.blurb,
+        states: SHINE_SCALE_META.states,
+        keywords: SHINE_SCALE_META.keywords,
+        preview: ShineScaleButtonPreview,
+        snippets: SHINE_SCALE_SNIPPETS,
+      },
+      {
+        id: "stripe-scroll",
+        name: STRIPE_SCROLL_META.name,
+        blurb: STRIPE_SCROLL_META.blurb,
+        states: STRIPE_SCROLL_META.states,
+        keywords: STRIPE_SCROLL_META.keywords,
+        preview: StripeScrollButtonPreview,
+        snippets: STRIPE_SCROLL_SNIPPETS,
+      },
+      {
+        id: "line-bloom",
+        name: LINE_BLOOM_META.name,
+        blurb: LINE_BLOOM_META.blurb,
+        states: LINE_BLOOM_META.states,
+        keywords: LINE_BLOOM_META.keywords,
+        preview: LineBloomButtonPreview,
+        snippets: LINE_BLOOM_SNIPPETS,
+      },
+      {
+        id: "online-status",
+        name: ONLINE_STATUS_META.name,
+        blurb: ONLINE_STATUS_META.blurb,
+        states: ONLINE_STATUS_META.states,
+        keywords: ONLINE_STATUS_META.keywords,
+        preview: OnlineStatusButtonPreview,
+        snippets: ONLINE_STATUS_SNIPPETS,
+      },
+      {
+        id: "run-compiler",
+        name: RUN_COMPILER_META.name,
+        blurb: RUN_COMPILER_META.blurb,
+        states: RUN_COMPILER_META.states,
+        keywords: RUN_COMPILER_META.keywords,
+        preview: RunCompilerButtonPreview,
+        snippets: RUN_COMPILER_SNIPPETS,
+      },
+      {
+        id: "explore-now",
+        name: EXPLORE_NOW_META.name,
+        blurb: EXPLORE_NOW_META.blurb,
+        states: EXPLORE_NOW_META.states,
+        keywords: EXPLORE_NOW_META.keywords,
+        preview: ExploreNowButtonPreview,
+        snippets: EXPLORE_NOW_SNIPPETS,
       },
     ],
   },

@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob085-root {
+
+    --button-085-color: #131313;
+    --button-085-color-background: #55db9c;
+    --button-085-stripe-color: #fff;
+    --button-085-stripe-opacity: 0.3;
+    --button-085-color-focus: #fff;
+    --button-085-border-radius: 2.5em;
+    --button-085-padding: 0.75em 1em;
+    --button-085-gap: 0.125em;
+    --button-085-focus-inset: -0.125em;
+    --button-085-ease-hover: cubic-bezier(0.32, 0.72, 0, 1);
+    --button-085-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+    --button-085-angle: 60deg;
+    --button-085-stripe-1: 0.625em;
+    --button-085-stripe-2: 0.5em;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob085-root *,
+.ob085-root *::after,
+.ob085-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob085-root .button-085 {
+    --button-085-distance: calc(var(--button-085-stripe-1) + var(--button-085-stripe-2));
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob085-root .button-085:is(:hover, :focus-visible) .button-085__bg-animation-top,
+.ob085-root .button-085:is(:hover, :focus-visible) .button-085__bg-animation-bottom,
+.ob085-root [data-hover]:is(:hover, :focus-visible) .button-085 .button-085__bg-animation-top,
+.ob085-root [data-hover]:is(:hover, :focus-visible) .button-085 .button-085__bg-animation-bottom {
+      opacity: var(--button-085-stripe-opacity);
+    }
+
+  }.ob085-root .button-085:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-085-color-focus);
+  }
+.ob085-root .button-085::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-085-focus-inset);
+    border-radius: var(--button-085-border-radius);
+    transition: box-shadow 0.3s var(--button-085-ease-focus);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+
+  @media (prefers-reduced-motion: no-preference) {.ob085-root .button-085.is--inview .button-085__bg-animation-top,
+.ob085-root .button-085.is--inview .button-085__bg-animation-bottom {
+      animation-play-state: running;
+    }
+
+  }
+
+  @media (hover: none) and (pointer: coarse) {.ob085-root .button-085.is--inview .button-085__bg-animation-top,
+.ob085-root .button-085.is--inview .button-085__bg-animation-bottom {
+      opacity: var(--button-085-stripe-opacity);
+    }
+
+  }.ob085-root .button-085__bg-animation-top,
+.ob085-root .button-085__bg-animation-bottom {
+    opacity: 0;
+    background: repeating-linear-gradient(var(--button-085-angle), var(--button-085-color-background) 0 var(--button-085-stripe-1), var(--button-085-stripe-color) var(--button-085-stripe-1) var(--button-085-distance));
+    background-size: calc(var(--button-085-distance) / sin(var(--button-085-angle))) 100%;
+    transition: opacity 0.3s ease-out;
+    animation: button-085-background-scroll 1s linear infinite;
+    animation-play-state: paused;
+  }
+.ob085-root .button-085__bg-animation-bottom {
+    scale: 1 -1;
+  }
+
+
+  @keyframes button-085-background-scroll {
+    to {
+      background-position: calc(var(--button-085-distance) / sin(var(--button-085-angle))) 0;
+    }
+  }
+
+  
+  
+  
+
+.button-085 { color: var(--button-085-color); -webkit-user-select: none; user-select: none; background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }.ob085-root .button-085__bg { background-color: var(--button-085-color-background); border-radius: var(--button-085-border-radius); grid-area: 1 / 1; grid-template-rows: 1fr 1fr; width: 100%; height: 100%; display: grid; overflow: clip; }
+.ob085-root .button-085__bg-overlay { z-index: 1; border-radius: var(--button-085-border-radius); width: 100%; height: 100%; box-shadow: inset 0 0 .625em .375em var(--button-085-color-background); grid-area: 1 / 1 / 3 / 1; padding: 0; }
+.ob085-root .button-085__bg-animation-top { grid-area: 1 / 1; width: 100%; height: 100%; padding: 0; }
+.ob085-root .button-085__bg-animation-bottom { grid-area: 2 / 1 / 2 / 1; width: 100%; height: 100%; padding: 0; }
+.ob085-root .button-085__inner { grid-column-gap: var(--button-085-gap); grid-row-gap: var(--button-085-gap); width: 100%; height: 100%; padding: var(--button-085-padding); z-index: 1; grid-area: 1 / 1; justify-content: center; align-items: center; display: flex; }
+.ob085-root .button-085__icon { flex: none; width: .75em; height: .75em; }
+
+.ob085-root .button-085 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }

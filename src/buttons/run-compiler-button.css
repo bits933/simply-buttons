@@ -1,0 +1,131 @@
+/* Run compiler button — terminal-style frame with three states: typewritten
+   RUN_COMPILER with a blinking block caret; on click, a Windows XP style
+   progress bar (green 3D chunks in a sunken white track) fills left-to-right;
+   then COMPILED types out the same way.
+   Original specimen for the Simply Buttons gallery (not a replica). */
+.run-compiler-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.125rem;
+}
+
+.btn-run-compiler {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 13em;
+  height: 4em;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 0;
+  background: transparent;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s ease-out;
+}
+
+.btn-run-compiler:active {
+  transform: scale(0.98);
+}
+
+.btn-run-compiler:focus-visible {
+  outline: none;
+}
+
+.btn-run-compiler:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: 0.375em;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.btn-run-compiler__text {
+  grid-area: 1 / 1;
+  white-space: pre;
+  visibility: hidden;
+}
+
+.btn-run-compiler.is--texted .btn-run-compiler__text {
+  visibility: visible;
+}
+
+.btn-run-compiler.is--loading .btn-run-compiler__text {
+  visibility: hidden;
+}
+
+.btn-run-compiler__caret {
+  display: inline-block;
+  width: 0.62em;
+  height: 1.02em;
+  margin-left: 0.12em;
+  vertical-align: text-bottom;
+  background: #fff;
+}
+
+.btn-run-compiler__caret.is--blinking {
+  animation: btn-run-compiler-blink 1.06s steps(1) infinite;
+}
+
+@keyframes btn-run-compiler-blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.btn-run-compiler__loader {
+  display: flex;
+  position: absolute;
+  inset: 0.625em;
+  gap: 2px;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.btn-run-compiler.is--loading .btn-run-compiler__loader {
+  visibility: visible;
+}
+
+.btn-run-compiler__box {
+  flex: 1;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.26s cubic-bezier(0.32, 0.72, 0, 1);
+  transition-delay: calc(var(--i) * 110ms);
+  background: linear-gradient(180deg,
+    #52c94a 0%, #2fbf2f 12%, #29b32a 40%, #28a828 60%,
+    #2fb52f 82%, #46c93f 96%, #6fdd67 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset -1px 0 0 rgba(0, 60, 0, 0.18);
+}
+
+.btn-run-compiler.is--loading .btn-run-compiler__box {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-run-compiler__caret {
+    animation: none;
+  }
+
+  .btn-run-compiler__box {
+    transition: none;
+    transition-delay: 0s;
+  }
+}

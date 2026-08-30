@@ -74,18 +74,51 @@ const STYLES = `
 .context-window-button__matrix {
   position: absolute;
   z-index: 1;
-  inset: 4px 5px;
+  inset: 3px 4px;
   overflow: hidden;
+  border-radius: 999px;
   contain: paint;
   opacity: 0;
   pointer-events: none;
   transition: opacity 420ms var(--context-ease-out);
 }
-.context-window-button__dot-field { position: absolute; inset: 0; opacity: .14; background-image: radial-gradient(circle at center, var(--context-dot-base) 0 .7px, transparent 1.05px); background-size: 6px 6px; }
-.context-window-button__dot-fill { position: absolute; inset: 0 auto 0 0; width: 0; opacity: .26; background-image: radial-gradient(circle at center, var(--context-dot-fill) 0 .7px, transparent 1.05px); background-size: 6px 6px; }
-.context-window-button__dot-field,
-.context-window-button__dot-fill { -webkit-mask-image: linear-gradient(90deg, #000 0 20%, rgb(0 0 0 / .92) 36%, rgb(0 0 0 / .62) 67%, rgb(0 0 0 / .32) 86%, rgb(0 0 0 / .18) 100%); mask-image: linear-gradient(90deg, #000 0 20%, rgb(0 0 0 / .92) 36%, rgb(0 0 0 / .62) 67%, rgb(0 0 0 / .32) 86%, rgb(0 0 0 / .18) 100%); }
-.context-window-button__dot-fill::after { content: ""; position: absolute; inset: 0 0 0 auto; width: 12px; opacity: .34; background-image: radial-gradient(circle at center, var(--context-dot-dense) 0 .65px, transparent .95px); background-size: 3px 3px; }
+.context-window-button__square-field {
+  position: absolute;
+  inset: 0;
+  opacity: .35;
+  background-color: #111d38;
+  background-image:
+    radial-gradient(circle at center, rgba(59, 130, 246, 0.45) 0%, rgba(37, 99, 235, 0.2) 65%, transparent 75%),
+    linear-gradient(to right, rgba(15, 23, 42, 0.8) 0.75px, transparent 0.75px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.8) 0.75px, transparent 0.75px);
+  background-size: 3.5px 3.5px, 3.5px 3.5px, 3.5px 3.5px;
+  background-position: 1.75px 1.75px, 0 0, 0 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 20%, rgb(0 0 0 / .92) 36%, rgb(0 0 0 / .62) 67%, rgb(0 0 0 / .32) 86%, rgb(0 0 0 / .18) 100%);
+  mask-image: linear-gradient(90deg, #000 0 20%, rgb(0 0 0 / .92) 36%, rgb(0 0 0 / .62) 67%, rgb(0 0 0 / .32) 86%, rgb(0 0 0 / .18) 100%);
+}
+.context-window-button__square-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background-color: #1e40af;
+  background-image:
+    radial-gradient(circle at center, #93c5fd 0%, #3b82f6 40%, #2563eb 75%, transparent 85%),
+    linear-gradient(to right, rgba(15, 23, 42, 0.75) 0.75px, transparent 0.75px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.75) 0.75px, transparent 0.75px);
+  background-size: 3.5px 3.5px, 3.5px 3.5px, 3.5px 3.5px;
+  background-position: 1.75px 1.75px, 0 0, 0 0;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.7);
+  overflow: hidden;
+  border-radius: 999px;
+}
+.context-window-button__square-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 14px;
+  background: linear-gradient(90deg, transparent 0%, rgba(147, 197, 253, 0.6) 40%, #ffffff 100%);
+  box-shadow: 0 0 10px #60a5fa, 0 0 18px #3b82f6;
+}
 .context-window-button__status { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; pointer-events: none; }
 .context-window-button__label { grid-area: 1 / 1; opacity: 0; font-weight: 650; letter-spacing: -.01em; transition: opacity 420ms var(--context-ease-out); }
 .context-window-button__label--compressing { color: var(--context-shimmer-base); background: linear-gradient(100deg, var(--context-shimmer-base) 0%, var(--context-shimmer-base) 35%, var(--context-shimmer-accent) 50%, var(--context-shimmer-base) 65%, var(--context-shimmer-base) 100%); background-size: 220% 100%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -94,8 +127,8 @@ const STYLES = `
 .context-window-button[data-phase="compressed"] .context-window-button__idle { opacity: 0; transform: translateX(10px); }
 .context-window-button[data-phase="returning"] .context-window-button__idle { opacity: 1; transform: translateX(0); }
 .context-window-button[data-phase="compressing"] .context-window-button__matrix { opacity: 1; }
-.context-window-button[data-phase="compressing"] .context-window-button__dot-fill { animation: context-dot-fill 3s var(--context-ease-in-out) both; }
-.context-window-button[data-phase="compressed"] .context-window-button__dot-fill { width: 100%; }
+.context-window-button[data-phase="compressing"] .context-window-button__square-fill { animation: context-square-fill 3s var(--context-ease-in-out) both; }
+.context-window-button[data-phase="compressed"] .context-window-button__square-fill { width: 100%; }
 .context-window-button[data-phase="compressing"] .context-window-button__label--compressing,
 .context-window-button[data-phase="compressed"] .context-window-button__label--compressed { opacity: 1; }
 .context-window-button[data-phase="compressing"] .context-window-button__label--compressing { animation: context-text-shimmer 1.8s ease-in-out infinite; }
@@ -103,14 +136,14 @@ const STYLES = `
 .context-window-button[data-phase="idle"]:active { transform: scale(.98); }
 .context-window-button:focus-visible { outline: 2px solid var(--context-arc); outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) { .context-window-button[data-phase="idle"]:hover { background: var(--context-bg-hover); } }
-@keyframes context-dot-fill { from { width: 0; } to { width: 100%; } }
+@keyframes context-square-fill { from { width: 0; } to { width: 100%; } }
 @keyframes context-text-shimmer { to { background-position: -220% 0; } }
 @keyframes context-compressed-pop { 0% { opacity: 0; transform: scale(.82); } 55% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
 @media (prefers-color-scheme: dark) {
-  .context-window-button { --context-bg: #211d2a; --context-bg-hover: #2a2436; --context-ink: #f0ebfa; --context-track: #4b405c; --context-arc: #c6adff; --context-dot-base: #514562; --context-dot-fill: #f8f6ff; --context-dot-dense: #c6adff; --context-shimmer-base: #f8f6ff; --context-shimmer-accent: #c8b5ff; box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%); }
+  .context-window-button { --context-bg: #151a28; --context-bg-hover: #1c2336; --context-ink: #f0f4ff; --context-track: #2a3652; --context-arc: #3b82f6; --context-shimmer-base: #f0f4ff; --context-shimmer-accent: #93c5fd; box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%); }
 }
-:root[data-theme="light"] .context-window-button { --context-bg: #f2f0f7; --context-bg-hover: #ebe8f4; --context-ink: #2c2835; --context-track: #d5cfdf; --context-arc: #7057a8; --context-dot-base: #d8cfee; --context-dot-fill: #fff; --context-dot-dense: #7057a8; --context-shimmer-base: #2c2835; --context-shimmer-accent: #7057a8; box-shadow: inset 0 1px 0 rgb(255 255 255 / 62%); }
-:root[data-theme="dark"] .context-window-button { --context-bg: #211d2a; --context-bg-hover: #2a2436; --context-ink: #f0ebfa; --context-track: #4b405c; --context-arc: #c6adff; --context-dot-base: #514562; --context-dot-fill: #f8f6ff; --context-dot-dense: #c6adff; --context-shimmer-base: #f8f6ff; --context-shimmer-accent: #c8b5ff; box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%); }
+:root[data-theme="light"] .context-window-button { --context-bg: #f0f4fc; --context-bg-hover: #e5edf9; --context-ink: #1e293b; --context-track: #cbd5e1; --context-arc: #2563eb; --context-shimmer-base: #1e293b; --context-shimmer-accent: #2563eb; box-shadow: inset 0 1px 0 rgb(255 255 255 / 62%); }
+:root[data-theme="dark"] .context-window-button { --context-bg: #151a28; --context-bg-hover: #1c2336; --context-ink: #f0f4ff; --context-track: #2a3652; --context-arc: #3b82f6; --context-shimmer-base: #f0f4ff; --context-shimmer-accent: #93c5fd; box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%); }
 @media (prefers-reduced-motion: reduce) {
   .context-window-button, .context-window-button__idle, .context-window-button__arc, .context-window-button__label { transform: none !important; }
   .context-window-button__matrix { display: none; }
@@ -206,8 +239,8 @@ export default function ContextWindowStatusButton({
         </span>
 
         <span className="context-window-button__matrix" aria-hidden="true">
-          <span className="context-window-button__dot-field" />
-          <span className="context-window-button__dot-fill" />
+          <span className="context-window-button__square-field" />
+          <span className="context-window-button__square-fill" />
         </span>
 
         <span className="context-window-button__status" aria-hidden="true">

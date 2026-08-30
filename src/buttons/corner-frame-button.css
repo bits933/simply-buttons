@@ -1,0 +1,149 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob070-root {
+
+    --button-070-color: #fff;
+    --button-070-color-background: transparent;
+    --button-070-hover-color: #131313;
+    --button-070-hover-color-background: #fff;
+    --button-070-color-focus: #fff;
+    --button-070-corner-color: #fff;
+    --button-070-corner-size: 0.375em;
+    --button-070-corner-border-radius: 0em;
+    --button-070-corner-border-width: 0.0625em;
+    --button-070-corner-move: 0em;
+    --button-070-hover-corner-color: #131313;
+    --button-070-hover-corner-move: 0.25em;
+    --button-070-hover-corner-border-radius: 0em;
+    --button-070-padding: 0.75em 1em;
+    --button-070-border-radius: 0.25em;
+    --button-070-scale: 0.85;
+    --button-070-focus-inset: -0.125em;
+    --button-070-ease-hover: cubic-bezier(0.32, 0.72, 0, 1);
+    --button-070-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob070-root *,
+.ob070-root *::after,
+.ob070-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob070-root .button-070 {
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.2s var(--button-070-ease-hover);
+  }
+
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob070-root .button-070:is(:hover, :focus-visible),
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 {
+      color: var(--button-070-hover-color);
+      transition: color 0.2s 0.05s var(--button-070-ease-hover);
+    }
+.ob070-root .button-070:is(:hover, :focus-visible) .button-070__bg,
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 .button-070__bg {
+      background-color: var(--button-070-hover-color-background);
+      scale: 1;
+      transition:
+        background-color 0.2s 0.05s var(--button-070-ease-hover),
+        scale 0.425s 0.05s var(--button-070-ease-hover);
+    }
+.ob070-root .button-070:is(:hover, :focus-visible) .button-070__corner.is--top-left,
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 .button-070__corner.is--top-left {
+      translate: calc(var(--button-070-hover-corner-move) * 1) calc(var(--button-070-hover-corner-move) * 1) 0;
+    }
+.ob070-root .button-070:is(:hover, :focus-visible) .button-070__corner.is--top-right,
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 .button-070__corner.is--top-right {
+      translate: calc(var(--button-070-hover-corner-move) * -1) calc(var(--button-070-hover-corner-move) * 1) 0;
+    }
+.ob070-root .button-070:is(:hover, :focus-visible) .button-070__corner.is--bottom-left,
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 .button-070__corner.is--bottom-left {
+      translate: calc(var(--button-070-hover-corner-move) * 1) calc(var(--button-070-hover-corner-move) * -1) 0;
+    }
+.ob070-root .button-070:is(:hover, :focus-visible) .button-070__corner.is--bottom-right,
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 .button-070__corner.is--bottom-right {
+      translate: calc(var(--button-070-hover-corner-move) * -1) calc(var(--button-070-hover-corner-move) * -1) 0;
+    }
+.ob070-root .button-070:is(:hover, :focus-visible) .button-070__corner,
+.ob070-root [data-hover]:is(:hover, :focus-visible) .button-070 .button-070__corner {
+      --button-070-corner-border-radius: var(--button-070-hover-corner-border-radius);
+      --button-070-corner-color: var(--button-070-hover-corner-color);
+      transition:
+        border-color 0.2s 0.05s var(--button-070-ease-hover),
+        translate 0.45s 0.05s var(--button-070-ease-hover),
+        border-radius 0.45s 0.05s var(--button-070-ease-hover);
+    }
+
+  }.ob070-root .button-070:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-070-color-focus);
+  }
+.ob070-root .button-070::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-070-focus-inset);
+    border-radius: var(--button-070-border-radius);
+    transition: box-shadow 0.3s var(--button-070-ease-focus);
+    pointer-events: none;
+    z-index: 1;
+  }
+.ob070-root .button-070__bg {
+    scale: var(--button-070-scale);
+    transition:
+      background-color 0.2s var(--button-070-ease-hover),
+      scale 0.4s var(--button-070-ease-hover);
+  }
+.ob070-root .button-070__corner {
+    will-change: transform;
+    transition:
+      border-color 0.2s var(--button-070-ease-hover),
+      translate 0.45s var(--button-070-ease-hover),
+      border-radius 0.45s var(--button-070-ease-hover);
+  }
+.ob070-root .button-070__corner.is--top-left {
+    translate: calc(var(--button-070-corner-move) * -1) calc(var(--button-070-corner-move) * -1) 0;
+  }
+.ob070-root .button-070__corner.is--top-right {
+    translate: calc(var(--button-070-corner-move) * 1) calc(var(--button-070-corner-move) * -1) 0;
+  }
+.ob070-root .button-070__corner.is--bottom-left {
+    translate: calc(var(--button-070-corner-move) * -1) calc(var(--button-070-corner-move) * 1) 0;
+  }
+.ob070-root .button-070__corner.is--bottom-right {
+    translate: calc(var(--button-070-corner-move) * 1) calc(var(--button-070-corner-move) * 1) 0;
+  }
+.ob070-root .button-070__bg-wrap { pointer-events: none; grid-area: 1 / 1; width: 100%; height: 100%; display: grid; }
+.ob070-root .button-070__corner-wrap { z-index: 1; grid-area: 1 / 1; grid-template-rows: 1fr 1fr; grid-template-columns: 1fr 1fr; width: 100%; height: 100%; display: grid; }
+.ob070-root .button-070 { color: var(--button-070-color); -webkit-user-select: none; user-select: none; background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }
+.ob070-root .button-070__corner { width: var(--button-070-corner-size); height: var(--button-070-corner-size); padding: 0; }
+.ob070-root .button-070__corner.is--top-right { border-top-right-radius: var(--button-070-corner-border-radius); border-top-style: solid; border-right-style: solid; border-right-color: var(--button-070-corner-color); border-right-width: var(--button-070-corner-border-width); border-top-width: var(--button-070-corner-border-width); border-top-color: var(--button-070-corner-color); place-self: flex-start flex-end; }
+.ob070-root .button-070__corner.is--bottom-right { border-bottom-right-radius: var(--button-070-corner-border-radius); border-bottom-style: solid; border-right-style: solid; border-bottom-width: var(--button-070-corner-border-width); border-bottom-color: var(--button-070-corner-color); border-right-width: var(--button-070-corner-border-width); border-right-color: var(--button-070-corner-color); place-self: flex-end; }
+.ob070-root .button-070__corner.is--top-left { border-top-style: solid; border-left-style: solid; border-top-color: var(--button-070-corner-color); border-left-color: var(--button-070-corner-color); border-top-left-radius: var(--button-070-corner-border-radius); border-top-width: var(--button-070-corner-border-width); border-left-width: var(--button-070-corner-border-width); place-self: flex-start; }
+.ob070-root .button-070__corner.is--bottom-left { border-bottom-left-radius: var(--button-070-corner-border-radius); border-bottom-style: solid; border-left-style: solid; border-bottom-width: var(--button-070-corner-border-width); border-bottom-color: var(--button-070-corner-color); border-left-width: var(--button-070-corner-border-width); border-left-color: var(--button-070-corner-color); place-self: flex-end flex-start; }
+.ob070-root .button-070__bg { background-color: var(--button-070-color-background); border-radius: var(--button-070-border-radius); grid-area: 1 / 1; width: 100%; height: 100%; padding: 0; }
+.ob070-root .button-070__inner { width: 100%; height: 100%; padding: var(--button-070-padding); z-index: 1; grid-area: 1 / 1; justify-content: center; align-items: center; display: flex; }
+
+.ob070-root .button-070 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }

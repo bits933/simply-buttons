@@ -1,0 +1,380 @@
+[
+  {
+    "title": "Left-aligned enterprise icon button",
+    "buttonLabel": "Button with icon",
+    "category": "Primary CTA",
+    "visualTrait": "Square blue action with a left-aligned label and a utility icon anchored at the far edge.",
+    "sourceName": "Carbon Design System — Button",
+    "sourceSite": "Carbon Design System",
+    "sourceUrl": "https://carbondesignsystem.com/components/button/code/"
+  },
+  {
+    "title": "Critical commerce action",
+    "buttonLabel": "Primary critical button",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Polaris semantic action styling combines primary emphasis with a critical tone.",
+    "sourceName": "Shopify Polaris — Web components",
+    "sourceSite": "Shopify Polaris",
+    "sourceUrl": "https://shopify.dev/docs/api/polaris/using-polaris-web-components"
+  },
+  {
+    "title": "Atlassian primary action",
+    "buttonLabel": "Primary button",
+    "category": "Primary CTA",
+    "visualTrait": "Compact blue product button with restrained rounding and dense horizontal padding.",
+    "sourceName": "Atlassian Design System — Button",
+    "sourceSite": "Atlassian Design System",
+    "sourceUrl": "https://atlassian.design/guidelines/product/components/buttons"
+  },
+  {
+    "title": "Base high-contrast action",
+    "buttonLabel": "Start ride",
+    "category": "Primary CTA",
+    "visualTrait": "Heavy black action treatment derived from Uber's high-contrast Base language.",
+    "sourceName": "Base Web — Button",
+    "sourceSite": "Base Web",
+    "sourceUrl": "https://baseweb.design/components/button/"
+  },
+  {
+    "title": "Lightning brand button",
+    "buttonLabel": "Brand",
+    "category": "Primary CTA",
+    "visualTrait": "Salesforce blue brand control with optional leading or trailing utility icon.",
+    "sourceName": "Salesforce Lightning — Button",
+    "sourceSite": "Salesforce Lightning",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lightning-component-reference/guide/lightning-button.html?type=Example"
+  },
+  {
+    "title": "PatternFly warning action",
+    "buttonLabel": "Warning",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Pill-shaped warning action that uses amber emphasis without implying deletion.",
+    "sourceName": "PatternFly — Button",
+    "sourceSite": "PatternFly",
+    "sourceUrl": "https://www.patternfly.org/components/button/"
+  },
+  {
+    "title": "Elastic empty button",
+    "buttonLabel": "Button",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Low-chrome text action tuned for dense interfaces and narrow tool areas.",
+    "sourceName": "Elastic UI — Button",
+    "sourceSite": "Elastic UI",
+    "sourceUrl": "https://eui.elastic.co/docs/components/navigation/buttons/button/"
+  },
+  {
+    "title": "Zendesk basic action",
+    "buttonLabel": "Basic",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Quiet workflow action with low visual weight beside primary and default variants.",
+    "sourceName": "Zendesk Garden — Button",
+    "sourceSite": "Zendesk Garden",
+    "sourceUrl": "https://garden.zendesk.com/components/button/"
+  },
+  {
+    "title": "Fiori semantic accept button",
+    "buttonLabel": "Accept",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Semantic positive state in a compact enterprise control family with text and icon variants.",
+    "sourceName": "SAP Fiori — Button",
+    "sourceSite": "SAP Fiori",
+    "sourceUrl": "https://www.sap.com/design-system/fiori-design-web/v1-71/ui-elements/button/"
+  },
+  {
+    "title": "NHS transactional continue button",
+    "buttonLabel": "Continue",
+    "category": "Submit/Conversion",
+    "visualTrait": "Large green rectangular action built for transactional journeys and strong accessibility.",
+    "sourceName": "NHS Digital Service Manual — Buttons",
+    "sourceSite": "NHS Design System",
+    "sourceUrl": "https://service-manual.nhs.uk/design-system/components/buttons"
+  },
+  {
+    "title": "Canada start-task button",
+    "buttonLabel": "Start",
+    "category": "Navigation/Menu",
+    "visualTrait": "Oversized government start control reserved for the beginning of a task or flow.",
+    "sourceName": "GC Design System — Button",
+    "sourceSite": "GC Design System",
+    "sourceUrl": "https://design-system.canada.ca/en/components/button/"
+  },
+  {
+    "title": "VA directional continue action",
+    "buttonLabel": "Continue",
+    "category": "Accessibility/State",
+    "visualTrait": "Accessible form progression button with explicit direction and a generous target area.",
+    "sourceName": "VA.gov Design System — Button",
+    "sourceSite": "VA.gov Design System",
+    "sourceUrl": "https://design.va.gov/components/button/"
+  },
+  {
+    "title": "Ontario wide secondary button",
+    "buttonLabel": "Secondary - default",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Wide outlined government action with a defined minimum width and generous padding.",
+    "sourceName": "Ontario Design System — Buttons",
+    "sourceSite": "Ontario Design System",
+    "sourceUrl": "https://designsystem.ontario.ca/components/detail/buttons.html"
+  },
+  {
+    "title": "NSW danger confirmation",
+    "buttonLabel": "Delete",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Government-branded destructive action separated from brand and outline states.",
+    "sourceName": "NSW Design System — Buttons",
+    "sourceSite": "NSW Design System",
+    "sourceUrl": "https://designsystem.nsw.gov.au/components/button/index.html"
+  },
+  {
+    "title": "Bootstrap outline warning",
+    "buttonLabel": "Warning",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Familiar outlined semantic button whose border and label carry the warning color.",
+    "sourceName": "Bootstrap — Buttons",
+    "sourceSite": "Bootstrap",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/components/buttons/"
+  },
+  {
+    "title": "Generic close glyph button",
+    "buttonLabel": "Close",
+    "category": "Icon",
+    "visualTrait": "Minimal icon-only dismiss control with no visible container until interaction.",
+    "sourceName": "Bootstrap — Close button",
+    "sourceSite": "Bootstrap",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/components/close-button/"
+  },
+  {
+    "title": "Dashed add-action button",
+    "buttonLabel": "Dashed Button",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Dashed border communicates an additive or provisional action distinct from default controls.",
+    "sourceName": "Ant Design — Button",
+    "sourceSite": "Ant Design",
+    "sourceUrl": "https://ant.design/components/button/"
+  },
+  {
+    "title": "Attached split-save control",
+    "buttonLabel": "Save",
+    "category": "Navigation/Menu",
+    "visualTrait": "Primary save action attached to a compact menu trigger for related commands.",
+    "sourceName": "Chakra UI — Button",
+    "sourceSite": "Chakra UI",
+    "sourceUrl": "https://chakra-ui.com/docs/components/button"
+  },
+  {
+    "title": "Mantine sectioned button",
+    "buttonLabel": "Button",
+    "category": "Primary CTA",
+    "visualTrait": "Filled action with optional leading and trailing sections integrated into its capsule.",
+    "sourceName": "Mantine — Button",
+    "sourceSite": "Mantine",
+    "sourceUrl": "https://mantine.dev/core/button/"
+  },
+  {
+    "title": "Radix soft full-radius action",
+    "buttonLabel": "Edit profile",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Soft tinted action with a fully rounded radius and compact type scale.",
+    "sourceName": "Radix Themes — Button",
+    "sourceSite": "Radix Themes",
+    "sourceUrl": "https://www.radix-ui.com/themes/docs/components/button"
+  },
+  {
+    "title": "Gradient social-payment button",
+    "buttonLabel": "Pay with PayPal",
+    "category": "Social/Share",
+    "visualTrait": "Utility-library treatment combining brand color, iconography, and a full action label.",
+    "sourceName": "Flowbite — Buttons",
+    "sourceSite": "Flowbite",
+    "sourceUrl": "https://flowbite.com/docs/components/buttons/"
+  },
+  {
+    "title": "Material elevated button",
+    "buttonLabel": "Elevated",
+    "category": "Primary CTA",
+    "visualTrait": "Tonal capsule lifted with subtle elevation rather than a hard outline.",
+    "sourceName": "Material Web — Button",
+    "sourceSite": "Material Web",
+    "sourceUrl": "https://material-web.dev/components/button/"
+  },
+  {
+    "title": "Shoelace loading button",
+    "buttonLabel": "Loading",
+    "category": "Accessibility/State",
+    "visualTrait": "Web-component action that preserves its container while swapping content for progress.",
+    "sourceName": "Shoelace — Button",
+    "sourceSite": "Shoelace",
+    "sourceUrl": "https://shoelace.style/components/button"
+  },
+  {
+    "title": "Shadcn destructive action",
+    "buttonLabel": "Destructive",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Compact red action in a code-owned component set with restrained corner rounding.",
+    "sourceName": "shadcn/ui — Button",
+    "sourceSite": "shadcn/ui",
+    "sourceUrl": "https://ui.shadcn.com/docs/components/base/button"
+  },
+  {
+    "title": "Daisy glass button",
+    "buttonLabel": "Glass button",
+    "category": "Experimental/Motion",
+    "visualTrait": "Translucent glass treatment designed to react to colorful or photographic backgrounds.",
+    "sourceName": "daisyUI — Button",
+    "sourceSite": "daisyUI",
+    "sourceUrl": "https://daisyui.com/components/button/"
+  },
+  {
+    "title": "Hero shadow button",
+    "buttonLabel": "Press me",
+    "category": "Primary CTA",
+    "visualTrait": "Rounded React action whose colored shadow adds emphasis beyond its filled surface.",
+    "sourceName": "HeroUI — Button",
+    "sourceSite": "HeroUI",
+    "sourceUrl": "https://heroui.com/en/docs/react/components/button"
+  },
+  {
+    "title": "Unstyled accessible primitive",
+    "buttonLabel": "Button",
+    "category": "Accessibility/State",
+    "visualTrait": "Behavior-first accessible primitive intended to inherit a product's own visual language.",
+    "sourceName": "Kobalte — Button",
+    "sourceSite": "Kobalte",
+    "sourceUrl": "https://kobalte.dev/docs/core/components/button"
+  },
+  {
+    "title": "Nuxt trailing-icon button",
+    "buttonLabel": "Continue",
+    "category": "Navigation/Menu",
+    "visualTrait": "Rounded action with a directional icon placed after the label for clear progression.",
+    "sourceName": "Nuxt UI — Button",
+    "sourceSite": "Nuxt UI",
+    "sourceUrl": "https://ui.nuxt.com/docs/components/button"
+  },
+  {
+    "title": "PrimeVue raised button",
+    "buttonLabel": "Primary",
+    "category": "Primary CTA",
+    "visualTrait": "Conventional filled action made more prominent through a distinct raised shadow state.",
+    "sourceName": "PrimeVue — Button",
+    "sourceSite": "PrimeVue",
+    "sourceUrl": "https://primevue.dev/button/"
+  },
+  {
+    "title": "Clarity inverse action",
+    "buttonLabel": "Inverse",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Light outline and text treatment intended specifically for dark application surfaces.",
+    "sourceName": "Clarity Design System — Button",
+    "sourceSite": "Clarity Design System",
+    "sourceUrl": "https://clarity.design/documentation/button"
+  },
+  {
+    "title": "Vanilla processing button",
+    "buttonLabel": "Processing",
+    "category": "Accessibility/State",
+    "visualTrait": "Disabled progress state that keeps the action's original width to prevent layout shift.",
+    "sourceName": "Vanilla Framework — Buttons",
+    "sourceSite": "Vanilla Framework",
+    "sourceUrl": "https://vanillaframework.io/docs/patterns/buttons"
+  },
+  {
+    "title": "Nord dashed filter action",
+    "buttonLabel": "Filter",
+    "category": "Toggle/Segmented",
+    "visualTrait": "Dashed compact control reserved for actions that trigger filtering.",
+    "sourceName": "Nord Design System — Button",
+    "sourceSite": "Nord Design System",
+    "sourceUrl": "https://nordhealth.design/components/button/"
+  },
+  {
+    "title": "Bootstrap attached button group",
+    "buttonLabel": "Left / Middle / Right",
+    "category": "Toggle/Segmented",
+    "visualTrait": "Three rectangular actions share borders to read as a single segmented group.",
+    "sourceName": "Bootstrap — Button group",
+    "sourceSite": "Bootstrap",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/components/button-group/"
+  },
+  {
+    "title": "Duet negative-surface button",
+    "buttonLabel": "Negative",
+    "category": "Secondary/Ghost",
+    "visualTrait": "High-contrast light action created for dark backgrounds and illustration surfaces.",
+    "sourceName": "Duet Design System — Button",
+    "sourceSite": "Duet Design System",
+    "sourceUrl": "https://www.duetds.com/components/button/"
+  },
+  {
+    "title": "Helsinki success button",
+    "buttonLabel": "Success",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Explicit success-state action in a civic component family with primary and supplementary peers.",
+    "sourceName": "Helsinki Design System — Button",
+    "sourceSite": "Helsinki Design System",
+    "sourceUrl": "https://hds.hel.fi/components/button/"
+  },
+  {
+    "title": "Porsche icon-only action",
+    "buttonLabel": "Some label",
+    "category": "Icon",
+    "visualTrait": "Precision automotive control that can collapse to an icon while retaining an accessible label.",
+    "sourceName": "Porsche Design System — Button",
+    "sourceSite": "Porsche Design System",
+    "sourceUrl": "https://designsystem.porsche.com/v4/components/button/configurator/"
+  },
+  {
+    "title": "Thumbprint caution button",
+    "buttonLabel": "Caution",
+    "category": "Destructive/Confirm",
+    "visualTrait": "Marketplace action using a dedicated caution theme alongside primary, tertiary, and solid states.",
+    "sourceName": "Thumbprint — Button",
+    "sourceSite": "Thumbprint",
+    "sourceUrl": "https://thumbprint.design/components/button/v1/react"
+  },
+  {
+    "title": "Cedar commerce action",
+    "buttonLabel": "Add to cart",
+    "category": "Commerce",
+    "visualTrait": "Outdoor-retail action language with generous touch sizing and direct commerce labeling.",
+    "sourceName": "REI Cedar — Buttons",
+    "sourceSite": "REI Cedar",
+    "sourceUrl": "https://rei.github.io/rei-cedar-docs/components/buttons/"
+  },
+  {
+    "title": "Morningstar primary button",
+    "buttonLabel": "Primary",
+    "category": "Primary CTA",
+    "visualTrait": "Financial-product action with disciplined spacing, weight, and semantic hierarchy.",
+    "sourceName": "Morningstar Design System — Button",
+    "sourceSite": "Morningstar Design System",
+    "sourceUrl": "https://designsystem.morningstar.com/components/button/"
+  },
+  {
+    "title": "Queensland icon-trailing action",
+    "buttonLabel": "Trailing icon",
+    "category": "Accessibility/State",
+    "visualTrait": "Civic action with a 48-pixel target and a trailing icon that reinforces the outcome.",
+    "sourceName": "Queensland Government Design System — Button",
+    "sourceSite": "Queensland Government Design System",
+    "sourceUrl": "https://www.designsystem.qld.gov.au/components/button"
+  },
+  {
+    "title": "Spectrum static outline button",
+    "buttonLabel": "Click me",
+    "category": "Secondary/Ghost",
+    "visualTrait": "Static white outline treatment designed to stay legible over imagery and dark color fields.",
+    "sourceName": "Spectrum Web Components — Button",
+    "sourceSite": "Spectrum Web Components",
+    "sourceUrl": "https://opensource.adobe.com/spectrum-web-components/components/button/"
+  },
+  {
+    "title": "Lion form-submit primitive",
+    "buttonLabel": "Submit",
+    "category": "Submit/Conversion",
+    "visualTrait": "Accessible web-component primitive with native-form submit behavior and an enlarged click area.",
+    "sourceName": "Lion UI — Button",
+    "sourceSite": "Lion UI",
+    "sourceUrl": "https://lion.js.org/components/button/overview/"
+  }
+]

@@ -47,14 +47,14 @@ export function DotMatrixCompressButton({
       return;
     }
 
-    // Begin Compression (2.5s duration)
+    // Begin Compression (3.6s duration)
     clearAllTimeouts();
     setPhase("compressing");
     setLabel("Compressing...");
     setFillFading(false);
     setSlideState("normal");
 
-    // 1. Compressing lasts exactly 2.5 seconds (2500ms)
+    // 1. Compressing lasts 3.6 seconds (3600ms)
     const tFill = setTimeout(() => {
       // 2. Signal Capsule pulse triggers at the end of compression
       setPulse(true);
@@ -100,7 +100,7 @@ export function DotMatrixCompressButton({
         timeoutsRef.current.push(tSettle);
       }, 260);
       timeoutsRef.current.push(tSlideInCompressed);
-    }, 2500);
+    }, 3600);
 
     timeoutsRef.current.push(tFill);
   };

@@ -1,0 +1,284 @@
+/* Osmo Button 003 — exact replication of https://osmo-button-003.webflow.io/
+   (Osmo Button Pack #003 by Eduard Bodak, https://x.com/eduardbodak/status/2051949088912925107)
+   Scoped under .osmo003-root so it cannot clash with site styles.
+   Each gallery card shows one variant; the card background is the site well. */
+
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.osmo003-root {
+  /* Scaling System by Osmo [https://osmo.supply/] */
+  --size-unit: 16;
+  --size-container-ideal: 1440;
+  --size-container-min: 992px;
+  --size-container-max: 1680px;
+  --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
+  --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+
+  /* Button 003 variables */
+  --button-003-color: #fff;
+  --button-003-color-background: #f84131;
+  --button-003-color-focus: #000;
+  --button-003-text-border-radius: 0.25em;
+  --button-003-icon-border-radius: 2.5em;
+  --button-003-padding-top: 0.75em;
+  --button-003-padding-bottom: 0.75em;
+  --button-003-padding-x: 1em;
+  --button-003-flex-flow: row-reverse; /* change this to "row" to set the icon to the right */
+  --button-003-transform-origin: center right; /* change this to "center left" to set the text origin to left */
+  --button-003-rotation-direction: 1; /* change this to -1 to change the rotation direction, important when changing transform origin to center left */
+  --button-003-mirror-focus: 1; /* change this to -1 if you use "row" on --button-003-flex-flow, so the focus styles getting mirrored */
+  --button-003-focus-inset: -0.125em;
+  --button-003-text-click-scale: 0.955 0.925;
+  --button-003-icon-click-scale: 0.925;
+  --button-003-ease-hover: cubic-bezier(0.19, 1, 0.22, 1);
+  --button-003-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+  --button-003-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: var(--size-font);
+}
+
+.osmo003-root *,
+.osmo003-root *::after,
+.osmo003-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Variant: icon on the right with pill radii ("Icon ○") */
+.osmo003-root .button-003--flip {
+  --button-003-text-border-radius: 2.5em;
+  --button-003-icon-border-radius: 2.5em;
+  --button-003-flex-flow: row;
+  --button-003-transform-origin: center left;
+  --button-003-rotation-direction: -1;
+  --button-003-mirror-focus: -1;
+}
+
+/* Variant: pill radii on both parts ("Text" / "Icon") */
+.osmo003-root .button-003--pill {
+  --button-003-text-border-radius: 2.5em;
+  --button-003-icon-border-radius: 2.5em;
+}
+
+/* ------------------------- Button 003 ------------------------- */
+
+.osmo003-root .button-003 {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .osmo003-root .button-003:is(:hover, :focus-visible) .button-003__circle-mask,
+  .osmo003-root [data-hover]:is(:hover, :focus-visible) .button-003 .button-003__circle-mask {
+    stroke-dashoffset: 110;
+    transition: stroke-dashoffset 0.6s 0.05s var(--button-003-ease-hover);
+  }
+
+  .osmo003-root .button-003:is(:hover, :focus-visible) .button-003__icon,
+  .osmo003-root [data-hover]:is(:hover, :focus-visible) .button-003 .button-003__icon {
+    rotate: 360deg;
+    transition: rotate 0.6s 0.05s var(--button-003-ease-hover);
+  }
+
+  .osmo003-root .button-003:is(:hover, :focus-visible) .button-003__text,
+  .osmo003-root [data-hover]:is(:hover, :focus-visible) .button-003 .button-003__text {
+    transition:
+      rotate 0.6s 0.05s var(--button-003-ease-hover),
+      translate 0.6s 0.05s var(--button-003-ease-hover);
+  }
+
+  .osmo003-root .button-003:is(:hover, :focus-visible) .button-003__text.is--default,
+  .osmo003-root [data-hover]:is(:hover, :focus-visible) .button-003 .button-003__text.is--default {
+    rotate: calc(var(--button-003-rotation-direction) * -60deg);
+    translate: 0 var(--button-003-padding-top) 0;
+  }
+
+  .osmo003-root .button-003:is(:hover, :focus-visible) .button-003__text.is--hover,
+  .osmo003-root [data-hover]:is(:hover, :focus-visible) .button-003 .button-003__text.is--hover {
+    rotate: 0deg;
+    translate: 0 0 0;
+  }
+}
+
+.osmo003-root .button-003:is(:focus-visible)::after {
+  box-shadow: 0 0 0 0.125em var(--button-003-color-focus);
+}
+
+.osmo003-root .button-003:active .button-003__icon-wrap {
+  scale: var(--button-003-icon-click-scale);
+}
+
+.osmo003-root .button-003:active .button-003__text-wrap {
+  scale: var(--button-003-text-click-scale);
+}
+
+.osmo003-root .button-003::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: var(--button-003-focus-inset);
+  border-radius: var(--button-003-icon-border-radius) var(--button-003-text-border-radius) var(--button-003-text-border-radius) var(--button-003-icon-border-radius);
+  transition: box-shadow 0.3s var(--button-003-ease-focus);
+  pointer-events: none;
+  z-index: 1;
+  scale: var(--button-003-mirror-focus) 1;
+}
+
+.osmo003-root .button-003__icon-wrap {
+  transition: scale 0.15s var(--button-003-ease-click);
+}
+
+.osmo003-root .button-003__circle-mask {
+  transition: stroke-dashoffset 0.5s var(--button-003-ease-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .osmo003-root .button-003__circle-mask {
+    stroke-dashoffset: 110;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .osmo003-root .button-003__circle-mask {
+    stroke-dashoffset: 110;
+  }
+}
+
+.osmo003-root .button-003__circle {
+  transition: rotate 0.5s var(--button-003-ease-hover);
+}
+
+.osmo003-root .button-003__icon {
+  transition: rotate 0.5s var(--button-003-ease-hover);
+}
+
+.osmo003-root .button-003__text-wrap {
+  transition: scale 0.15s var(--button-003-ease-click);
+}
+
+.osmo003-root .button-003__text {
+  transform-origin: var(--button-003-transform-origin);
+  transition:
+    rotate 0.5s var(--button-003-ease-hover),
+    translate 0.5s var(--button-003-ease-hover);
+}
+
+.osmo003-root .button-003__text.is--hover {
+  rotate: calc(var(--button-003-rotation-direction) * 60deg);
+  translate: 0 calc(var(--button-003-padding-top) * -1) 0;
+}
+
+.osmo003-root .button-003[data-button-theme='secondary'] {
+  --button-003-color: #131313;
+  --button-003-color-background: #ffce16;
+  --button-003-text-border-radius: 2.5em;
+  --button-003-icon-border-radius: 0.25em;
+}
+
+/* Base (Webflow shared) styles for Button 003 */
+
+.osmo003-root .button-003 {
+  grid-column-gap: 0.0625em;
+  grid-row-gap: 0.0625em;
+  color: var(--button-003-color);
+  -webkit-user-select: none;
+  user-select: none;
+  flex-flow: var(--button-003-flex-flow);
+  background-color: #0000;
+  outline-style: none;
+  align-items: center;
+  padding: 0;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  position: relative;
+  font-family: inherit;
+  font-size: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+.osmo003-root .button-003__text-wrap {
+  pointer-events: none;
+  white-space: nowrap;
+  border-radius: var(--button-003-text-border-radius);
+  display: grid;
+  overflow: clip;
+}
+
+.osmo003-root .button-003__text {
+  z-index: 1;
+  padding-left: var(--button-003-padding-x);
+  padding-right: var(--button-003-padding-x);
+  padding-top: var(--button-003-padding-top);
+  padding-bottom: var(--button-003-padding-bottom);
+  grid-area: 1 / 1;
+}
+
+.osmo003-root .button-003__text-bg {
+  background-color: var(--button-003-color-background);
+  border-radius: var(--button-003-text-border-radius);
+  grid-area: 1 / 1;
+  padding: 0;
+}
+
+.osmo003-root .button-003__icon-wrap {
+  aspect-ratio: 1;
+  pointer-events: none;
+  width: calc(1em + var(--button-003-padding-top) + var(--button-003-padding-bottom));
+  flex-shrink: 0;
+  place-items: center;
+  display: grid;
+}
+
+.osmo003-root .button-003__icon-bg {
+  background-color: var(--button-003-color-background);
+  border-radius: var(--button-003-icon-border-radius);
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.osmo003-root .button-003__icon {
+  z-index: 1;
+  will-change: transform;
+  grid-area: 1 / 1;
+  width: 1em;
+  height: 1em;
+}
+
+.osmo003-root .button-003__circle {
+  z-index: 1;
+  will-change: transform;
+  grid-area: 1 / 1;
+  place-self: center;
+  width: calc(100% - 0.125em);
+  height: calc(100% - 0.125em);
+}
+
+.osmo003-root .button-003__circle-mask {
+  stroke-dashoffset: 300px;
+  stroke-dasharray: 300;
+}

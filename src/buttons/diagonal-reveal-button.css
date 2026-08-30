@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob035-root {
+
+    --button-035-color: #fff;
+    --button-035-color-background: #ff8a4f;
+    --button-035-hover-color: #ff8a4f;
+    --button-035-hover-color-background: #131313;
+    --button-035-color-focus: #201d1d;
+    --button-035-border-radius: 2.5em;
+    --button-035-padding: 0.75em 1em;
+    --button-035-gap: 0.125em;
+    --button-035-focus-inset: -0.125em;
+    --button-035-hover-scale: 1.065 1.095;
+    --button-035-click-scale: 0.955 0.925;
+    --button-035-ease-hover: cubic-bezier(0.4, 0.15, 0, 1);
+    --button-035-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+    --button-035-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob035-root *,
+.ob035-root *::after,
+.ob035-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob035-root .button-035 {
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      scale 0.45s var(--button-035-ease-hover),
+      transform 0.15s var(--button-035-ease-click);
+  }
+
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob035-root .button-035:is(:hover, :focus-visible),
+.ob035-root [data-hover]:is(:hover, :focus-visible) .button-035 {
+      scale: var(--button-035-hover-scale);
+    }
+.ob035-root .button-035:is(:hover, :focus-visible) .button-035__hover,
+.ob035-root [data-hover]:is(:hover, :focus-visible) .button-035 .button-035__hover {
+      clip-path: polygon(-25% 0%, 125% 0%, 125% 100%, -25% 100%);
+      transition-delay: 0.05s;
+    }
+
+  }.ob035-root .button-035:active {
+    scale: var(--button-035-click-scale);
+  }
+.ob035-root .button-035:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-035-color-focus);
+  }
+.ob035-root .button-035::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-035-focus-inset);
+    border-radius: var(--button-035-border-radius);
+    transition: box-shadow 0.3s var(--button-035-ease-focus);
+    pointer-events: none;
+    z-index: 1;
+  }
+.ob035-root .button-035__hover {
+    clip-path: polygon(calc(50% + 1em) 0%, calc(50% + 1em) 0%, calc(50% - 1em) 100%, calc(50% - 1em) 100%);
+    transition: clip-path 0.75s var(--button-035-ease-hover);
+  }
+.ob035-root .button-035 { -webkit-user-select: none; user-select: none; background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }
+.ob035-root .button-035__hover { width: 100%; height: 100%; color: var(--button-035-hover-color); z-index: 1; grid-area: 1 / 1; display: grid; }
+.ob035-root .button-035__bg { border-radius: var(--button-035-border-radius); grid-area: 1 / 1; width: 100%; height: 100%; padding: 0; }
+.ob035-root .button-035__bg.is--hover { background-color: var(--button-035-hover-color-background); }
+.ob035-root .button-035__bg.is--default { background-color: var(--button-035-color-background); width: calc(100% - 1px); height: calc(100% - 1px); }
+.ob035-root .button-035__inner { width: 100%; height: 100%; padding: var(--button-035-padding); grid-column-gap: var(--button-035-gap); grid-row-gap: var(--button-035-gap); grid-area: 1 / 1; justify-content: center; align-items: center; display: flex; }
+.ob035-root .button-035__default { width: 100%; height: 100%; color: var(--button-035-color); grid-area: 1 / 1; display: grid; }
+.ob035-root .button-035__icon { flex: none; width: .75em; height: .75em; }
+
+.ob035-root .button-035 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }

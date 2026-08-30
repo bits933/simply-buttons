@@ -25,7 +25,7 @@ export function DotMatrixIcon({
       </defs>
       <style>{`
         .dmi-l {
-          fill: #22d3ee;
+          fill: #ffffff;
           opacity: 0.05;
           animation: dmi-icon-wave 2400ms cubic-bezier(0.65, 0, 0.35, 1) infinite both;
         }

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A sourced visual index of 150 distinctive button treatments from across the web."
+    />
+    <title>Button / Index — 150 Sourced References</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#results">Skip to examples</a>
+
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="Button Index home">
+        <span>BUTTON</span><span>/INDEX</span>
+      </a>
+      <p class="edition">WEB RESEARCH ARCHIVE · 2026</p>
+      <p class="masthead-count"><strong id="total-count">000</strong> SOURCED REFERENCES</p>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">FIELD NOTES / INTERACTION DESIGN</p>
+          <h1 id="page-title">150 ways to ask for a click.</h1>
+        </div>
+        <p class="intro-copy">
+          A visual survey of calls to action, icon controls, toggles, motion experiments,
+          and system buttons found across award sites, portfolios, design communities,
+          product documentation, and front-end labs.
+        </p>
+      </section>
+
+      <section class="controls" aria-label="Filter the reference index">
+        <label class="search-field" for="search">
+          <span>SEARCH</span>
+          <input
+            id="search"
+            name="q"
+            type="search"
+            placeholder="Label, trait, source…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+
+        <label class="source-field" for="source-filter">
+          <span>SOURCE</span>
+          <select id="source-filter" name="source">
+            <option value="all">All sources</option>
+          </select>
+        </label>
+
+        <button class="reset-button" id="reset-filters" type="button">RESET</button>
+      </section>
+
+      <nav class="category-strip" id="category-filters" aria-label="Button categories"></nav>
+
+      <div class="results-bar">
+        <p id="results-status" role="status" aria-live="polite">Loading references…</p>
+        <p>SCREENSHOT + DIRECT SOURCE</p>
+      </div>
+
+      <section class="atlas-grid" id="results" aria-label="Button reference cards"></section>
+
+      <section class="empty-state" id="empty-state" hidden>
+        <p>NO MATCHES IN THIS CUT.</p>
+        <button type="button" id="empty-reset">Clear filters</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>REFERENCE ONLY — ALL WORK REMAINS CREDITED TO ITS ORIGINAL SOURCE.</p>
+      <a href="#page-title">BACK TO TOP ↑</a>
+    </footer>
+
+    <noscript>This index needs JavaScript for filtering and rendering its source data.</noscript>
+  </body>
+</html>

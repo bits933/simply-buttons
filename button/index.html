@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arrakis — “Request a demo” button recreation</title>
+<style>
+  /* ------------------------------------------------------------------
+     1:1 recreation of the main CTA on https://www.arrakis.tech
+     (“Request a demo” hero button)
+
+     Button tokens (from the site's computed styles):
+       bg        #FBF6EC (dust)   → hover #FBEFD6 (sand)
+       text      #1B1613 (night)
+       border    1px solid #FBF6EC
+       radius    2px
+       padding   9px 14px
+       font      terraneSans 400, fluid 14px → 15px (480–1280px vw)
+       line-h    1.2
+       easing    0.25s cubic-bezier(0.4, 0, 0.2, 1)
+
+     Fluid effect (ported from the site's WebGL2 worker):
+       on hover a canvas fades in (0.35s ease-out) inside the button;
+       a worker renders animated dunes + sparkles that carve a groove
+       along the cursor trail; on leave it fades out and unmounts.
+  ------------------------------------------------------------------ */
+
+  @font-face {
+    font-family: "terraneSans";
+    src: url("./fonts/terrane-sans-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #0B0907; /* the site's hero backdrop */
+    font-family: "terraneSans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* ---- the button (same DOM structure as the original) ---- */
+
+  .arrakis-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.125rem;              /* 2px  */
+    padding: 0.5625rem 0.875rem;          /* 9px 14px */
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    appearance: none;
+
+    background-color: #FBF6EC;            /* dust */
+    color: #1B1613;                       /* night */
+    border: 1px solid #FBF6EC;            /* dust */
+
+    transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .arrakis-btn:hover {
+    background-color: #FBEFD6;            /* sand */
+  }
+
+  /* effect slot — the fluid canvas is mounted in here on hover */
+  .arrakis-btn__fx {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .arrakis-btn__fx canvas {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.35s ease-out;   /* framer-motion fade in/out */
+  }
+
+  .arrakis-btn__label {
+    position: relative;
+    z-index: 10;
+    font-family: "terraneSans", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+    /* text-nav-link: fluid 14px @480px → 15px @1280px */
+    font-size: 0.875rem;
+    font-size: clamp(0.875rem, 0.8375rem + 0.125vw, 0.9375rem);
+  }
+
+  a { text-decoration: none; color: inherit; }
+</style>
+</head>
+<body>
+
+  <a href="mailto:demo@arrakis.tech">
+    <div class="arrakis-btn" id="btn">
+      <span class="arrakis-btn__fx" id="fx"></span>
+      <span class="arrakis-btn__label">Request a demo</span>
+    </div>
+  </a>
+
+<script>
+/* Main-thread side of the fluid effect — mirrors the site's React
+   component: canvas mounts on hover, fades 0→1 (0.35s ease-out),
+   streams cursor-trail points to a shared worker, and unmounts after
+   the fade-out on mouse leave. */
+(() => {
+  const btn = document.getElementById("btn");
+  const fx  = document.getElementById("fx");
+
+  // ---- shared worker singleton ("ready" handshake), as on the site ----
+  let worker = null, ready = false;
+  const waiters = [];
+  const getWorker = () => {
+    if (!worker) {
+      worker = new Worker("./fluid-worker.js");
+      worker.addEventListener("message", (e) => {
+        if (e.data.type === "ready") {
+          ready = true;
+          waiters.forEach((cb) => cb());
+          waiters.length = 0;
+        }
+      });
+    }
+    return (ready && worker)
+      ? Promise.resolve(worker)
+      : new Promise((res) => waiters.push(() => res(worker)));
+  };
+
+  let counter = 0;
+  let live = null; // active canvas session
+
+  const mount = () => {
+    if (live) return;
+    counter += 1;
+    const id = "glass-" + counter;
+
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("aria-hidden", "true");
+    fx.appendChild(canvas);
+
+    const ctx2d = canvas.getContext("2d", { alpha: true });
+    if (!ctx2d) { canvas.remove(); return; }
+
+    // size to the fx slot (button padding box) at devicePixelRatio ≤ 2
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = fx.getBoundingClientRect();
+    canvas.width  = Math.round(rect.width  * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    canvas.style.width  = rect.width  + "px";
+    canvas.style.height = rect.height + "px";
+    ctx2d.globalCompositeOperation = "copy";
+
+    // fade in (framer-motion: opacity 0 → 1, 0.35s easeOut)
+    requestAnimationFrame(() => { canvas.style.opacity = "1"; });
+
+    const session = { id, canvas, w: null, pending: null, raf: 0 };
+    live = session;
+
+    const flush = () => {
+      session.raf = 0;
+      if (session.pending && session.w) {
+        session.w.postMessage({ type: "trail", id, x: session.pending.x, y: session.pending.y });
+        session.pending = null;
+      }
+    };
+
+    const onMove = (e) => {
+      const r = fx.getBoundingClientRect();
+      session.pending = {
+        x: (e.clientX - r.left) / r.width,
+        y: 1 - (e.clientY - r.top) / r.height,   // y-up
+      };
+      if (session.raf === 0) session.raf = requestAnimationFrame(flush);
+    };
+    const onLeave = () => {
+      session.pending = null;
+      if (session.w) session.w.postMessage({ type: "trailEnd", id });
+    };
+
+    btn.addEventListener("mousemove", onMove);
+    btn.addEventListener("mouseleave", onLeave);
+    session.onMove = onMove;
+    session.onLeave = onLeave;
+
+    const onFrame = (e) => {
+      if (e.data.type === "frame" && e.data.id === id && live === session) {
+        ctx2d.drawImage(e.data.bitmap, 0, 0);
+        e.data.bitmap.close();
+      }
+    };
+
+    getWorker().then((w) => {
+      if (!live || live.id !== id) return;
+      session.w = w;
+      w.addEventListener("message", onFrame);
+      session.onFrame = onFrame;
+      w.postMessage({
+        type: "start", id,
+        canvasW: canvas.width, canvasH: canvas.height,
+        dirX: -1, dirY: 0,   // default entry direction
+        tone: 0,             // 0 = light button bg
+      });
+    });
+  };
+
+  const unmount = () => {
+    const session = live;
+    if (!session) return;
+    live = null;
+
+    btn.removeEventListener("mousemove", session.onMove);
+    btn.removeEventListener("mouseleave", session.onLeave);
+    if (session.raf !== 0) cancelAnimationFrame(session.raf);
+
+    // fade out 0.35s, then stop the worker and remove the canvas
+    session.canvas.style.opacity = "0";
+    setTimeout(() => {
+      if (session.w) {
+        session.w.postMessage({ type: "stop", id: session.id });
+        if (session.onFrame) session.w.removeEventListener("message", session.onFrame);
+      }
+      session.canvas.remove();
+    }, 350);
+  };
+
+  btn.addEventListener("mouseenter", mount);
+  btn.addEventListener("mouseleave", unmount);
+})();
+</script>
+
+</body>
+</html>

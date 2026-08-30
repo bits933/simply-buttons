@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b17558b_HafferRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haffer";
+  src: url("https://cdn.prod.website-files.com/69dcc68547ac15ea8b175579/69dcc68547ac15ea8b175594_HafferSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.ob054-root {
+
+    --button-054-color: #131313;
+    --button-054-color-background: #fff;
+    --button-054-hover-color: #fff;
+    --button-054-hover-color-background: #F67DEF;
+    --button-054-color-focus: #000;
+    --button-054-border-radius: 2.5em;
+    --button-054-padding: 0.75em 1em;
+    --button-054-focus-inset: -0.125em;
+    --button-054-click-scale: 0.955 0.925;
+    --button-054-ease-hover: cubic-bezier(0.675, 0.15, 0.1, 1);
+    --button-054-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+    --button-054-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Haffer", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  font-size: calc(var(--size-font) * 1.5);
+}
+
+.ob054-root *,
+.ob054-root *::after,
+.ob054-root *::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob054-root .button-054 {
+    -webkit-tap-highlight-color: transparent;
+    transition: scale 0.15s var(--button-054-ease-click);
+  }
+
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {.ob054-root .button-054:is(:hover, :focus-visible) .button-054__hover-inner,
+.ob054-root [data-hover]:is(:hover, :focus-visible) .button-054 .button-054__hover-inner {
+      clip-path: inset(0% 0% 0% 0%);
+      transition: clip-path 0.25s 0.05s var(--button-054-ease-hover);
+    }
+.ob054-root .button-054:is(:hover, :focus-visible) .button-054__hover,
+.ob054-root [data-hover]:is(:hover, :focus-visible) .button-054 .button-054__hover {
+      clip-path: inset(0% 0% 0% 0%);
+      transition: clip-path 0.4s 0.2s var(--button-054-ease-hover);
+    }
+
+  }.ob054-root .button-054:is(:focus-visible)::after {
+    box-shadow: 0 0 0 0.125em var(--button-054-color-focus);
+  }
+.ob054-root .button-054:active {
+    scale: var(--button-054-click-scale);
+  }
+.ob054-root .button-054::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: var(--button-054-focus-inset);
+    border-radius: var(--button-054-border-radius);
+    transition: box-shadow 0.3s var(--button-054-ease-focus);
+    pointer-events: none;
+    z-index: 1;
+  }
+.ob054-root .button-054__hover-inner {
+    clip-path: inset(0% 100% 0% 0%);
+    transition: clip-path 0.25s 0.25s var(--button-054-ease-hover);
+  }
+.ob054-root .button-054__hover {
+    clip-path: inset(calc(50% - 0.0625em) 0% calc(50% - 0.0625em) 0%);
+    transition: clip-path 0.35s var(--button-054-ease-hover);
+  }
+.ob054-root .button-054 { -webkit-user-select: none; user-select: none; background-color: #0000; outline-style: none; padding: 0; line-height: 1; text-decoration: none; display: inline-grid; position: relative; }
+.ob054-root .button-054__default { pointer-events: none; width: 100%; height: 100%; color: var(--button-054-color); grid-area: 1 / 1; display: grid; }
+.ob054-root .button-054__text { width: 100%; height: 100%; padding: var(--button-054-padding); z-index: 1; grid-area: 1 / 1; }
+.ob054-root .button-054__bg { border-radius: var(--button-054-border-radius); grid-area: 1 / 1; place-self: center; width: calc(100% - 1px); height: calc(100% - 1px); padding: 0; }
+.ob054-root .button-054__bg.is--default { background-color: var(--button-054-color-background); width: calc(100% - 2px); height: calc(100% - 2px); }
+.ob054-root .button-054__bg.is--hover { background-color: var(--button-054-hover-color-background); }
+.ob054-root .button-054__hover { pointer-events: none; width: 100%; height: 100%; color: var(--button-054-hover-color); z-index: 2; grid-area: 1 / 1; place-self: center; display: grid; }
+.ob054-root .button-054__hover-inner { width: 100%; height: 100%; display: grid; }
+
+.ob054-root .button-054 { border: 0; cursor: pointer; font-family: inherit; font-size: inherit; }
