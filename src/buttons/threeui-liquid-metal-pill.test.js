@@ -13,6 +13,9 @@ const playPresentationCssPath = join(dir, "liquid-metal-button.css");
 const snippetsPath = join(dir, "threeui-liquid-metal-pill.snippets.js");
 const generatorPath = join(root, "plans", "threeui-liquid-metal-pill-snippets-gen.mjs");
 const slotsPath = join(root, "src", "slots.js");
+const CARD_HEIGHT = 200;
+const stageHeight = (buttonHeight) => buttonHeight * (1 + (2 * 900) / 516);
+const readScale = (css, name) => Number(css.match(new RegExp(`--${name}:\\s*([0-9.]+)`))?.[1]);
 
 test("ThreeUI liquid metal pill registers the canonical Sign up button", async () => {
   assert.ok(existsSync(previewPath), "missing pill preview");
@@ -37,11 +40,15 @@ test("ThreeUI liquid metal pill registers the canonical Sign up button", async (
   assert.match(preview, /className="threeui-liquid-metal-pill-preview__content"/);
   assert.doesNotMatch(preview, /getContext\(|createShader|<canvas/);
   assert.match(presentationCss, /\.threeui-liquid-metal-pill-preview\s*\{[\s\S]*?overflow:\s*hidden[\s\S]*?background:\s*#070708/);
-  assert.match(presentationCss, /\.threeui-liquid-metal-pill-preview__content\s*\{[\s\S]*?position:\s*absolute[\s\S]*?top:\s*50%[\s\S]*?left:\s*50%[\s\S]*?width:\s*111\.111%[\s\S]*?height:\s*116\.7%[\s\S]*?transform:\s*translate\(-50%, -50%\) scale\(0\.9\)[\s\S]*?transform-origin:\s*center/);
+  const pillScale = readScale(presentationCss, "liquid-metal-pill-scale");
+  const playScale = readScale(playPresentationCss, "liquid-metal-play-scale");
+  assert.ok(Math.abs(stageHeight(52) * pillScale - CARD_HEIGHT) < 0.01, "pill stage must fit the card after scaling");
+  assert.ok(Math.abs(stageHeight(88) * playScale - CARD_HEIGHT) < 0.01, "Play stage must fit the card after scaling");
+  assert.match(presentationCss, /\.threeui-liquid-metal-pill-preview__content\s*\{[\s\S]*?width:\s*calc\(100% \/ var\(--liquid-metal-pill-scale\)\)[\s\S]*?height:\s*calc\(100% \/ var\(--liquid-metal-pill-scale\)\)[\s\S]*?transform:\s*translate\(-50%, -50%\) scale\(var\(--liquid-metal-pill-scale\)\)/);
   assert.match(presentationCss, /\.slot:has\(\.threeui-liquid-metal-pill-preview\) \.slot-preview,[\s\S]*?padding:\s*0[\s\S]*?overflow:\s*hidden/);
   assert.match(presentationCss, /\.slot-preview-stage:has\(\.threeui-liquid-metal-pill-preview\)[\s\S]*?width:\s*100%[\s\S]*?height:\s*100%[\s\S]*?overflow:\s*visible/);
   assert.match(playPresentationCss, /\.slot:has\(\.liquid-metal-play-root\) \.slot-preview,[\s\S]*?padding:\s*0[\s\S]*?overflow:\s*hidden/);
-  assert.match(playPresentationCss, /\.liquid-metal-play-root \.shader-frame\s*\{[\s\S]*?position:\s*absolute[\s\S]*?top:\s*50%[\s\S]*?width:\s*100%[\s\S]*?height:\s*197\.5%[\s\S]*?transform:\s*translateY\(-50%\)/);
+  assert.match(playPresentationCss, /\.liquid-metal-play-root \.shader-frame\s*\{[\s\S]*?width:\s*calc\(100% \/ var\(--liquid-metal-play-scale\)\)[\s\S]*?height:\s*calc\(100% \/ var\(--liquid-metal-play-scale\)\)[\s\S]*?transform:\s*translate\(-50%, -50%\) scale\(var\(--liquid-metal-play-scale\)\)/);
 
   assert.equal(THREEUI_LIQUID_METAL_PILL_META.id, "threeui-liquid-metal");
   assert.equal(THREEUI_LIQUID_METAL_PILL_META.name, "Liquid metal");
@@ -70,5 +77,7 @@ test("ThreeUI liquid metal pill registers the canonical Sign up button", async (
   assert.match(slots, /THREEUI_LIQUID_METAL_PILL_META,[\s\S]*?THREEUI_LIQUID_METAL_PILL_SNIPPETS/);
   assert.equal((slots.match(/id: "threeui-liquid-metal"/g) ?? []).length, 1);
   assert.equal((slots.match(/preview: ThreeUiLiquidMetalPillPreview/g) ?? []).length, 1);
-  assert.ok(slots.indexOf('id: "threeui-liquid-metal"') > slots.indexOf('id: "liquid-metal-play"'));
+  const raw = slots.slice(slots.indexOf("const RAW = ["), slots.indexOf("];\n\nlet nextIndex"));
+  assert.equal((raw.match(/id: "threeui-liquid-metal"/g) ?? []).length, 1);
+  assert.equal([...raw.matchAll(/id: "([^"]+)"/g)].at(-1)?.[1], "threeui-liquid-metal");
 });

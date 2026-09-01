@@ -4,9 +4,8 @@
 
 - Added `ThreeUiLiquidMetalPillPreview`, which imports the exact local `LiquidMetalButton` and `threeui.css` and renders only `<LiquidMetalButton variant="pill" />`.
 - Added a Node-only generator for aligned HTML, React, and Node snippets. The generated HTML is byte-for-byte the canonical local document.
-- Added the `threeui-liquid-metal` gallery item after `liquid-metal-play` in the working tree without modifying the existing Play Circle files.
-- Follow-up: wrapped only the gallery preview in a full-bleed dark frame. Its centered presentation layer scales to `0.9` while inverse-sizing the internal canvas so the 52px authored pill renders at roughly 46.8px without shrinking the card canvas.
-- Clipping follow-up: removed gallery/modal padding only for the two Liquid Metal integrations, then centered their internal source viewports at the exact stage heights. The card container remains the clipping boundary; the registered source files and all copyable configured usages remain unchanged.
+- Added the `threeui-liquid-metal` gallery item as the final tray in the working tree without modifying the existing Play Circle files.
+- Follow-up: removed gallery/modal padding only for the two Liquid Metal integrations and made each source viewport inverse-sized and uniformly scaled to the preview root. The source bloom therefore fits before the card boundary; the registered source files and all copyable configured usages remain unchanged.
 
 ## TDD evidence
 
@@ -53,8 +52,7 @@ $ node --test src/shaders/liquid-metal-button/liquid-metal-button.source.test.js
 tests 4; pass 4; fail 0
 
 $ npm run build
-blocked by pre-existing src/slots.js import of missing
-./buttons/spinning-border-button.snippets.js
+built successfully; the existing font-resolution, eval, and chunk-size warnings remain
 ```
 
 ## Browser evidence
@@ -65,6 +63,14 @@ blocked by pre-existing src/slots.js import of missing
 - Browser logs had no Liquid Metal, WebGL, shader, or asset errors. Existing unrelated app logs remain: invalid SVG React property names and a Three.js `Clock` deprecation.
 - Scale recheck: the preview-modal iframe measured 949.1 × 685.6px; dividing by the selected 0.9 scale gives 1054.5 × 761.8px, confirming uniform 90% presentation scaling. The scaled **Sign up** control still entered `hot` on pointer hover and accepted a click; no Liquid Metal logs were emitted.
 - Clipping recheck: in the gallery, the Play Circle iframe now measures 395.0px high against a 395.0px source stage; the 200px card clips only that correctly rendered viewport. The new pill's iframe is 210.0px after its 0.9 presentation scale and its source stage is 233.4px, so the source stage fits before the card boundary clips the 5px visual overscan. A direct **Sign up** click again set the source body to `hot`.
+
+## Review correction and final evidence
+
+- Addressed every required finding in `task-2-review.md`: both layers use an inverse-size plus uniform-scale fit contract, and the new pill registration is the final literal `RAW` item.
+- Desktop: each 662.5px by 200.0px preview root has a transformed iframe/content box of the same 662.5px by 200.0px bounds. The internal authored stages are 233.4px (pill) and 395.0px (Play), so their complete bloom fields are first scaled to the root instead of being cropped by it.
+- Mobile: each responsive 400.0px by 200.0px preview root has a matching 400.0px by 200.0px transformed iframe/content box. Both source buttons mounted and direct Play/Sign up clicks set their source body to `hot`.
+- Browser console filter `liquid` returned no warning or error records. The temporary mobile viewport override was reset.
+- The focused test derives stage height from the registered 900/516 bloom padding formula and asserts the configured scale resolves to the fixed 200px card. It also asserts the Liquid Metal pill is the final literal item in `RAW`.
 
 ## Review and concerns
 
