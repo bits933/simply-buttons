@@ -32,13 +32,21 @@ node plans/threeui-liquid-metal-source.mjs
 
 Result: exit 0; three `verified` lines printed, each with the expected path and SHA-256 above.
 
-GREEN command:
+Initial GREEN command (before the final committed integrity test added its second assertion):
 
 ```powershell
 node --test src/shaders/liquid-metal-button/liquid-metal-button.source.test.js
 ```
 
 Result: exit 0; 1 pass, 0 fail.
+
+Final committed verification command:
+
+```powershell
+node --test src/shaders/liquid-metal-button/liquid-metal-button.source.test.js
+```
+
+Result: exit 0; 2 pass, 0 fail. The committed test independently verifies all three source SHA-256 values and the component's canonical raw-HTML import contract.
 
 Build command:
 
