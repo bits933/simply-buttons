@@ -1,1 +1,4 @@
 graphify-out/graph.json merge=graphify
+src/shaders/liquid-metal-button/LiquidMetalButton.tsx text eol=lf
+src/shaders/liquid-metal-button/liquid-metal-button.html text eol=lf
+src/shaders/threeui.css text eol=lf
