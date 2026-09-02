@@ -14,6 +14,9 @@ Simply Buttons is a growing gallery of polished, interactive button patterns. It
 - A mix of native CSS interactions and richer experiences using SVG, canvas, Three.js, Rive, and Lottie where the effect benefits from them.
 - Accessible interaction foundations, including native buttons, keyboard activation, focus-visible states, and reduced-motion fallbacks where relevant.
 
+  <img width="1657" height="63" alt="image" src="https://github.com/user-attachments/assets/41e3fb54-95e7-46f4-9faf-a8d004469be8" />
+
+
 ## Using the gallery
 
 1. Browse the cards or use the search icon in the top bar.
