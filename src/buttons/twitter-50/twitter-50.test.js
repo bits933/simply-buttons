@@ -100,7 +100,7 @@ test("slots.js keeps the remaining x50 trays after dust-premium and drops the cu
   }
   assert.equal(kept, 34);
   const filled = [...slots.matchAll(/preview:\s+/g)].length;
-  assert.equal(filled, 136, `expected 136 previews, got ${filled}`);
+  assert.equal(filled, 137, `expected 137 previews, got ${filled}`);
   const lastX50 = slots.lastIndexOf('id: "x50-fifteen"');
   const idsAfter = [...slots.slice(lastX50 + 1).matchAll(/id: "([^"]+)"/g)].map((m) => m[1]);
   assert.ok(idsAfter.every((id) => !id.startsWith("x50-")), "remaining x50 trays must stay contiguous after dust-premium");

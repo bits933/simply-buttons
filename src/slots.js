@@ -453,6 +453,11 @@ import {
   ARJUN_CONNECT_META,
   ARJUN_CONNECT_SNIPPETS,
 } from "./buttons/arjun-connect-button.snippets.js";
+import { ArjunSocialButtonsPreview } from "./buttons/ArjunSocialButtons.jsx";
+import {
+  ARJUN_SOCIAL_META,
+  ARJUN_SOCIAL_SNIPPETS,
+} from "./buttons/arjun-social-buttons.snippets.js";
 
 const RAW = [
   {
@@ -1700,6 +1705,15 @@ const RAW = [
         keywords: ARJUN_CONNECT_META.keywords,
         preview: ArjunConnectButtonPreview,
         snippets: ARJUN_CONNECT_SNIPPETS,
+      },
+      {
+        id: "arjun-social",
+        name: ARJUN_SOCIAL_META.name,
+        blurb: ARJUN_SOCIAL_META.blurb,
+        states: ARJUN_SOCIAL_META.states,
+        keywords: ARJUN_SOCIAL_META.keywords,
+        preview: ArjunSocialButtonsPreview,
+        snippets: ARJUN_SOCIAL_SNIPPETS,
       },
     ],
   },
