@@ -1,4 +1,4 @@
-import { GithubLogo, MagnifyingGlass } from "@phosphor-icons/react";
+import { GithubLogo, MagnifyingGlass, Star } from "@phosphor-icons/react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Lottie } from "lottie-react";
 import diceCubeJson from "./assets/wired-outline-1471-dice-cube.json";
@@ -24,6 +24,14 @@ export function App() {
   const [searchOpen, setSearchOpen] = useState(() => Boolean(readQuery()));
   const [order, setOrder] = useState(null);
   const [shuffleTick, setShuffleTick] = useState(0);
+  const [stars, setStars] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem("simply_buttons_stars");
+      return cached ? Number(cached) : null;
+    } catch {
+      return null;
+    }
+  });
   const searchInputRef = useRef(null);
   const gridRef = useRef(null);
   const flipFromRef = useRef(null);
@@ -32,8 +40,49 @@ export function App() {
   const visible = useMemo(() => filterSlots(base, query), [base, query]);
 
   useEffect(() => {
+    let unmounted = false;
+    async function fetchStars() {
+      try {
+        const res = await fetch("https://api.github.com/repos/bits933/simply-buttons");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!unmounted && typeof data.stargazers_count === "number") {
+          setStars(data.stargazers_count);
+          try {
+            sessionStorage.setItem("simply_buttons_stars", String(data.stargazers_count));
+          } catch {}
+        }
+      } catch {}
+    }
+    fetchStars();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  useEffect(() => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
+
+  useEffect(() => {
+    const onKey = (event) => {
+      const target = event.target;
+      const typing =
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        (target instanceof HTMLElement && target.isContentEditable);
+      if (event.key === "/" && !typing && !event.metaKey && !event.ctrlKey && !event.altKey) {
+        event.preventDefault();
+        setSearchOpen(true);
+        searchInputRef.current?.focus();
+      }
+      if (event.key === "Escape") {
+        if (!query) setSearchOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [query]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -122,17 +171,32 @@ export function App() {
           Simply buttons
         </a>
         <div className="topbar-actions">
-          <div className={`search ${searchOpen ? "is-open" : ""}`}>
+          <div
+            className={`search search-slash ${searchOpen ? "is-open" : ""}`}
+            data-open={searchOpen}
+            onClick={() => {
+              if (!searchOpen) {
+                setSearchOpen(true);
+                searchInputRef.current?.focus();
+              }
+            }}
+          >
             <button
               className="search-button"
               type="button"
               aria-label="Search specimens"
               aria-controls="button-search"
               aria-expanded={searchOpen}
-              onClick={() => setSearchOpen(true)}
+              onClick={() => {
+                setSearchOpen(true);
+                searchInputRef.current?.focus();
+              }}
             >
-              <MagnifyingGlass size={18} weight="bold" aria-hidden="true" />
+              <MagnifyingGlass size={16} weight="bold" aria-hidden="true" className="ss-icon" />
             </button>
+            <span className="ss-label" aria-hidden={searchOpen}>
+              Search
+            </span>
             <input
               id="button-search"
               className="search-input"
@@ -150,20 +214,29 @@ export function App() {
               onKeyDown={(event) => {
                 if (event.key === "Escape") {
                   if (query) setQuery("");
-                  else event.currentTarget.blur();
+                  else {
+                    setSearchOpen(false);
+                    event.currentTarget.blur();
+                  }
                 }
               }}
             />
+            <span className="ss-kbd" aria-hidden="true">
+              /
+            </span>
           </div>
           <a
-            className="support-btn github-btn"
+            className="support-btn github-btn gh-star-btn"
             href="https://github.com/bits933/simply-buttons"
             target="_blank"
             rel="noreferrer"
-            aria-label="GitHub repository"
+            aria-label={`GitHub repository ${stars !== null ? `(${stars} stars)` : ""}`.trim()}
           >
-            <GithubLogo size={16} weight="bold" aria-hidden="true" />
-            <span>GitHub</span>
+            <span className="gh-icon-box" aria-hidden="true">
+              <GithubLogo size={16} weight="bold" className="gh-icon-github" />
+              <Star size={15} weight="fill" className="gh-icon-star" />
+            </span>
+            <span className="gh-count">{stars !== null ? stars.toLocaleString() : "Star"}</span>
           </a>
           <ThemeToggle />
         </div>

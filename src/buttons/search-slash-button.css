@@ -31,10 +31,10 @@
   width: 8em;
   height: 2.9em;
   padding: 0 0.65em;
-  border: 1px solid #2c2e36;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #18181b;
+  border: 1px solid var(--line, #2c2e36);
+  border-radius: var(--radius, 8px);
+  background: var(--surface, #ffffff);
+  color: var(--ink, #18181b);
   font-family: system-ui, sans-serif;
   font-size: 1rem;
   cursor: pointer;

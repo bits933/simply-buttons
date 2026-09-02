@@ -14,6 +14,8 @@ test("filled slots expose a fullscreen preview that reuses copy and excludes the
   assert.match(slot, /setOpen\(null\)/);
   assert.match(slot, /<PreviewModal/);
   assert.match(slot, /onCopy=\{copyComponent\}/);
+  assert.match(slot, /formatButtonCopy/);
+  assert.match(slot, /Copy prompt and code/);
   assert.match(slot, /<slot\.preview \/>/);
   assert.match(modal, /aria-label="Close \(Escape\)"/);
   assert.match(modal, /<kbd>Esc<\/kbd>/);

@@ -1,11 +1,18 @@
 import { CopySimple } from "@phosphor-icons/react";
 
-export function CopyButton({ copied, disabled, onClick }) {
+export function CopyButton({
+  copied,
+  disabled,
+  onClick,
+  label = "Copy all",
+  "aria-label": ariaLabel,
+}) {
   return (
     <button
       type="button"
       className={copied ? "copy-btn is-copied" : "copy-btn"}
       disabled={disabled}
+      aria-label={ariaLabel || label}
       onClick={onClick}
     >
       <span className="copy-btn-mark" aria-hidden="true">
@@ -20,7 +27,7 @@ export function CopyButton({ copied, disabled, onClick }) {
           />
         </svg>
       </span>
-      <span className="copy-btn-label">{copied ? "Copied" : "Copy React"}</span>
+      <span className="copy-btn-label">{copied ? "Copied" : label}</span>
       <span className="visually-hidden" role="status">
         {copied ? "Copied" : ""}
       </span>

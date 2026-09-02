@@ -1,6 +1,7 @@
 import { X } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { CopyButton } from "./CopyButton.jsx";
+import { selectElementText, writeClipboard } from "./copyBundle.js";
 
 export function CodeModal({ title, code, onClose }) {
   const dialogRef = useRef(null);
@@ -47,18 +48,9 @@ export function CodeModal({ title, code, onClose }) {
   }, [onClose]);
 
   async function copy() {
-    try {
-      await navigator.clipboard.writeText(code);
-    } catch {
-      const node = codeRef.current;
-      if (node) {
-        const range = document.createRange();
-        range.selectNodeContents(node);
-        const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
-    }
+    selectElementText(codeRef.current);
+    const ok = await writeClipboard(code);
+    if (!ok) window.prompt("Copy code", code);
     setCopied(true);
     window.clearTimeout(copyTimer.current);
     copyTimer.current = window.setTimeout(() => setCopied(false), 1600);
@@ -77,7 +69,7 @@ export function CodeModal({ title, code, onClose }) {
         <header className="code-modal-bar">
           <h2 id="code-modal-title">{title}</h2>
           <div className="code-modal-actions">
-            <CopyButton copied={copied} onClick={copy} />
+            <CopyButton copied={copied} onClick={copy} label="Copy" />
             <button
               ref={closeRef}
               type="button"

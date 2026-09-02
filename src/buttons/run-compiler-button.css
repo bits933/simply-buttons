@@ -9,17 +9,17 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  font-size: 1.125rem;
+  font-size: 0.8125rem;
 }
 
 .btn-run-compiler {
   position: relative;
   display: grid;
   place-items: center;
-  width: 13em;
-  height: 4em;
+  width: 12.5em;
+  height: 3.25em;
   padding: 0;
-  border: 2px solid #fff;
+  border: 1.5px solid #fff;
   border-radius: 0;
   background: transparent;
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -90,7 +90,7 @@
 .btn-run-compiler__loader {
   display: flex;
   position: absolute;
-  inset: 0.625em;
+  inset: 0.45em;
   gap: 2px;
   overflow: hidden;
   visibility: hidden;

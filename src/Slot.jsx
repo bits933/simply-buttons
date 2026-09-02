@@ -3,6 +3,7 @@ import { CornersOut, RectangleDashed } from "@phosphor-icons/react";
 import { CodeModal } from "./CodeModal.jsx";
 import { CopyButton } from "./CopyButton.jsx";
 import { PreviewModal } from "./PreviewModal.jsx";
+import { formatButtonCopy, writeClipboard } from "./copyBundle.js";
 import { STACKS } from "./slots.js";
 
 const TAB_KEYS = ["html", "react", "node"];
@@ -14,15 +15,12 @@ export function Slot({ index, slot }) {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const copyTimer = useRef(0);
-  const componentCode = slot.snippets?.react ?? "";
+  const bundle = formatButtonCopy(slot);
 
   async function copyComponent() {
-    if (!filled || !componentCode) return;
-    try {
-      await navigator.clipboard.writeText(componentCode);
-    } catch {
-      window.prompt("Copy React component", componentCode);
-    }
+    if (!filled || !bundle.trim()) return;
+    const ok = await writeClipboard(bundle);
+    if (!ok) window.prompt("Copy button prompt and code", bundle);
     setCopied(true);
     window.clearTimeout(copyTimer.current);
     copyTimer.current = window.setTimeout(() => setCopied(false), 1600);
@@ -69,7 +67,11 @@ export function Slot({ index, slot }) {
         <div className="slot-meta-row">
           <h3 itemProp="name">{slot.name}</h3>
           {filled ? (
-            <CopyButton copied={copied} onClick={copyComponent} />
+            <CopyButton
+              copied={copied}
+              onClick={copyComponent}
+              aria-label={`Copy prompt and code for ${slot.name}`}
+            />
           ) : null}
         </div>
         <p itemProp="description">{slot.blurb}</p>

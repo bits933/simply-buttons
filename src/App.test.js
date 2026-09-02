@@ -35,7 +35,7 @@ test("gallery exposes a randomize control that reshuffles on every click", async
   const slot = await readFile(new URL("./Slot.jsx", import.meta.url), "utf8");
   const shuffle = await readFile(new URL("./shuffle.js", import.meta.url), "utf8");
 
-  assert.match(app, /import \{ GithubLogo, MagnifyingGlass \} from "@phosphor-icons\/react"/);
+  assert.match(app, /import \{ GithubLogo, MagnifyingGlass, Star \} from "@phosphor-icons\/react"/);
   assert.match(app, /import \{ Lottie \} from "lottie-react"/);
   assert.match(app, /wired-outline-1471-dice-cube\.json/);
   assert.match(app, /import \{ nextShuffle \} from "\.\/shuffle\.js"/);
