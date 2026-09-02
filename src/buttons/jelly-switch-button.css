@@ -1,0 +1,127 @@
+/* Jelly switch — TypeGPU raymarched gel as a click button. The canvas is the
+   3D scene; click jiggles the blob and flips inactive (clear) ↔ active (amber).
+   Color exception (PROJECT.md): TypeGPU demo jelly vec3(0.08, 0.5, 1.0). */
+
+.slot-preview-stage:has(.jelly-switch-root) > *,
+.preview-modal-stage:has(.jelly-switch-root) > * {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slot:has(.jelly-switch-root) .slot-preview,
+.preview-modal-stage:has(.jelly-switch-root) {
+  background: #121315;
+}
+
+.slot:has(.jelly-switch-root) .slot-index,
+.slot:has(.jelly-switch-root) .slot-expand {
+  z-index: 6;
+  color: #9aa0a8;
+}
+
+.slot:has(.jelly-switch-root) .slot-expand:hover,
+.slot:has(.jelly-switch-root) .slot-expand:focus-visible {
+  color: #eceef1;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.jelly-switch-root {
+  --jelly-jiggle: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.jelly-switch-root *,
+.jelly-switch-root *::before,
+.jelly-switch-root *::after {
+  box-sizing: border-box;
+}
+
+.btn-jelly-switch {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-jelly-switch:focus-visible {
+  outline: 2px solid #1490ff;
+  outline-offset: 3px;
+}
+
+.jelly-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  pointer-events: none;
+  background: #121315;
+  z-index: 0;
+}
+
+.jelly-fallback {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 92px;
+  height: 64px;
+  border-radius: 22px;
+  background: radial-gradient(120% 90% at 30% 25%, rgba(255, 255, 255, 0.45), transparent 55%),
+    #c8c4bf;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.btn-jelly-switch[data-gl="off"] .jelly-fallback {
+  display: block;
+}
+
+.btn-jelly-switch[data-gl="off"][data-jelly-on="true"] .jelly-fallback {
+  background: radial-gradient(120% 90% at 30% 25%, rgba(180, 220, 255, 0.75), transparent 55%),
+    #1490ff;
+}
+
+.btn-jelly-switch[data-gl="off"][data-jiggle="1"] .jelly-fallback {
+  animation: jelly-jiggle 420ms cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+@keyframes jelly-jiggle {
+  0% {
+    transform: translate(-50%, -50%) scale(1, 1) rotate(0deg);
+  }
+  28% {
+    transform: translate(-50%, -50%) scale(1.14, 0.84) rotate(-5deg);
+  }
+  58% {
+    transform: translate(-50%, -50%) scale(0.9, 1.12) rotate(4deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1, 1) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-jelly-switch[data-gl="off"][data-jiggle="1"] .jelly-fallback {
+    animation: none;
+  }
+}

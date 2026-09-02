@@ -1,0 +1,120 @@
+.btn-codex-agent-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-codex-agent {
+  --codex-agent-surface: #1a1a1a;
+  --codex-agent-command: #353535;
+  --codex-agent-border: #3a3a3a;
+  --codex-agent-text: #ededed;
+  --codex-agent-muted: #7a7a7a;
+  --codex-agent-accent: #5cc2e0;
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  min-width: 174px;
+  padding: 0 14px;
+  gap: 10px;
+  overflow: hidden;
+  border: 1px solid var(--codex-agent-border);
+  border-radius: 6px;
+  background: var(--codex-agent-surface);
+  color: var(--codex-agent-text);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  isolation: isolate;
+  transition: transform 140ms ease;
+}
+
+[data-theme="dark"] .btn-codex-agent {
+  --codex-agent-surface: #1a1a1a;
+  --codex-agent-border: #4a4a4a;
+  --codex-agent-text: #ededed;
+}
+
+.btn-codex-agent::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--codex-agent-command);
+  content: "";
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.btn-codex-agent__mark,
+.btn-codex-agent__label {
+  position: relative;
+}
+
+.btn-codex-agent__mark {
+  color: var(--codex-agent-muted);
+  font-weight: 800;
+}
+
+.btn-codex-agent__label {
+  white-space: nowrap;
+}
+
+.btn-codex-agent:hover,
+.btn-codex-agent:focus-visible {
+  border-color: var(--codex-agent-accent);
+}
+
+.btn-codex-agent:hover::before,
+.btn-codex-agent:focus-visible::before {
+  opacity: 1;
+}
+
+.btn-codex-agent:hover .btn-codex-agent__label,
+.btn-codex-agent:focus-visible .btn-codex-agent__label {
+  background: linear-gradient(100deg, var(--codex-agent-text) 35%, #fff 50%, var(--codex-agent-text) 65%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: codex-agent-shimmer 620ms ease-out both;
+}
+
+.btn-codex-agent:active {
+  transform: scale(.98);
+}
+
+.btn-codex-agent:focus-visible {
+  outline: 2px solid var(--codex-agent-accent);
+  outline-offset: 3px;
+}
+
+@keyframes codex-agent-shimmer {
+  from { background-position: 160% 0; }
+  to { background-position: -60% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-codex-agent,
+  .btn-codex-agent::before,
+  .btn-codex-agent__label,
+  .btn-codex-agent__mark {
+    transition: none;
+    animation: none;
+  }
+
+  .btn-codex-agent:hover .btn-codex-agent__label,
+  .btn-codex-agent:focus-visible .btn-codex-agent__label {
+    background: none;
+    color: var(--codex-agent-text);
+  }
+
+  .btn-codex-agent:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,150 @@
+/* Mac folder button — a modern Apple-style folder (soft blue gradients, rounded
+   corners, no outlines) that opens with spring-like restraint: the front tips
+   forward, a deep-blue interior appears, and three rounded file cards float out
+   in a gentle fan. Transitions — not keyframes — drive the motion, so a click
+   mid-flight retargets everything from wherever it currently is: the animation
+   is interruptible and reversible at any instant, and input is never locked.
+   Specimen assembly for the Simply Buttons gallery. */
+
+.mac-folder-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+}
+
+.btn-mac-folder {
+  position: relative;
+  border: 0;
+  background: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mf-stage {
+  position: relative;
+  width: 80px;
+  height: 104px;
+  perspective: 600px;
+  transition: translate 300ms cubic-bezier(0.4, 0, 0.2, 1), scale 100ms ease-out;
+}
+
+.btn-mac-folder:hover .mf-stage {
+  translate: 0 -2px;
+}
+
+.btn-mac-folder:active .mf-stage {
+  scale: 0.96;
+  transition: scale 100ms ease-out;
+}
+
+.mf-back,
+.mf-interior,
+.mf-front {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 80px;
+  height: 56px;
+}
+
+.mf-back {
+  z-index: 1;
+  filter: drop-shadow(0 6px 10px rgba(10, 63, 214, 0.28));
+  transition: filter 300ms ease;
+}
+
+.btn-mac-folder:hover .mf-back {
+  filter: drop-shadow(0 10px 16px rgba(10, 63, 214, 0.34));
+}
+
+.mf-back svg,
+.mf-interior svg,
+.mf-paper svg,
+.mf-front svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mf-interior {
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+[data-phase="open"] .mf-interior {
+  opacity: 1;
+}
+
+.mf-paper {
+  position: absolute;
+  left: 26px;
+  top: 36px;
+  width: 28px;
+  height: 18px;
+  z-index: 3;
+  transform: translate(0, 14px) rotate(0deg) scale(0.92);
+  opacity: 0;
+  transition: transform var(--d, 560ms) cubic-bezier(0.34, 1.3, 0.64, 1), opacity 240ms ease;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.18));
+}
+
+[data-phase="open"] .mf-paper {
+  transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(var(--s, 1));
+  opacity: 1;
+}
+
+.mf-front {
+  z-index: 4;
+  transform-origin: 50% 100%;
+  transform: rotateX(0deg);
+  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-phase="open"] .mf-front {
+  transform: translateY(3px) rotateX(-10deg);
+}
+
+.mf-caption {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: currentColor;
+  opacity: 0.75;
+  transition: color 150ms ease, opacity 150ms ease;
+}
+
+.btn-mac-folder:hover .mf-caption {
+  color: #0a84ff;
+  opacity: 1;
+}
+
+.btn-mac-folder:focus-visible {
+  outline: none;
+  border-radius: 14px;
+  box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-stage,
+  .mf-back,
+  .mf-front,
+  .mf-caption {
+    transition: none;
+  }
+  .mf-interior,
+  .mf-paper {
+    transition: opacity 200ms ease;
+  }
+}

@@ -1,0 +1,151 @@
+/* Search slash button — a search pill. A compact pill (magnifier icon +
+   "Search" label + "/" keycap) expands on click into a full search bar: the
+   left becomes the icon plus a live input and the right keeps the "/" keycap.
+   Pressing "/" anywhere on the page opens the bar too; Escape (or clicking
+   outside) collapses it. Every transition is interruptible so clicks mid-
+   flight just re-target. Specimen for the Simply Buttons gallery. */
+
+.search-slash-root {
+  --ss-accent: #6366f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.search-slash-root *,
+.search-slash-root *::before,
+.search-slash-root *::after {
+  box-sizing: border-box;
+}
+
+.btn-search-slash {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  width: 8em;
+  height: 2.9em;
+  padding: 0 0.65em;
+  border: 1px solid #2c2e36;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #18181b;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: width 450ms cubic-bezier(0.22, 1, 0.36, 1), border-color 250ms ease,
+    box-shadow 250ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-search-slash[data-open="true"] {
+  width: 15em;
+  border-color: var(--ss-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ss-accent) 20%, transparent);
+  cursor: text;
+}
+
+.btn-search-slash:focus-within {
+  border-color: var(--ss-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ss-accent) 20%, transparent);
+}
+
+.ss-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  color: #52525b;
+  transition: color 250ms ease;
+}
+
+.btn-search-slash[data-open="true"] .ss-icon {
+  color: var(--ss-accent);
+}
+
+.ss-label {
+  font-weight: 500;
+  font-size: 0.85em;
+  letter-spacing: 0.01em;
+  color: #52525b;
+  white-space: nowrap;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.btn-search-slash[data-open="true"] .ss-label {
+  opacity: 0;
+  transform: translateX(-0.4em);
+}
+
+/* The input overlays the fading label once the pill has room for it. */
+.ss-input {
+  position: absolute;
+  left: 2.55em;
+  right: 2.45em;
+  top: 0;
+  bottom: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.85em;
+  color: #18181b;
+  caret-color: var(--ss-accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.btn-search-slash[data-open="true"] .ss-input {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 120ms;
+}
+
+.ss-input::placeholder {
+  color: #a1a1aa;
+}
+
+.ss-kbd {
+  margin-left: auto;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.3em;
+  border: 1px solid #d4d4d8;
+  border-radius: 0.4em;
+  background: #f4f4f5;
+  color: #52525b;
+  font-family: ui-monospace, monospace;
+  font-size: 0.72em;
+  font-weight: 600;
+  transition: border-color 250ms ease, background 250ms ease, color 250ms ease;
+}
+
+.btn-search-slash[data-open="true"] .ss-kbd {
+  border-color: var(--ss-accent);
+  background: #eef2ff;
+  color: var(--ss-accent);
+}
+
+.btn-search-slash:active:not([data-open="true"]) {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-search-slash,
+  .ss-icon,
+  .ss-label,
+  .ss-input,
+  .ss-kbd {
+    transition: none;
+  }
+}

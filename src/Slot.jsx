@@ -32,6 +32,7 @@ export function Slot({ index, slot }) {
     <article
       className={filled ? "slot is-filled" : "slot"}
       id={slot.id}
+      data-slot-id={slot.id}
       itemScope
       itemType="https://schema.org/SoftwareSourceCode"
     >

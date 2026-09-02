@@ -1,0 +1,174 @@
+/* Exo circle button — exoape.com's "The Studio" CTA (awwwards SOTD May 2022
+   + Developer Award). Text label plus a separate circle glyph: a 1px-stroke
+   outline ring, an inner dark fill that scales up from 0 on hover, an arrow
+   that fades in over it, and a label underline that draws from the left.
+   The source reveals the underline from the right; this rebuild keeps the
+   same parts with the draw growing out of the text. Pure CSS.
+   Specimen for the Simply Buttons gallery. */
+
+.exo-circle-root,
+.btn-exo-circle {
+  --aw-circle-fill: 1;
+  --ec-ink: #14181a;
+  --ec-fill: #0d0e13;
+  --ec-icon: #ffffff;
+}
+
+:root[data-theme="dark"] .exo-circle-root,
+:root[data-theme="dark"] .btn-exo-circle,
+[data-theme="dark"] .exo-circle-root,
+[data-theme="dark"] .btn-exo-circle {
+  --ec-ink: #eceef1;
+  --ec-fill: #f5f5f5;
+  --ec-icon: #0d0e13;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .exo-circle-root,
+  :root:not([data-theme="light"]) .btn-exo-circle {
+    --ec-ink: #eceef1;
+    --ec-fill: #f5f5f5;
+    --ec-icon: #0d0e13;
+  }
+}
+
+.exo-circle-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding: 0;
+  background: transparent;
+}
+
+.btn-exo-circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ec-ink);
+  font-family: "Lausanne", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-exo-circle *,
+.btn-exo-circle *::before,
+.btn-exo-circle *::after {
+  box-sizing: border-box;
+}
+
+.ec-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0;
+}
+
+.ec-label-text {
+  line-height: 1;
+}
+
+.ec-underline {
+  position: absolute;
+  left: 0;
+  top: calc(50% + 0.55em);
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.btn-exo-circle:hover .ec-underline,
+.btn-exo-circle:focus-visible .ec-underline {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* The circle glyph: fixed ring with the dark fill and arrow inside. */
+.ec-circle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+
+.ec-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+.ec-fill {
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  background: var(--ec-fill);
+  transform: scale(0);
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.ec-icon {
+  position: relative;
+  width: 1.05em;
+  height: 1.05em;
+  color: var(--ec-icon);
+  opacity: 0;
+  transform: translateX(-40%) scale(0.7);
+  transition: opacity 320ms ease 90ms, transform 450ms cubic-bezier(0.22, 1, 0.36, 1) 90ms;
+  will-change: transform, opacity;
+}
+
+.btn-exo-circle:hover .ec-fill,
+.btn-exo-circle:focus-visible .ec-fill,
+.btn-exo-circle:hover .ec-icon,
+.btn-exo-circle:focus-visible .ec-icon {
+  transform: scale(1);
+}
+
+.btn-exo-circle:hover .ec-icon,
+.btn-exo-circle:focus-visible .ec-icon {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.btn-exo-circle:active .ec-fill {
+  transform: scale(0.88);
+}
+
+.btn-exo-circle:focus-visible {
+  outline: 2px dashed var(--ec-ink);
+  outline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-underline,
+  .ec-fill,
+  .ec-icon {
+    transition: opacity 200ms ease;
+  }
+  .btn-exo-circle:active .ec-fill {
+    transform: scale(0.88);
+  }
+}

@@ -6,3 +6,5 @@ graphify-out
 .vercel
 .env
 .env.*
+
+.worktrees/

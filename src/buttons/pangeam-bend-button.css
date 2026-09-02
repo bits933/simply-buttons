@@ -1,0 +1,69 @@
+/* Pangeam elastic bend button — kinetic Gaussian wave character deformation
+   replicated from Sasha Martynchuk's portfolio (sashamartynchuk.com).
+   Original specimen for the Simply Buttons gallery. */
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap");
+
+@font-face {
+  font-family: "Arges";
+  src: url("/arges-black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.pangeam-bend-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3.75rem;
+}
+
+.btn-pangeam-bend {
+  --pangeam-ink: #ffffff;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+  border: 0;
+  padding: 0.15em 0.3em;
+  cursor: pointer;
+  color: var(--pangeam-ink);
+  font-family: "Arges", "Anton", "Bebas Neue", "Impact", sans-serif;
+  font-weight: 900;
+  font-size: 1em;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+:root[data-theme="light"] .btn-pangeam-bend,
+[data-theme="light"] .btn-pangeam-bend {
+  --pangeam-ink: #121315;
+}
+
+.pangeam-bend__char {
+  display: inline-block;
+  will-change: transform;
+  transform-origin: 50% 50%;
+  pointer-events: none;
+}
+
+.btn-pangeam-bend:focus-visible {
+  outline: 2px dashed var(--pangeam-ink);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pangeam-bend__char {
+    transform: none !important;
+  }
+}

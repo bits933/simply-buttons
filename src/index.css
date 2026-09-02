@@ -135,11 +135,9 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: radial-gradient(
-    circle at center,
-    var(--dot) 1px,
-    transparent 1.5px
-  );
+  background-image: radial-gradient(circle at center,
+      var(--dot) 1px,
+      transparent 1.5px);
   background-size: 22px 22px;
 }
 
@@ -213,25 +211,21 @@ a {
 }
 
 .band-base {
-  background-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 28%,
-    color-mix(in srgb, var(--ink) 6%, transparent) 50%,
-    color-mix(in srgb, var(--ink) 12%, transparent) 100%
-  );
+  background-image: linear-gradient(90deg,
+      transparent 0%,
+      transparent 28%,
+      color-mix(in srgb, var(--ink) 6%, transparent) 50%,
+      color-mix(in srgb, var(--ink) 12%, transparent) 100%);
 }
 
 .band-tint {
-  background-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 28%,
-    var(--band-h1) 50%,
-    var(--band-h2) 75%,
-    var(--band-h3) 95%,
-    var(--band-h2) 100%
-  );
+  background-image: linear-gradient(90deg,
+      transparent 0%,
+      transparent 28%,
+      var(--band-h1) 50%,
+      var(--band-h2) 75%,
+      var(--band-h3) 95%,
+      var(--band-h2) 100%);
   opacity: 0;
   transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -396,20 +390,21 @@ a {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  width: 100%;
 }
 
 @media (min-width: 860px) {
   .intro-grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    flex-direction: row;
     align-items: flex-end;
-    gap: clamp(36px, 5vw, 68px);
+    gap: 36px;
   }
 }
 
 .intro-main {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 .count {
@@ -432,7 +427,10 @@ a {
 .intro-side {
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
+  margin-left: auto;
   padding-bottom: 4px;
+  flex-shrink: 0;
 }
 
 .lede {
@@ -454,6 +452,112 @@ a {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 28px 80px;
+}
+
+.gallery-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-bottom: 18px;
+}
+
+.randomize-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.randomize-btn:hover {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 28%, var(--line));
+}
+
+.randomize-btn:active {
+  transform: scale(0.97);
+}
+
+.randomize-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.randomize-lottie-icon {
+  width: 19px;
+  height: 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.randomize-lottie-icon svg {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible;
+  display: block;
+}
+
+.randomize-lottie-icon path,
+.randomize-lottie-icon .primary,
+.randomize-lottie-icon .secondary {
+  stroke: currentColor !important;
+  transition: stroke 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.randomize-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.reset-order {
+  height: 38px;
+  padding: 0 14px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reset-order:hover {
+  color: var(--ink);
+}
+
+.reset-order:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .randomize-btn,
+  .randomize-icon-wrap,
+  .randomize-lottie-icon,
+  .reset-order {
+    transition: none;
+    animation: none;
+  }
 }
 
 .slot-grid {
@@ -507,7 +611,7 @@ a {
   overflow: hidden;
 }
 
-.slot-preview-stage > * {
+.slot-preview-stage>* {
   max-width: 100%;
   max-height: 100%;
 }
@@ -600,7 +704,7 @@ a {
   font-size: 14px;
 }
 
-.slot-meta > p:not(.slot-states) {
+.slot-meta>p:not(.slot-states) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -1036,7 +1140,7 @@ a {
   background: var(--well);
 }
 
-.preview-modal-stage > * {
+.preview-modal-stage>* {
   max-width: 100%;
   max-height: 100%;
 }

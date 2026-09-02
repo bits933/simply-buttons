@@ -1,0 +1,99 @@
+/* Zajno underline button — zajno.com's `.li_` work links (awwwards SOTD
+   Jul 2023). A lowercase text button whose underline is split into two
+   pseudo-element halves: on hover the resting half slides out to +102%
+   while the accent half slides in from -102% (800ms, custom easing in the
+   source), reading as one line wiping across the word; ink flips red on
+   hover. Specimen for the Simply Buttons gallery. */
+
+.zajno-underline-root {
+  --aw-line-wipe: 1;
+  --zajno-ink: #101112;
+  --zajno-accent: #ff2a85;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+:root[data-theme="dark"] .zajno-underline-root,
+[data-theme="dark"] .zajno-underline-root {
+  --zajno-ink: #ffffff;
+  --zajno-accent: #ff2a85;
+}
+
+.btn-zajno-underline {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0;
+  border: 0;
+  background: none;
+  color: var(--zajno-ink, #101112);
+  font-family: "DIN Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: lowercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 240ms ease;
+}
+
+.btn-zajno-underline::before,
+.btn-zajno-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  will-change: transform;
+}
+
+/* Resting half: sits in view, slides out to +102% on hover. */
+.btn-zajno-underline::after {
+  transform: translate3d(0, 0, 0);
+  transition: transform 800ms cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* Accent half: parked at -102%, slides in on hover. */
+.btn-zajno-underline::before {
+  background: var(--zajno-accent, #ff2a85);
+  transform: translate3d(-102%, 0, 0);
+  transition: transform 800ms cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.btn-zajno-underline:hover,
+.btn-zajno-underline:focus-visible {
+  color: var(--zajno-accent, #ff2a85);
+}
+
+.btn-zajno-underline:hover::after,
+.btn-zajno-underline:focus-visible::after {
+  transform: translate3d(102%, 0, 0);
+}
+
+.btn-zajno-underline:hover::before,
+.btn-zajno-underline:focus-visible::before {
+  transform: translate3d(0, 0, 0);
+}
+
+.btn-zajno-underline:active {
+  transform: translateY(1px);
+}
+
+.btn-zajno-underline:focus-visible {
+  outline: 2px dashed var(--zajno-ink, #101112);
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-zajno-underline::before,
+  .btn-zajno-underline::after {
+    transition: none;
+  }
+}

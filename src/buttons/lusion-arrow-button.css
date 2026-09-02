@@ -1,0 +1,139 @@
+/* Lusion arrow button — lusion.co's "Let's talk" header CTA (awwwards SOTD
+   May 2019 + Developer Award). Fully-rounded pill (radius 6.25em) whose
+   label slides +1.5em on hover while a three-dot cluster scales to 0 and
+   an arrow flies in from -2.5em, 0.3s cubic-bezier(0.4, 0, 0.1, 1) —
+   exact transform math from the site's stylesheet. Specimen for the
+   Simply Buttons gallery. */
+
+.lusion-arrow-root {
+  --aw-glide-arrow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  background: #16181d;
+  border-radius: 8px;
+}
+
+.btn-lusion-arrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  box-sizing: border-box;
+  padding: 0.85em 1.5em;
+  border: 0;
+  border-radius: 6.25em;
+  background: #5e6b78;
+  color: #ffffff;
+  font-family: "Neue Montreal", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lusion-arrow,
+.btn-lusion-arrow * {
+  box-sizing: border-box;
+}
+
+.la-window {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 1em;
+}
+
+/* Arrow parks at -2.5em; on hover it flies to sit next to the label. */
+.la-arrow {
+  position: absolute;
+  left: -1.5em;
+  top: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  color: #ffffff;
+  transform: translate3d(-2.5em, 0, 0);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.1, 1);
+  will-change: transform;
+}
+
+.la-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Dot cluster scales to 0 on hover, making room for the arrow. */
+.la-dots {
+  position: absolute;
+  left: -1.5em;
+  top: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18em;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.1, 1), opacity 200ms ease;
+  will-change: transform, opacity;
+}
+
+.la-dots span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Label slides +1.5em to make room for the arriving arrow. */
+.la-label {
+  display: inline-block;
+  transform: translate3d(0, 0, 0);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.1, 1);
+  will-change: transform;
+}
+
+.btn-lusion-arrow:hover .la-arrow,
+.btn-lusion-arrow:focus-visible .la-arrow {
+  transform: translate3d(0, 0, 0);
+}
+
+.btn-lusion-arrow:hover .la-dots,
+.btn-lusion-arrow:focus-visible .la-dots {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.btn-lusion-arrow:hover .la-label,
+.btn-lusion-arrow:focus-visible .la-label {
+  transform: translate3d(1.5em, 0, 0);
+}
+
+.btn-lusion-arrow:active {
+  transform: scale(0.96);
+}
+
+.btn-lusion-arrow:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .la-arrow,
+  .la-dots,
+  .la-label {
+    transition: none;
+  }
+  .btn-lusion-arrow:active {
+    transform: none;
+  }
+}

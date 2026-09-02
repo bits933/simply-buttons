@@ -1,0 +1,109 @@
+/* Resn roll slab — breakthroughenergy.org's KeyAreas CTA (awwwards SOTD +
+   Developer Award Jan 2026, built by Resn). A giant 6px-radius lime slab
+   whose label lines are stacked, clipped to 1.2em, and roll
+   upward on an auto-cycle; the site drives the roll with GSAP, this rebuild
+   expresses it as a CSS keyframe column with a dwell on each line. Hover
+   pauses. Specimen for the Simply Buttons gallery. */
+
+.resn-roll-slab-root {
+  --aw-slab-roll: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.btn-resn-roll-slab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  box-sizing: border-box;
+  min-width: 270px;
+  padding: 0.7em 1.2em;
+  border: 0;
+  border-radius: 6px;
+  background: #dfff5c;
+  color: #12130f;
+  font-family: "Saans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-resn-roll-slab,
+.btn-resn-roll-slab * {
+  box-sizing: border-box;
+}
+
+.rs-window {
+  display: block;
+  overflow: hidden;
+  height: 1.2em;
+}
+
+.rs-column {
+  display: block;
+  animation: aw-slab-cycle 6400ms cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  will-change: transform;
+}
+
+.rs-line {
+  display: block;
+  height: 1.2em;
+  white-space: nowrap;
+}
+
+/* Three campaign lines + a first-line duplicate, so the column rolls
+   upward one line per dwell and wraps without a jump. */
+@keyframes aw-slab-cycle {
+  0%, 26% { transform: translateY(0); }
+  33%, 59% { transform: translateY(-1.2em); }
+  66%, 92% { transform: translateY(-2.4em); }
+  100% { transform: translateY(-3.6em); }
+}
+
+.btn-resn-roll-slab:hover .rs-column,
+.btn-resn-roll-slab:focus-visible .rs-column {
+  animation-play-state: paused;
+}
+
+.rs-cta {
+  flex: none;
+  font-weight: 700;
+  font-size: 0.75em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 200ms ease;
+}
+
+.btn-resn-roll-slab:hover .rs-cta,
+.btn-resn-roll-slab:focus-visible .rs-cta {
+  opacity: 1;
+}
+
+.btn-resn-roll-slab:active {
+  transform: scale(0.985);
+}
+
+.btn-resn-roll-slab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(18, 19, 15, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-column {
+    animation: none;
+  }
+  .btn-resn-roll-slab:active {
+    transform: none;
+  }
+}

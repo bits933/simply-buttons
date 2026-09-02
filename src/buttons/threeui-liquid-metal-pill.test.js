@@ -79,5 +79,11 @@ test("ThreeUI liquid metal pill registers the canonical Sign up button", async (
   assert.equal((slots.match(/preview: ThreeUiLiquidMetalPillPreview/g) ?? []).length, 1);
   const raw = slots.slice(slots.indexOf("const RAW = ["), slots.indexOf("];\n\nlet nextIndex"));
   assert.equal((raw.match(/id: "threeui-liquid-metal"/g) ?? []).length, 1);
-  assert.equal([...raw.matchAll(/id: "([^"]+)"/g)].at(-1)?.[1], "threeui-liquid-metal");
+  const rawIds = [...raw.matchAll(/^ {8}id: "([^"]+)"/gm)].map((match) => match[1]);
+  const liquidMetalIndex = rawIds.indexOf("threeui-liquid-metal");
+  assert.equal(liquidMetalIndex + 1, 132, "Liquid metal keeps its allocated backend tray number");
+  assert.deepEqual(
+    rawIds.slice(liquidMetalIndex - 1, liquidMetalIndex + 4),
+    ["liquid-metal-play", "threeui-liquid-metal", "generate-button", "spinning-border-button", "plasma-button"],
+  );
 });

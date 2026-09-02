@@ -6,9 +6,10 @@ import test from "node:test";
 
 const dir = dirname(fileURLToPath(import.meta.url));
 
-test("Explore now button slides into its black offset block on click", () => {
+test("Explore now button slides into its offset block on click and uses dark grey in dark state", () => {
   const css = readFileSync(join(dir, "explore-now-button.css"), "utf8");
   assert.match(css, /#ffd23f/);
+  assert.match(css, /--explore-now-dark: #2d2f36/);
   assert.match(css, /translate: 8px 10px/);
   assert.match(css, /is--pressed/);
   assert.match(css, /prefers-reduced-motion: reduce/);

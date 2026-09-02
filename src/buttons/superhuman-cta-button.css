@@ -1,0 +1,85 @@
+.btn-superhuman-cta-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-superhuman-cta {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  width: 212px;
+  height: 50px;
+  padding: 6px 6px 6px 16px;
+  gap: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: linear-gradient(#1b1938 0%, #1b1938 100%);
+  box-shadow: 0 1px 2px rgba(20, 20, 19, 0.24), 0 0 0 1px #353088;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 460;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transform-origin: center;
+  transition: transform 120ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-superhuman-cta__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.12), transparent) border-box,
+    radial-gradient(circle at 68% 50%, rgba(133, 125, 250, 0.6), transparent 50%),
+    radial-gradient(circle at 50% 98%, rgba(255, 51, 102, 0.6), transparent 50%),
+    radial-gradient(circle at 93% 50%, rgba(75, 105, 227, 0.5), transparent 50%),
+    radial-gradient(circle at 50% 75%, rgba(104, 222, 255, 0.5), transparent 50%),
+    linear-gradient(#554dcb, #4a43b0);
+  box-shadow: 0 1px 2px rgba(20, 20, 19, 0.08);
+}
+
+.btn-superhuman-cta__icon svg {
+  transition: translate 300ms ease-in-out;
+}
+
+.btn-superhuman-cta:hover {
+  background: linear-gradient(#1b1938 0%, #2d2a5c 100%);
+}
+
+.btn-superhuman-cta:hover .btn-superhuman-cta__icon svg {
+  translate: 4px;
+}
+
+.btn-superhuman-cta:active {
+  transform: scale(.98);
+}
+
+.btn-superhuman-cta:focus-visible {
+  outline: 2px solid #857dfa;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-superhuman-cta {
+    transition: none;
+  }
+
+  .btn-superhuman-cta:active {
+    transform: none;
+  }
+
+  .btn-superhuman-cta__icon svg {
+    transition: none;
+  }
+}

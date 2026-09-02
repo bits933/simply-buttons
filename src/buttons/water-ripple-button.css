@@ -1,0 +1,96 @@
+/* Water Ripple Button — exact match to Qwen_html_20260902_buz9mzywq.html
+   A 220px x 65px rounded teal water pill. The canvas is the jquery.ripples
+   refraction overlay; CSS holds the generated water texture until WebGL
+   takes over. */
+
+.water-ripple-root {
+  --wr-splash: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.water-ripple-root *,
+.water-ripple-root *::before,
+.water-ripple-root *::after {
+  box-sizing: border-box;
+}
+
+.btn-water-ripple {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 65px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 35px;
+  background-color: #1e5b6d;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.btn-water-ripple:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-water-ripple:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-water-ripple:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
+}
+
+.btn-water-ripple canvas,
+.wr-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 35px;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wr-label {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-water-ripple,
+  .wr-label {
+    transition: none;
+  }
+
+  .btn-water-ripple:hover,
+  .btn-water-ripple:active {
+    transform: none;
+  }
+}

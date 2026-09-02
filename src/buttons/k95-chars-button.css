@@ -1,0 +1,111 @@
+/* K95 chars button — k95.it's frosted nav menu pill (awwwards SOTD Aug 2026).
+   Radius-100px backdrop-blur glass pill; the label is per-character 1em-high
+   masked columns (MENU stacked over ×CLOSE) that roll translateY(-1em) in
+   0.35s cubic-bezier(0.4, 0, 0.2, 1) on toggle. The extra ×CLOSE phrase is
+   wider, so the button width is locked to the wide phrase via the invisible
+   ghost row, keeping the pill from jumping. Specimen for the Simply
+   Buttons gallery. */
+
+.k95-chars-root {
+  --aw-char-roll: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  background: linear-gradient(135deg, #23282e 0%, #1a1e23 60%, #20242a 100%);
+  border-radius: 8px;
+}
+
+.btn-k95-chars {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0.9em 1.9em;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 100px;
+  background: rgba(21, 25, 30, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f3f5f7;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-k95-chars,
+.btn-k95-chars * {
+  box-sizing: border-box;
+}
+
+.kc-chars {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+/* Each column: 1em tall, overflow hidden, two stacked copies. */
+.kc-char {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+}
+
+.kc-stack {
+  display: block;
+  position: relative;
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--i) * 18ms);
+  will-change: transform;
+}
+
+.kc-copy {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.kc-copy--alt {
+  position: absolute;
+  inset: 0;
+  top: 1em;
+  color: #c9cdff;
+}
+
+[data-phase="open"] .kc-stack {
+  transform: translateY(-1em);
+}
+
+/* Width-lock ghost row: keeps the pill as wide as the longer phrase. */
+.kc-chars {
+  position: relative;
+}
+
+.btn-k95-chars:active {
+  transform: scale(0.97);
+}
+
+.btn-k95-chars:focus-visible {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-stack {
+    transition: none;
+    transition-delay: 0ms;
+  }
+  .btn-k95-chars:active {
+    transform: none;
+  }
+}

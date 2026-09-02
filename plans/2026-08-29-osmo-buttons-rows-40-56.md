@@ -240,3 +240,19 @@ but the CSS selector expected the class on the button. Selector corrected to
 .btn-run-compiler__caret.is--blinking. An interim frame-blink experiment was
 removed (user clarified: the rectangle AFTER the text blinks, not the container
 frame).
+
+### Explore now dark state contrast & hover border fix (slot 79, 2026-08-31)
+
+- In dark mode / dark state, the `#131313` offset shadow block and border blended into
+  the dark background of the tray/stage. Added `--explore-now-face` and `--explore-now-dark`
+  CSS variables so that in dark mode (`:root[data-theme="dark"]`, `[data-theme="dark"]`,
+  and `@media (prefers-color-scheme: dark)`), `--explore-now-dark` changes from `#131313` to
+  `#2d2f36` (a visible charcoal dark grey).
+- On hover, subpixel antialiasing previously exposed a thin yellow fringe when using inset
+  box-shadow because border was 0. Switched `.btn-explore-now__face` to a real
+  `border: 3px solid var(--explore-now-dark)` with `background-clip: padding-box`, completely
+  encapsulating the yellow face inside the 3px solid border and eliminating any outer yellow fringe.
+- Updated `explore-now-button.css`, `explore-now-button.snippets.js`, and `explore-now-button.test.js`.
+  Tests pass, production build clean.
+
+

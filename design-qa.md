@@ -50,3 +50,33 @@ No actionable P0, P1, or P2 differences remain. No browser console errors were r
 No P3 polish is required for handoff.
 
 final result: passed
+
+---
+
+# Design QA — Superhuman hero CTA
+
+- source: `https://superhuman.com/`
+- captured state: public homepage hero CTA, desktop and 390 × 844 mobile viewport
+- implementation: gallery card `superhuman-cta`
+- compared states: idle, hover, light theme, dark theme
+
+## Measured comparison
+
+- Source and local control both measure 212 × 50 CSS px.
+- Both use a 12 px outer radius, 16 px label, 16 px content gap, and `6px 6px 6px 16px` padding.
+- Both use a 48 × 36 px gradient arrow tile with an 8 px radius.
+- Hover keeps the layout fixed, changes the shell from `#1b1938` to a `#1b1938 → #2d2a5c` vertical gradient, and translates the arrow 4 px over 300 ms with `ease-in-out`.
+- The local computed typography is 16 px, weight 460, and 19.2 px line-height, matching the source measurements.
+
+## Visual findings
+
+The source crop and local browser render were compared at the same native button dimensions. The dark navy shell, violet outline, layered violet/cyan/pink arrow tile, label alignment, geometry, and hover direction match without a visible layout jump. The button remains legible and visually stable on both gallery themes.
+
+## Accessibility and delivery
+
+- Native `button` semantics with an explicit label.
+- Visible keyboard focus ring.
+- Reduced-motion fallback removes the arrow transition.
+- HTML, React, and Node snippets reproduce the same fixed-size control and hover behavior.
+
+final result: passed

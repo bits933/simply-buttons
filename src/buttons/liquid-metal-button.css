@@ -1,0 +1,61 @@
+/* Liquid metal play — ThreeUI Play Circle. Color exception (PROJECT.md):
+   authored colored WebGL 2 liquid-metal finish from the registered source. */
+
+.slot-preview-stage:has(.liquid-metal-play-root) > *,
+.preview-modal-stage:has(.liquid-metal-play-root) > * {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slot:has(.liquid-metal-play-root) .slot-preview,
+.preview-modal-stage:has(.liquid-metal-play-root) {
+  padding: 0;
+  overflow: hidden;
+  background: #070708;
+}
+
+.slot-preview-stage:has(.liquid-metal-play-root),
+.preview-modal-stage:has(.liquid-metal-play-root) {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.slot:has(.liquid-metal-play-root) .slot-index,
+.slot:has(.liquid-metal-play-root) .slot-expand {
+  z-index: 6;
+  color: #9aa0a8;
+}
+
+.slot:has(.liquid-metal-play-root) .slot-expand:hover,
+.slot:has(.liquid-metal-play-root) .slot-expand:focus-visible {
+  color: #eceef1;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.liquid-metal-play-root {
+  --lmp-play: 1;
+  --liquid-metal-play-scale: 0.506359;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.liquid-metal-play-root .shader-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% / var(--liquid-metal-play-scale));
+  height: calc(100% / var(--liquid-metal-play-scale));
+  min-width: 0;
+  min-height: 0;
+  transform: translate(-50%, -50%) scale(var(--liquid-metal-play-scale));
+}

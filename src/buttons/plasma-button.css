@@ -1,0 +1,165 @@
+/* Plasma Drive — ThreeUI ShaderButtons variant `plasma-button`, canonical
+   Aetheris Labs source (SHA-256
+   eea617fe0e37a79be7aee44f00a53ec3ae41e006e771a8aad53acce3648147e0).
+   Raw-WebGL fbm drive button (src/buttons/aetheris-webgl.js) over an ambient
+   cosmic-void field canvas. The registered button's Tailwind utilities are
+   translated 1:1 below. Registered theme: #020614 dark ground (light ground
+   #f4f7fb with the background field inverted, per the ThreeUI isolation
+   transform). */
+
+.slot-preview-stage:has(.aetheris-root) > *,
+.preview-modal-stage:has(.aetheris-root) > * {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slot:has(.aetheris-root) .slot-preview,
+.preview-modal-stage:has(.aetheris-root) {
+  background: #020614;
+}
+
+.slot:has(.aetheris-root) .slot-index,
+.slot:has(.aetheris-root) .slot-expand {
+  z-index: 6;
+  color: #9aa0a8;
+}
+
+.slot:has(.aetheris-root) .slot-expand:hover,
+.slot:has(.aetheris-root) .slot-expand:focus-visible {
+  color: #eceef1;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.aetheris-root {
+  --plasma-drive: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: #020614;
+  color-scheme: dark;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.aetheris-root[data-mode="light"] {
+  background: #f4f7fb;
+  color-scheme: light;
+}
+
+/* Ambient cosmic-void field: absolute inset-0 w-full h-full z-0 opacity-0
+   transition-opacity duration-1000 ease-in (the drive script eases it to
+   the authored 0.45); pointer-events-none. */
+.aetheris-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1000ms cubic-bezier(0.42, 0, 1, 1);
+  pointer-events: none;
+}
+
+/* ThreeUI light-mode isolation transform: the background field is inverted,
+   the button keeps its authored deep-blue look. */
+.aetheris-root[data-mode="light"] .aetheris-bg {
+  filter: invert(1) hue-rotate(180deg) saturate(0.92) brightness(1.02);
+}
+
+/* Quantum Aether Button: group relative flex items-center justify-center
+   w-[250px] h-[70px] border-0 p-0 rounded-2xl overflow-hidden cursor-pointer
+   bg-[#050b1a] outline-none transition-all duration-[220ms]
+   ease-[cubic-bezier(0.34,1.4,0.5,1)] hover:-translate-y-[2px]
+   active:translate-y-[1px] active:scale-[0.985] focus-visible:outline
+   focus-visible:outline-2 focus-visible:outline-[#00d2ff]
+   focus-visible:outline-offset-[5px] */
+.aetheris-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 70px;
+  padding: 0;
+  border: 0;
+  background-color: #050b1a;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: all 220ms cubic-bezier(0.34, 1.4, 0.5, 1);
+  box-shadow: 0 24px 48px rgba(4, 98, 126, 0.2), 0 3px 10px rgba(2, 6, 20, 0.35);
+  z-index: 2;
+}
+
+.aetheris-btn:hover {
+  transform: translateY(-2px);
+}
+
+.aetheris-btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.aetheris-btn:focus-visible {
+  outline: 2px solid #00d2ff;
+  outline-offset: 5px;
+}
+
+/* absolute inset-0 w-full h-full block group-[.nogl]:hidden */
+.aetheris-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* hidden group-[.nogl]:block fallback face */
+.aetheris-nogl {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: radial-gradient(130% 170% at 50% 118%, #61d3ff 0%, #33a7ff 24%, #084c8e 56%, #050a19 88%);
+}
+
+.aetheris-btn.nogl .aetheris-canvas {
+  display: none;
+}
+
+.aetheris-btn.nogl .aetheris-nogl {
+  display: block;
+}
+
+/* relative z-10 pointer-events-none font-semibold text-sm tracking-[.26em]
+   indent-[.26em] text-[#e2f1ff] */
+.aetheris-label {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
+  color: #e2f1ff;
+  text-shadow: 0 1px 12px rgba(0, 16, 40, 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aetheris-btn {
+    transition: none;
+  }
+
+  .aetheris-bg {
+    transition: none;
+  }
+}

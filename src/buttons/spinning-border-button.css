@@ -1,0 +1,197 @@
+/* Spinning Border Button — ThreeUI RectangleButtons variant `spinning-border-button`.
+   Canonical source src/shaders/neuform-isolated/sources/spinning-border-button.html
+   (SHA-256 d7150ca6ca4ad7975ba183c368b25a5de266e6a018c801b89720b8e8e3fab8a7).
+   The registered button is authored entirely with Tailwind CDN utilities; they are
+   translated 1:1 into the plain CSS rules below (Tailwind v3 token values:
+   zinc-800 #27272a, zinc-950 #09090b, zinc-400 #a1a1aa). ThreeUI isolation
+   ground: #111318 dark / #f4f7fb light. */
+
+.slot-preview-stage:has(.spinning-border-root) > *,
+.preview-modal-stage:has(.spinning-border-root) > * {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slot:has(.spinning-border-root) .slot-preview,
+.preview-modal-stage:has(.spinning-border-root) {
+  background: #111318;
+}
+
+.slot:has(.spinning-border-root) .slot-index,
+.slot:has(.spinning-border-root) .slot-expand {
+  z-index: 6;
+  color: #9aa0a8;
+}
+
+.slot:has(.spinning-border-root) .slot-expand:hover,
+.slot:has(.spinning-border-root) .slot-expand:focus-visible {
+  color: #eceef1;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.shader-frame.spinning-border-root,
+.spinning-border-root {
+  --spinning-border-cta: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: #111318;
+  color-scheme: dark;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.spinning-border-root[data-mode="light"] {
+  background: #f4f7fb;
+  color-scheme: light;
+}
+
+.spinning-border-root *,
+.spinning-border-root *::before,
+.spinning-border-root *::after {
+  box-sizing: border-box;
+}
+
+/* --- authored Tailwind utilities, translated 1:1 under [data-spinning-border] --- */
+
+/* group inline-flex overflow-hidden transition-all duration-300
+   hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] rounded-full
+   pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center */
+[data-spinning-border] .spinning-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1px;
+  border: 0;
+  background: none;
+  font: inherit;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-spinning-border] .spinning-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Spinning Border Beam (Visible on Hover):
+   absolute inset-[-100%] animate-[spin_3s_linear_infinite]
+   bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#ffffff_100%)]
+   opacity-0 transition-opacity duration-300 group-hover:opacity-100 */
+[data-spinning-border] .spinning-beam {
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  bottom: -100%;
+  left: -100%;
+  background-image: conic-gradient(from 90deg at 50% 50%, transparent 0%, transparent 75%, #ffffff 100%);
+  animation: spinning-border-spin 3s linear infinite;
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-spinning-border] .spinning-btn:hover .spinning-beam {
+  opacity: 1;
+}
+
+@keyframes spinning-border-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Default Static Border:
+   absolute inset-0 rounded-full bg-zinc-800 transition-opacity duration-300
+   group-hover:opacity-0 */
+[data-spinning-border] .spinning-ring {
+  position: absolute;
+  inset: 0;
+  background-color: #27272a;
+  border-radius: 9999px;
+  opacity: 1;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-spinning-border] .spinning-btn:hover .spinning-ring {
+  opacity: 0;
+}
+
+/* 3D Button Surface & Content:
+   flex items-center justify-center gap-2 uppercase transition-colors duration-300
+   group-hover:text-white text-xs font-medium text-zinc-400 tracking-widest
+   bg-gradient-to-b from-zinc-800 to-zinc-950 w-full h-full rounded-full
+   pt-2.5 pr-6 pb-2.5 pl-6 relative
+   shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] */
+[data-spinning-border] .spinning-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  background-image: linear-gradient(to bottom, #27272a, #09090b);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition:
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    text-decoration-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-spinning-border] .spinning-btn:hover .spinning-surface {
+  color: #ffffff;
+}
+
+/* relative z-10 (label) */
+[data-spinning-border] .spinning-label {
+  position: relative;
+  z-index: 10;
+}
+
+/* relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 (arrow) */
+[data-spinning-border] .spinning-arrow {
+  position: relative;
+  z-index: 10;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-spinning-border] .spinning-btn:hover .spinning-arrow {
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-spinning-border] .spinning-btn,
+  [data-spinning-border] .spinning-beam,
+  [data-spinning-border] .spinning-ring,
+  [data-spinning-border] .spinning-surface,
+  [data-spinning-border] .spinning-arrow {
+    transition: none;
+  }
+
+  [data-spinning-border] .spinning-beam {
+    animation: none;
+  }
+}

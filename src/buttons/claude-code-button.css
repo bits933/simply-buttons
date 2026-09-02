@@ -1,0 +1,150 @@
+.btn-claude-code-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-claude-code {
+  --claude-code-surface: #f5f1eb;
+  --claude-code-ink: #1b1b1a;
+  --claude-code-text: #1b1b1a;
+  --claude-code-accent: #cd694a;
+  --claude-code-muted: #949494;
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  min-width: 172px;
+  padding: 0 17px;
+  gap: 9px;
+  overflow: hidden;
+  border: 1px solid var(--claude-code-accent);
+  border-radius: 6px;
+  background: var(--claude-code-surface);
+  color: var(--claude-code-text);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  isolation: isolate;
+  transform-origin: center;
+  transition: transform 140ms ease;
+}
+
+[data-theme="dark"] .btn-claude-code {
+  --claude-code-surface: #1b1b1a;
+  --claude-code-ink: #f5f1eb;
+  --claude-code-text: #f5f1eb;
+}
+
+/* High-Performance WebGL Canvas Layer */
+.btn-claude-code__canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+.btn-claude-code[data-loading="true"] {
+  border-color: #ff9e7d;
+  box-shadow: 0 0 16px rgba(205, 105, 74, 0.4);
+}
+
+/* Foreground Mascot & Label */
+.btn-claude-code__mascot {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  color: var(--claude-code-accent);
+  transition: transform 200ms ease;
+}
+
+.btn-claude-code__mascot svg {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-claude-code__mascot svg path:nth-child(1) {
+  transition: fill 200ms ease;
+}
+
+.btn-claude-code[data-loading="true"] .btn-claude-code__mascot svg path:nth-child(1),
+.btn-claude-code:hover .btn-claude-code__mascot svg path:nth-child(1),
+.btn-claude-code:focus-visible .btn-claude-code__mascot svg path:nth-child(1) {
+  fill: #ffffff;
+}
+
+.btn-claude-code__mascot svg path:nth-child(2),
+.btn-claude-code__mascot svg path:nth-child(3) {
+  fill: #090A0A !important;
+}
+
+.btn-claude-code__label {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-claude-code[data-loading="true"] .btn-claude-code__mascot,
+.btn-claude-code:hover .btn-claude-code__mascot,
+.btn-claude-code:focus-visible .btn-claude-code__mascot {
+  color: #ffffff;
+}
+
+.btn-claude-code[data-loading="true"] .btn-claude-code__label,
+.btn-claude-code:hover,
+.btn-claude-code:focus-visible {
+  color: #ffffff;
+}
+
+.btn-claude-code__label--loading {
+  background: linear-gradient(100deg, #ffffff 0%, #ffffff 35%, #ffd4c4 50%, #ffffff 65%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: claude-text-shimmer 1.5s ease-in-out infinite;
+}
+
+.btn-claude-code:active {
+  transform: scale(.98);
+}
+
+.btn-claude-code:focus-visible {
+  outline: 2px solid var(--claude-code-text);
+  outline-offset: 3px;
+}
+
+@keyframes claude-text-shimmer {
+  to { background-position: -200% 0; }
+}
+
+@keyframes claude-code-look {
+  0%, 18%, 100% { transform: translateX(0); }
+  32%, 46% { transform: translateX(-1px); }
+  64%, 78% { transform: translateX(1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-claude-code,
+  .btn-claude-code__canvas,
+  .btn-claude-code__mascot,
+  .btn-claude-code__eyes,
+  .btn-claude-code__label {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .btn-claude-code:active {
+    transform: none;
+  }
+}

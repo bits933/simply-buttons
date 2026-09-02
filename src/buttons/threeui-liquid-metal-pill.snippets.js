@@ -11,5 +11,5 @@ export const THREEUI_LIQUID_METAL_PILL_META = {
   name: "Liquid metal",
   blurb: "ThreeUI's WebGL 2 Sign up pill with live spectral hover and faceted press ripples.",
   states: ["default", "hover", "focus-visible", "active", "ripple"],
-  keywords: ["liquid metal", "webgl2", "threeui", "sign up", "spectral", "ripple"],
+  keywords: ["animated button", "interactive button", "liquid metal", "webgl2", "threeui", "sign up", "spectral", "ripple", "liquid metal button", "webgl button", "shader button", "metallic pill", "sign up pill", "spectral hover", "press ripple", "faceted ripple", "chromatic sheen", "glossy button"],
 };
