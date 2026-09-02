@@ -458,6 +458,11 @@ import {
   ARJUN_SOCIAL_META,
   ARJUN_SOCIAL_SNIPPETS,
 } from "./buttons/arjun-social-buttons.snippets.js";
+import { NextjsFlareButtonPreview } from "./buttons/NextjsFlareButton.jsx";
+import {
+  NEXTJS_FLARE_META,
+  NEXTJS_FLARE_SNIPPETS,
+} from "./buttons/nextjs-flare-button.snippets.js";
 
 const RAW = [
   {
@@ -1714,6 +1719,15 @@ const RAW = [
         keywords: ARJUN_SOCIAL_META.keywords,
         preview: ArjunSocialButtonsPreview,
         snippets: ARJUN_SOCIAL_SNIPPETS,
+      },
+      {
+        id: "nextjs-flare",
+        name: NEXTJS_FLARE_META.name,
+        blurb: NEXTJS_FLARE_META.blurb,
+        states: NEXTJS_FLARE_META.states,
+        keywords: NEXTJS_FLARE_META.keywords,
+        preview: NextjsFlareButtonPreview,
+        snippets: NEXTJS_FLARE_SNIPPETS,
       },
     ],
   },
