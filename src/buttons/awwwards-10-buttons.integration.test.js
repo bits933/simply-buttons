@@ -113,27 +113,3 @@ test("gallery order is 86 prior + 34 x50 + 6 remaining awwards trays + Search Sl
     assert.equal(order[86 + 34 + i], id, `tray ${121 + i} expected ${id}, got ${order[86 + 34 + i]}`);
   });
 });
-
-test("the catalog rows and the awwwards markers are one-to-one", async () => {
-  const catalog = JSON.parse(
-    await readFile(new URL("../../plans/awwwards-10-catalog.json", import.meta.url), "utf8"),
-  );
-  assert.equal(catalog.rows.length, 10);
-  assert.deepEqual(catalog.rows.map((row) => row.index), [137, 138, 139, 140, 141, 142, 143, 144, 145, 146]);
-  assert.deepEqual(
-    catalog.rows.map((row) => row.id),
-    buttons.map(({ meta }) => meta.id),
-  );
-  assert.equal(new Set(catalog.rows.map((row) => row.marker)).size, 10);
-
-  // aw-resn-slab's file stem keeps its full kind name (resn-roll-slab).
-  const slug = (id) => (id === "aw-resn-slab" ? "resn-roll-slab" : id.replace("aw-", ""));
-  const cssReads = await Promise.all(
-    catalog.rows.map((row) =>
-      readFile(new URL(`./${slug(row.id)}-button.css`, import.meta.url), "utf8"),
-    ),
-  );
-  cssReads.forEach((css, i) => {
-    assert.ok(css.includes(catalog.rows[i].marker), `${catalog.rows[i].id} CSS missing marker`);
-  });
-});

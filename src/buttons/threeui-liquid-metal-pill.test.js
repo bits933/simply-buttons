@@ -11,7 +11,6 @@ const previewPath = join(dir, "ThreeUiLiquidMetalPillPreview.jsx");
 const presentationCssPath = join(dir, "threeui-liquid-metal-pill.css");
 const playPresentationCssPath = join(dir, "liquid-metal-button.css");
 const snippetsPath = join(dir, "threeui-liquid-metal-pill.snippets.js");
-const generatorPath = join(root, "plans", "threeui-liquid-metal-pill-snippets-gen.mjs");
 const slotsPath = join(root, "src", "slots.js");
 const CARD_HEIGHT = 200;
 const stageHeight = (buttonHeight) => buttonHeight * (1 + (2 * 900) / 516);
@@ -21,7 +20,6 @@ test("ThreeUI liquid metal pill registers the canonical Sign up button", async (
   assert.ok(existsSync(previewPath), "missing pill preview");
   assert.ok(existsSync(presentationCssPath), "missing pill presentation stylesheet");
   assert.ok(existsSync(snippetsPath), "missing pill snippets");
-  assert.ok(existsSync(generatorPath), "missing pill snippets generator");
 
   const preview = readFileSync(previewPath, "utf8");
   const presentationCss = readFileSync(presentationCssPath, "utf8");

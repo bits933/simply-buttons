@@ -8,3 +8,15 @@ graphify-out
 .env.*
 
 .worktrees/
+.env*
+
+# Local AI/editor and planning artifacts
+.agents/
+.claude/
+.cursor/
+.grok/
+.superpowers/
+.v2c/
+.github/
+.nvmrc
+plans/
