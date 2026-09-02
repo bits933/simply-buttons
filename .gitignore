@@ -6,11 +6,11 @@ graphify-out
 .vercel
 .env
 .env.*
-
-.worktrees/
 .env*
 
-# Local AI/editor and planning artifacts
+.worktrees/
+
+# Local AI, editor, planning, and research — keep them off GitHub
 .agents/
 .claude/
 .cursor/
@@ -20,3 +20,17 @@ graphify-out
 .github/
 .nvmrc
 plans/
+artifacts/
+atlas/
+public/atlas/
+button/
+*.xlsx
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+PROJECT.md
+design-qa.md
+obys.html
+**/*.md
+!README.md
+
