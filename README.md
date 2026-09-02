@@ -2,7 +2,7 @@
 
 Simply Buttons is a growing gallery of polished, interactive button patterns. It is designed as a practical reference: preview an interaction, inspect its states, then copy the implementation that fits your stack.
 
-![Simply Buttons gallery]<img width="1658" height="900" alt="image" src="https://github.com/user-attachments/assets/35ce1ee8-bbb8-4334-b11f-b481eb9325c7" />
+<img width="1658" height="900" alt="image" src="https://github.com/user-attachments/assets/35ce1ee8-bbb8-4334-b11f-b481eb9325c7" />
 
 
 ## What’s inside
