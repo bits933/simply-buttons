@@ -65,26 +65,6 @@ export function App() {
   }, [searchOpen]);
 
   useEffect(() => {
-    const onKey = (event) => {
-      const target = event.target;
-      const typing =
-        target instanceof HTMLInputElement ||
-        target instanceof HTMLTextAreaElement ||
-        (target instanceof HTMLElement && target.isContentEditable);
-      if (event.key === "/" && !typing && !event.metaKey && !event.ctrlKey && !event.altKey) {
-        event.preventDefault();
-        setSearchOpen(true);
-        searchInputRef.current?.focus();
-      }
-      if (event.key === "Escape") {
-        if (!query) setSearchOpen(false);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [query]);
-
-  useEffect(() => {
     const url = new URL(window.location.href);
     const trimmed = query.trim();
     if (trimmed) url.searchParams.set("q", trimmed);
@@ -171,32 +151,17 @@ export function App() {
           Simply buttons
         </a>
         <div className="topbar-actions">
-          <div
-            className={`search search-slash ${searchOpen ? "is-open" : ""}`}
-            data-open={searchOpen}
-            onClick={() => {
-              if (!searchOpen) {
-                setSearchOpen(true);
-                searchInputRef.current?.focus();
-              }
-            }}
-          >
+          <div className={`search ${searchOpen ? "is-open" : ""}`}>
             <button
               className="search-button"
               type="button"
               aria-label="Search specimens"
               aria-controls="button-search"
               aria-expanded={searchOpen}
-              onClick={() => {
-                setSearchOpen(true);
-                searchInputRef.current?.focus();
-              }}
+              onClick={() => setSearchOpen(true)}
             >
-              <MagnifyingGlass size={16} weight="bold" aria-hidden="true" className="ss-icon" />
+              <MagnifyingGlass size={18} weight="bold" aria-hidden="true" />
             </button>
-            <span className="ss-label" aria-hidden={searchOpen}>
-              Search
-            </span>
             <input
               id="button-search"
               className="search-input"
@@ -214,16 +179,10 @@ export function App() {
               onKeyDown={(event) => {
                 if (event.key === "Escape") {
                   if (query) setQuery("");
-                  else {
-                    setSearchOpen(false);
-                    event.currentTarget.blur();
-                  }
+                  else event.currentTarget.blur();
                 }
               }}
             />
-            <span className="ss-kbd" aria-hidden="true">
-              /
-            </span>
           </div>
           <a
             className="support-btn github-btn gh-star-btn"
