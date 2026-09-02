@@ -86,10 +86,11 @@ test("the awwwards batch registers ten unique, contract-clean slots", async () =
   }
 });
 
-test("gallery order is 86 prior + 34 x50 + 6 remaining awwards trays + Search Slash + Water Ripple + Jelly Switch + Dot Border + Liquid metal play + Generate + Spinning Border + Plasma Drive + Liquid metal pill", async () => {
+test("gallery order is 86 prior + 34 x50 + 6 remaining awwards trays + Search Slash + Water Ripple + Jelly Switch + Dot Border + Liquid metal play + Generate + Spinning Border + Plasma Drive + Liquid metal pill + Arjun Connect", async () => {
   const order = await readTrayOrder();
 
-  assert.equal(order.length, 135);
+  assert.equal(order.length, 136);
+  assert.equal(order[135], "arjun-connect");
   assert.equal(order[134], "plasma-button");
   assert.equal(order[133], "spinning-border-button");
   assert.equal(order[132], "generate-button");

@@ -448,6 +448,11 @@ import {
   PLASMA_BUTTON_META,
   PLASMA_BUTTON_SNIPPETS,
 } from "./buttons/plasma-button.snippets.js";
+import { ArjunConnectButtonPreview } from "./buttons/ArjunConnectButton.jsx";
+import {
+  ARJUN_CONNECT_META,
+  ARJUN_CONNECT_SNIPPETS,
+} from "./buttons/arjun-connect-button.snippets.js";
 
 const RAW = [
   {
@@ -1686,6 +1691,15 @@ const RAW = [
         keywords: PLASMA_BUTTON_META.keywords,
         preview: PlasmaButtonPreview,
         snippets: PLASMA_BUTTON_SNIPPETS,
+      },
+      {
+        id: "arjun-connect",
+        name: ARJUN_CONNECT_META.name,
+        blurb: ARJUN_CONNECT_META.blurb,
+        states: ARJUN_CONNECT_META.states,
+        keywords: ARJUN_CONNECT_META.keywords,
+        preview: ArjunConnectButtonPreview,
+        snippets: ARJUN_CONNECT_SNIPPETS,
       },
     ],
   },
