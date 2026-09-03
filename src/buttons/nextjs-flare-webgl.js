@@ -45,25 +45,23 @@ void main() {
   p.x *= u_aspect;
 
   float t = u_time * 1.1;
-  vec2 orbitPos = vec2(cos(t) * (u_aspect * 0.44), sin(t * 1.35) * 0.40);
+  vec2 orbitPos = vec2(cos(t) * 0.38, sin(t * 1.35) * 0.16);
   vec2 targetPos = mix(orbitPos, u_pointer, u_hover);
 
-  float halfH = 0.46;
-  float halfW = u_aspect * 0.5 - 0.04;
-  float radius = halfH;
-  vec2 btnHalfSize = vec2(max(0.0, halfW - radius), halfH);
-  float strokeWidth = 0.035;
+  vec2 btnHalfSize = vec2(0.32, 0.11);
+  float radius = 0.07;
+  float strokeWidth = 0.007;
 
   float stroke = getStrokeMask(p, btnHalfSize, radius, strokeWidth);
   float dBox = sdRoundedBox(p, btnHalfSize, vec4(radius));
-  float fillInner = 1.0 - smoothstep(-0.005, 0.005, dBox);
+  float fillInner = 1.0 - smoothstep(-0.002, 0.002, dBox);
 
   float distToLight = length(p - targetPos);
-  float rimFalloff = 1.0 / (1.0 + distToLight * distToLight * 12.0);
-  float rim = stroke * rimFalloff * (2.8 + u_hover * 1.6);
+  float rimFalloff = 1.0 / (1.0 + distToLight * distToLight * 35.0);
+  float rim = stroke * rimFalloff * (2.4 + u_hover * 1.4);
 
-  const int STEPS = 35;
-  float decay = 0.93;
+  const int STEPS = 40;
+  float decay = 0.945;
   vec2 rayDelta = (targetPos - p) / float(STEPS);
   
   float jitter = hash(gl_FragCoord.xy + fract(u_time));
@@ -77,36 +75,36 @@ void main() {
     currentCoord += rayDelta;
     float s = getStrokeMask(currentCoord, btnHalfSize, radius, strokeWidth);
     float dLight = length(currentCoord - targetPos);
-    float sampleWeight = 1.0 / (1.0 + dLight * 8.0);
+    float sampleWeight = 1.0 / (1.0 + dLight * 18.0);
     rays += s * illum * sampleWeight;
     totalIllum += illum;
     illum *= decay;
   }
   rays /= max(totalIllum, 0.001);
-  rays *= 6.5 * (1.0 + u_hover * 0.8);
+  rays *= 6.8 * (1.0 + u_hover * 0.85);
 
-  float halo = 0.03 / (distToLight * distToLight + 0.006);
-  halo = clamp(halo, 0.0, 2.0) * (0.6 + u_hover * 0.5);
+  float halo = 0.038 / (distToLight * distToLight + 0.0055);
+  halo = clamp(halo, 0.0, 2.0) * (0.65 + u_hover * 0.45);
 
   vec3 col = vec3(0.0);
   
-  vec3 rayCol = u_color_rays * (rays * 0.85 + halo * 0.4);
+  vec3 rayCol = u_color_rays * (rays * 0.85 + halo * 0.38);
   col += rayCol;
 
   vec3 rimCol = u_color_rim * rim;
   col += rimCol;
 
   if (fillInner > 0.01) {
-    float glassGrad = clamp((p.y + halfH) / (halfH * 2.0), 0.0, 1.0);
-    vec3 glassCol = mix(vec3(0.02, 0.03, 0.05), vec3(0.06, 0.08, 0.13), glassGrad);
-    float spec = pow(max(0.0, 1.0 - distToLight * 1.2), 3.0) * 0.35;
+    float glassGrad = clamp((p.y + btnHalfSize.y) / (btnHalfSize.y * 2.0), 0.0, 1.0);
+    vec3 glassCol = mix(vec3(0.015, 0.025, 0.04), vec3(0.05, 0.07, 0.11), glassGrad);
+    float spec = pow(max(0.0, 1.0 - distToLight * 1.7), 3.0) * 0.3;
     col += (glassCol + spec * u_color_rim) * fillInner;
   }
 
   col = col / (col + vec3(1.0));
   col = pow(col, vec3(1.0 / 2.2));
 
-  float alpha = clamp(length(col) * 1.8 + fillInner * 0.85 + stroke, 0.0, 1.0);
+  float alpha = clamp(length(col) * 1.6 + fillInner * 0.85 + stroke, 0.0, 1.0);
 
   gl_FragColor = vec4(col, alpha);
 }
@@ -117,8 +115,8 @@ export function initNextjsFlare(container, options = {}) {
   if (!canvas) return null;
 
   const rect = container.getBoundingClientRect();
-  const width = rect.width || 180;
-  const height = rect.height || 50;
+  const width = rect.width || 320;
+  const height = rect.height || 160;
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -147,8 +145,8 @@ export function initNextjsFlare(container, options = {}) {
     fragmentShader: FRAGMENT_SHADER,
     uniforms,
     transparent: true,
-    depthWrite: false,
     depthTest: false,
+    depthWrite: false,
   });
 
   const geometry = new THREE.PlaneGeometry(2, 2);
@@ -166,8 +164,8 @@ export function initNextjsFlare(container, options = {}) {
   function resize() {
     if (destroyed) return;
     const r = container.getBoundingClientRect();
-    const w = r.width || 180;
-    const h = r.height || 50;
+    const w = r.width || 320;
+    const h = r.height || 160;
     renderer.setSize(w, h, false);
     uniforms.u_resolution.value.set(w, h);
     uniforms.u_aspect.value = w / h;
@@ -226,18 +224,9 @@ export function initNextjsFlare(container, options = {}) {
       container.removeEventListener("pointermove", onPointerMove);
       container.removeEventListener("pointerenter", onPointerEnter);
       container.removeEventListener("pointerleave", onPointerLeave);
-      geometry.dispose();
       material.dispose();
+      geometry.dispose();
       renderer.dispose();
-    },
-    setHover(val) {
-      isHovered = Boolean(val);
-    },
-    setPointer(x, y) {
-      targetPointer.x = x;
-      targetPointer.y = y;
     },
   };
 }
-
-export default initNextjsFlare;
