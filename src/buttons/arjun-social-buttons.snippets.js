@@ -8,7 +8,7 @@ export const ARJUN_SOCIAL_SNIPPETS = {
 
 export const ARJUN_SOCIAL_META = {
   id: "arjun-social",
-  name: "Arjun social stamps",
+  name: "Perforated stamp cluster",
   blurb: "4-piece tactile paper stamp social button cluster from arjunr.dev with dashed ring spinning, alternating tilt, neighbor displacement wave, and stamp drop-shadows.",
   states: ["idle (alternating tilt)", "hover (scale/spin ring)", "active (press)", "focus-visible", "reduced-motion"],
   keywords: [

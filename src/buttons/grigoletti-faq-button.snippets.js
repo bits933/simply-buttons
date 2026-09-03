@@ -8,7 +8,7 @@ export const GRIGOLETTI_FAQ_SNIPPETS = {
 
 export const GRIGOLETTI_FAQ_META = {
   "id": "grigoletti-faq",
-  "name": "Grigoletti FAQ toggle",
+  "name": "Accordion row toggle",
   "blurb": "Dario Grigoletti minimalist question accordion row toggle from grigoletti.ch with monospace index, smooth + to × icon rotation, and collapsible answer reveal.",
   "states": [
     "idle (closed)",

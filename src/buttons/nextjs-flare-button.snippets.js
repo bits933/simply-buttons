@@ -8,7 +8,7 @@ export const NEXTJS_FLARE_SNIPPETS = {
 
 export const NEXTJS_FLARE_META = {
   "id": "nextjs-flare",
-  "name": "Next.js flare",
+  "name": "Volumetric rim flare",
   "blurb": "Volumetric rim-lit flare stroke button reproducing the vgpu.sh Next.js flare shader with 35-step volumetric raymarching, orbiting light shafts, and pointer tracking.",
   "states": [
     "idle (orbiting flare)",

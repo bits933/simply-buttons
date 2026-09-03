@@ -8,7 +8,7 @@ export const ARJUN_CONNECT_SNIPPETS = {
 
 export const ARJUN_CONNECT_META = {
   id: "arjun-connect",
-  name: "Arjun connect",
+  name: "Chalk stamp connect",
   blurb: "Hand-drawn chalk/crayon red stamp button with a 3-frame boiling scribble loop, tactile hover tilt, and SVG chalk turbulence texturing from arjunr.dev.",
   states: ["idle (boil)", "hover (tilt/scale)", "active (press)", "focus-visible", "reduced-motion"],
   keywords: [

@@ -8,7 +8,7 @@ export const GRIGOLETTI_FRAMER_SNIPPETS = {
 
 export const GRIGOLETTI_FRAMER_META = {
   "id": "grigoletti-framer",
-  "name": "Grigoletti Framer badge",
+  "name": "Verified expert badge",
   "blurb": "Dario Grigoletti official Framer Pro Expert trust badge from grigoletti.ch featuring the official geometric Framer logo, dark pill border, and interactive hover illumination.",
   "states": [
     "idle (dark pill)",

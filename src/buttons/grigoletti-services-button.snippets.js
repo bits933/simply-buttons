@@ -409,7 +409,7 @@ export const GRIGOLETTI_SERVICES_SNIPPETS = {
 
 export const GRIGOLETTI_SERVICES_META = {
   id: "grigoletti-services",
-  name: "Grigoletti services",
+  name: "Segmented chevron dropdown",
   blurb: "Dario Grigoletti segmented navigation dropdown button from grigoletti.ch with dual-layer spring scale pop, rotating chevron segment, authentic PP Neue Corp typography, and interactive menu reveal.",
   states: [
     "idle (outline segmented)",

@@ -223,7 +223,7 @@ export const GRIGOLETTI_PROJECTS_SNIPPETS = {
 
 export const GRIGOLETTI_PROJECTS_META = {
   id: "grigoletti-projects",
-  name: "Grigoletti projects",
+  name: "Kinetic spring pop",
   blurb: "Dario Grigoletti signature projects button from grigoletti.ch with dual-layer Framer spring scale transition, authentic PP Neue Corp Tight Ultrabold typography, and tactile press.",
   states: [
     "idle (outline cream)",
