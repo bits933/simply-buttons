@@ -9,30 +9,41 @@
 
 /* Dario Grigoletti Projects Button (grigoletti.ch) */
 .gp-root {
-  --gp-bg: #ebe9e4;
-  --gp-btn-bg: #ebe9e4;
-  --gp-btn-hover-bg: #111111;
-  --gp-border: #111111;
-  --gp-ink: #111111;
-  --gp-ink-hover: #ebe9e4;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   min-height: 140px;
-  background-color: var(--gp-bg);
+  background-color: transparent;
   border-radius: inherit;
   position: relative;
   overflow: hidden;
+  /* Default: dark theme tokens (white button) */
+  --gp-btn-bg: transparent;
+  --gp-border: #ffffff;
+  --gp-ink: #ffffff;
+  --gp-btn-hover-bg: #ffffff;
+  --gp-ink-hover: #111111;
 }
 
+[data-theme="light"] .gp-root,
+.gp-root[data-mode="light"] {
+  background-color: transparent;
+  --gp-btn-bg: transparent;
+  --gp-border: #111111;
+  --gp-ink: #111111;
+  --gp-btn-hover-bg: #111111;
+  --gp-ink-hover: #ffffff;
+}
+
+[data-theme="dark"] .gp-root,
 .gp-root[data-mode="dark"] {
-  --gp-bg: #14161a;
-  --gp-btn-bg: #14161a;
-  --gp-border: #ebe9e4;
-  --gp-ink: #ebe9e4;
-  --gp-btn-hover-bg: #ebe9e4;
+  background-color: transparent;
+  --gp-btn-bg: transparent;
+  --gp-border: #ffffff;
+  --gp-ink: #ffffff;
+  --gp-btn-hover-bg: #ffffff;
   --gp-ink-hover: #111111;
 }
 
@@ -64,7 +75,7 @@
   transform: translateZ(0) scale(1.04);
 }
 
-/* Rest layer: holds the 1px dark stroke at rest */
+/* Rest layer: holds the 1px stroke at rest */
 .gp-layer-rest {
   position: relative;
   z-index: 1;

@@ -7,22 +7,41 @@ const CSS = `@font-face {
 }
 
 .gp-root {
-  --gp-bg: #ebe9e4;
-  --gp-btn-bg: #ebe9e4;
-  --gp-btn-hover-bg: #111111;
-  --gp-border: #111111;
-  --gp-ink: #111111;
-  --gp-ink-hover: #ebe9e4;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   min-height: 140px;
-  background-color: var(--gp-bg);
+  background-color: transparent;
   border-radius: inherit;
   position: relative;
   overflow: hidden;
+  --gp-btn-bg: transparent;
+  --gp-border: #ffffff;
+  --gp-ink: #ffffff;
+  --gp-btn-hover-bg: #ffffff;
+  --gp-ink-hover: #111111;
+}
+
+[data-theme="light"] .gp-root,
+.gp-root[data-mode="light"] {
+  background-color: transparent;
+  --gp-btn-bg: transparent;
+  --gp-border: #111111;
+  --gp-ink: #111111;
+  --gp-btn-hover-bg: #111111;
+  --gp-ink-hover: #ffffff;
+}
+
+[data-theme="dark"] .gp-root,
+.gp-root[data-mode="dark"] {
+  background-color: transparent;
+  --gp-btn-bg: transparent;
+  --gp-border: #ffffff;
+  --gp-ink: #ffffff;
+  --gp-btn-hover-bg: #ffffff;
+  --gp-ink-hover: #111111;
 }
 
 .gp-root *, .gp-root *::before, .gp-root *::after {

@@ -1,28 +1,45 @@
 /* Dario Grigoletti FAQ Accordion Toggle Button (grigoletti.ch) */
 .gfaq-root {
-  --gfaq-bg: #ebe9e4;
-  --gfaq-ink: #111111;
-  --gfaq-meta: #777777;
-  --gfaq-border: #bababa;
-  --gfaq-answer: #555555;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   min-height: 140px;
-  background-color: var(--gfaq-bg);
+  background-color: transparent;
   border-radius: inherit;
   padding: 16px;
   position: relative;
   overflow: hidden;
+  /* Default: dark theme tokens (white button / white text) */
+  --gfaq-ink: #ffffff;
+  --gfaq-question: #ffffff;
+  --gfaq-meta: rgba(255, 255, 255, 0.65);
+  --gfaq-border: rgba(255, 255, 255, 0.22);
+  --gfaq-answer: rgba(255, 255, 255, 0.75);
+  --gfaq-hover-bg: rgba(255, 255, 255, 0.05);
 }
 
+[data-theme="light"] .gfaq-root,
+.gfaq-root[data-mode="light"] {
+  background-color: transparent;
+  --gfaq-ink: #111111;
+  --gfaq-question: #111111;
+  --gfaq-meta: #777777;
+  --gfaq-border: rgba(0, 0, 0, 0.16);
+  --gfaq-answer: #444444;
+  --gfaq-hover-bg: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .gfaq-root,
 .gfaq-root[data-mode="dark"] {
-  --gfaq-bg: #14161a;
-  --gfaq-ink: #ebe9e4;
-  --gfaq-border: #333333;
-  --gfaq-answer: #aaaaaa;
+  background-color: transparent;
+  --gfaq-ink: #ffffff;
+  --gfaq-question: #ffffff;
+  --gfaq-meta: rgba(255, 255, 255, 0.65);
+  --gfaq-border: rgba(255, 255, 255, 0.22);
+  --gfaq-answer: rgba(255, 255, 255, 0.75);
+  --gfaq-hover-bg: rgba(255, 255, 255, 0.05);
 }
 
 .gfaq-root *, .gfaq-root *::before, .gfaq-root *::after {
@@ -46,6 +63,10 @@
   border-radius: 4px;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 200ms ease;
+}
+
+.gfaq-toggle-btn:hover {
+  background-color: var(--gfaq-hover-bg);
 }
 
 .gfaq-header {
@@ -73,7 +94,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 13.5px;
   font-weight: 700;
-  color: #333333;
+  color: var(--gfaq-question);
   letter-spacing: -0.01em;
   transition: color 200ms ease;
 }
@@ -98,37 +119,32 @@
   transition: max-height 260ms cubic-bezier(0.16, 1, 0.3, 1),
               opacity 260ms ease,
               margin-top 260ms ease;
-}
-
-.gfaq-toggle-btn:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-}
-
-.gfaq-toggle-btn:hover .gfaq-question {
-  color: var(--gfaq-ink);
-}
-
-.gfaq-toggle-btn[aria-expanded="true"] .gfaq-answer {
-  max-height: 70px;
-  opacity: 1;
-  margin-top: 8px;
+  margin-top: 0;
+  padding-left: 28px;
 }
 
 .gfaq-toggle-btn[aria-expanded="true"] .gfaq-icon {
   transform: rotate(45deg);
 }
 
-.gfaq-toggle-btn[aria-expanded="true"] .gfaq-question {
-  color: var(--gfaq-ink);
+.gfaq-toggle-btn[aria-expanded="true"] .gfaq-answer {
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 10px;
 }
 
 .gfaq-toggle-btn:focus-visible {
-  outline: 2px solid #111111;
+  outline: 2px solid var(--gfaq-ink);
   outline-offset: 2px;
 }
 
+.gfaq-toggle-btn:active {
+  transform: scale(0.99);
+  transition: transform 60ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .gfaq-icon, .gfaq-answer {
+  .gfaq-icon, .gfaq-answer, .gfaq-toggle-btn {
     transition: none;
   }
 }

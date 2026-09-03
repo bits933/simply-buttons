@@ -7,22 +7,53 @@ const CSS = `@font-face {
 }
 
 .gs-root {
-  --gs-bg: #ebe9e4;
-  --gs-btn-bg: #ebe9e4;
-  --gs-btn-hover-bg: #111111;
-  --gs-border: #111111;
-  --gs-ink: #111111;
-  --gs-ink-hover: #ebe9e4;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   min-height: 140px;
-  background-color: var(--gs-bg);
+  background-color: transparent;
   border-radius: inherit;
   position: relative;
   overflow: visible;
+  --gs-btn-bg: transparent;
+  --gs-border: #ffffff;
+  --gs-ink: #ffffff;
+  --gs-btn-hover-bg: #ffffff;
+  --gs-ink-hover: #111111;
+  --gs-menu-bg: #1c1e21;
+  --gs-menu-border: rgba(255, 255, 255, 0.16);
+  --gs-menu-ink: #eceef1;
+  --gs-menu-hover-bg: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .gs-root,
+.gs-root[data-mode="light"] {
+  background-color: transparent;
+  --gs-btn-bg: transparent;
+  --gs-border: #111111;
+  --gs-ink: #111111;
+  --gs-btn-hover-bg: #111111;
+  --gs-ink-hover: #ffffff;
+  --gs-menu-bg: #ffffff;
+  --gs-menu-border: rgba(0, 0, 0, 0.12);
+  --gs-menu-ink: #111111;
+  --gs-menu-hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .gs-root,
+.gs-root[data-mode="dark"] {
+  background-color: transparent;
+  --gs-btn-bg: transparent;
+  --gs-border: #ffffff;
+  --gs-ink: #ffffff;
+  --gs-btn-hover-bg: #ffffff;
+  --gs-ink-hover: #111111;
+  --gs-menu-bg: #1c1e21;
+  --gs-menu-border: rgba(255, 255, 255, 0.16);
+  --gs-menu-ink: #eceef1;
+  --gs-menu-hover-bg: rgba(255, 255, 255, 0.08);
 }
 
 .gs-root *, .gs-root *::before, .gs-root *::after {
