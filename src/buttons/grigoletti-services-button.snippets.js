@@ -40,42 +40,33 @@ const CSS = `@font-face {
   display: inline-flex;
   align-items: center;
   height: 44px;
-  transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.gs-container:hover .gs-group {
-  transform: scale(1.05);
 }
 
 .gs-serv-btn,
 .gs-toggle-btn {
   position: relative;
   height: 44px;
-  border: 1px solid var(--gs-border);
-  background-color: var(--gs-btn-bg);
+  border: none;
+  background-color: transparent;
   cursor: pointer;
   outline: none;
-  overflow: hidden;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
   transition: transform 120ms ease;
 }
 
 .gs-serv-btn {
-  border-radius: 4px 0 0 4px;
   min-width: 90px;
 }
 
 .gs-toggle-btn {
-  border-radius: 0 4px 4px 0;
-  border-left: none;
   width: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.gs-layer-rest {
+.gs-serv-btn .gs-layer-rest {
   position: relative;
   z-index: 1;
   display: flex;
@@ -84,6 +75,8 @@ const CSS = `@font-face {
   width: 100%;
   height: 100%;
   padding: 0 16px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--gs-border);
   background-color: var(--gs-btn-bg);
   color: var(--gs-ink);
   font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -94,11 +87,12 @@ const CSS = `@font-face {
   line-height: 1.1;
   transform: scale(1);
   opacity: 1;
+  box-sizing: border-box;
   transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 240ms ease;
+              opacity 200ms ease;
 }
 
-.gs-layer-hover {
+.gs-serv-btn .gs-layer-hover {
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -108,6 +102,8 @@ const CSS = `@font-face {
   width: 100%;
   height: 100%;
   padding: 0 16px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--gs-btn-hover-bg);
   background-color: var(--gs-btn-hover-bg);
   color: var(--gs-ink-hover);
   font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -116,11 +112,54 @@ const CSS = `@font-face {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: scale(0.65);
+  transform: scale(0.5);
   opacity: 0;
   pointer-events: none;
-  transition: transform 340ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 240ms ease;
+  box-sizing: border-box;
+  transition: transform 360ms cubic-bezier(0.2, 1.25, 0.4, 1),
+              opacity 200ms ease;
+}
+
+.gs-toggle-btn .gs-layer-rest {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--gs-border);
+  border-left: none;
+  background-color: var(--gs-btn-bg);
+  color: var(--gs-ink);
+  transform: scale(1);
+  opacity: 1;
+  box-sizing: border-box;
+  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 200ms ease;
+}
+
+.gs-toggle-btn .gs-layer-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--gs-btn-hover-bg);
+  border-left: none;
+  background-color: var(--gs-btn-hover-bg);
+  color: var(--gs-ink-hover);
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  transition: transform 360ms cubic-bezier(0.2, 1.25, 0.4, 1),
+              opacity 200ms ease;
 }
 
 .gs-toggle-btn .gs-layer-rest,
@@ -141,7 +180,7 @@ const CSS = `@font-face {
 
 .gs-serv-btn:hover .gs-layer-rest,
 .gs-toggle-btn:hover .gs-layer-rest {
-  transform: scale(0.65);
+  transform: scale(0.5);
   opacity: 0;
 }
 

@@ -36,21 +36,13 @@ const CSS = `@font-face {
   justify-content: center;
   height: 44px;
   min-width: 100px;
-  border-radius: 4px;
-  border: 1px solid var(--gp-border);
-  background-color: var(--gp-btn-bg);
+  border: none;
+  background-color: transparent;
   cursor: pointer;
   outline: none;
-  overflow: hidden;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 300ms cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.gp-proj-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 120ms ease;
 }
 
 .gp-layer-rest {
@@ -62,6 +54,8 @@ const CSS = `@font-face {
   width: 100%;
   height: 100%;
   padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid var(--gp-border);
   background-color: var(--gp-btn-bg);
   color: var(--gp-ink);
   font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -72,8 +66,9 @@ const CSS = `@font-face {
   line-height: 1.1;
   transform: scale(1);
   opacity: 1;
+  box-sizing: border-box;
   transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 240ms ease;
+              opacity 200ms ease;
 }
 
 .gp-layer-hover {
@@ -86,6 +81,8 @@ const CSS = `@font-face {
   width: 100%;
   height: 100%;
   padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid var(--gp-btn-hover-bg);
   background-color: var(--gp-btn-hover-bg);
   color: var(--gp-ink-hover);
   font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -94,15 +91,16 @@ const CSS = `@font-face {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: scale(0.65);
+  transform: scale(0.5);
   opacity: 0;
   pointer-events: none;
-  transition: transform 340ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 240ms ease;
+  box-sizing: border-box;
+  transition: transform 360ms cubic-bezier(0.2, 1.25, 0.4, 1),
+              opacity 200ms ease;
 }
 
 .gp-proj-btn:hover .gp-layer-rest {
-  transform: scale(0.65);
+  transform: scale(0.5);
   opacity: 0;
 }
 
@@ -116,7 +114,8 @@ const CSS = `@font-face {
   transition: transform 60ms ease;
 }
 
-.gp-proj-btn:focus-visible {
+.gp-proj-btn:focus-visible .gp-layer-rest,
+.gp-proj-btn:focus-visible .gp-layer-hover {
   outline: 2px solid var(--gp-border);
   outline-offset: 3px;
 }
