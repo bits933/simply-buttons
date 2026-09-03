@@ -14,11 +14,17 @@ test("Grigoletti projects has distinctive marker, accessible button contracts, a
   const css = readFileSync(join(dir, "grigoletti-projects-button.css"), "utf8");
   assert.match(css, /\.gp-root/);
   assert.match(css, /\.gp-proj-btn/);
+  assert.match(css, /\.gp-layer-rest/);
+  assert.match(css, /\.gp-layer-hover/);
+  assert.match(css, /PP Neue Corp Tight Ultrabold/);
+  assert.match(css, /scale\(0\.65\)/);
   assert.match(css, /prefers-reduced-motion: reduce/);
 
   const jsx = readFileSync(join(dir, "GrigolettiProjectsButton.jsx"), "utf8");
   assert.match(jsx, /data-grigoletti-projects/);
   assert.match(jsx, /gp-proj-btn/);
+  assert.match(jsx, /gp-layer-rest/);
+  assert.match(jsx, /gp-layer-hover/);
   assert.match(jsx, /type="button"/);
 
   for (const [stack, snippet] of Object.entries(GRIGOLETTI_PROJECTS_SNIPPETS)) {

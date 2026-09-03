@@ -2,7 +2,7 @@ import React from "react";
 import "./grigoletti-projects-button.css";
 
 export function GrigolettiProjectsButton({
-  label = "See Projects",
+  label = "PROJECTS",
   onClick,
   ...rest
 }) {
@@ -14,7 +14,8 @@ export function GrigolettiProjectsButton({
       onClick={onClick}
       {...rest}
     >
-      <span>{label}</span>
+      <span className="gp-layer-rest">{label}</span>
+      <span className="gp-layer-hover" aria-hidden="true">{label}</span>
     </button>
   );
 }

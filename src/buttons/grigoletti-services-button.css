@@ -1,4 +1,13 @@
-/* Dario Grigoletti Services Dropdown Nav Button (grigoletti.ch) */
+@font-face {
+  font-family: "PP Neue Corp Tight Ultrabold";
+  src: url("/fonts/pp-neue-corp-tight-ultrabold.woff2") format("woff2"),
+       url("https://framerusercontent.com/assets/8wGC1mLwo6aPeovt0rsUbpRSk.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Dario Grigoletti Segmented Services Dropdown Button (grigoletti.ch) */
 .gs-root {
   --gs-bg: #ebe9e4;
   --gs-btn-bg: #ebe9e4;
@@ -15,7 +24,7 @@
   background-color: var(--gs-bg);
   border-radius: inherit;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .gs-root[data-mode="dark"] {
@@ -31,60 +40,200 @@
   box-sizing: border-box;
 }
 
-.gs-serv-btn {
+.gs-container {
   position: relative;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-  border-radius: 4px 0 0 4px;
-  border: 1px solid var(--gs-border);
-  background-color: var(--gs-btn-bg);
-  color: var(--gs-ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-              color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 120ms ease;
 }
 
+.gs-group {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+}
+
+/* Base button segment styles */
+.gs-serv-btn,
+.gs-toggle-btn {
+  position: relative;
+  height: 44px;
+  border: 1px solid var(--gs-border);
+  background-color: var(--gs-btn-bg);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease;
+}
+
+/* Left text segment */
+.gs-serv-btn {
+  border-radius: 4px 0 0 4px;
+  min-width: 90px;
+}
+
+/* Right chevron toggle segment */
+.gs-toggle-btn {
+  border-radius: 0 4px 4px 0;
+  border-left: none;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dual-layer typography & icons */
+.gs-layer-rest {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  background-color: var(--gs-btn-bg);
+  color: var(--gs-ink);
+  font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 240ms ease;
+}
+
+.gs-layer-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  background-color: var(--gs-btn-hover-bg);
+  color: var(--gs-ink-hover);
+  font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transform: scale(0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 340ms cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 240ms ease;
+}
+
+.gs-toggle-btn .gs-layer-rest,
+.gs-toggle-btn .gs-layer-hover {
+  padding: 0;
+}
+
+/* Chevron SVG */
 .gs-chevron {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   stroke: currentColor;
-  stroke-width: 2.2;
+  stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
   transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.gs-serv-btn:hover {
-  background-color: var(--gs-btn-hover-bg);
-  color: var(--gs-ink-hover);
+/* Dual-layer spring pop on hover */
+.gs-serv-btn:hover .gs-layer-rest,
+.gs-toggle-btn:hover .gs-layer-rest {
+  transform: scale(0.65);
+  opacity: 0;
 }
 
-.gs-serv-btn:hover .gs-chevron {
-  transform: rotate(180deg);
+.gs-serv-btn:hover .gs-layer-hover,
+.gs-toggle-btn:hover .gs-layer-hover {
+  transform: scale(1);
+  opacity: 1;
 }
 
-.gs-serv-btn:active {
+/* Active depression */
+.gs-serv-btn:active,
+.gs-toggle-btn:active {
   transform: scale(0.96);
   transition: transform 60ms ease;
 }
 
-.gs-serv-btn:focus-visible {
-  outline: 2px solid #111111;
+/* When dropdown menu is open */
+.gs-container[data-open="true"] .gs-chevron {
+  transform: rotate(180deg);
+}
+
+/* Interactive Dropdown Menu */
+.gs-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background-color: #111111;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 8px 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  animation: gs-menu-enter 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.gs-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  color: #ebe9e4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.gs-menu-idx {
+  font-family: ui-monospace, "IBM Plex Mono", monospace;
+  font-size: 10px;
+  color: #888888;
+}
+
+.gs-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+@keyframes gs-menu-enter {
+  from { opacity: 0; transform: translateY(-4px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.gs-serv-btn:focus-visible,
+.gs-toggle-btn:focus-visible {
+  outline: 2px solid var(--gs-border);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gs-serv-btn, .gs-chevron {
+  .gs-layer-rest, .gs-layer-hover, .gs-chevron, .gs-dropdown {
     transition: none;
+    animation: none;
   }
 }

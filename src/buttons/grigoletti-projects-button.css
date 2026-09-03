@@ -1,4 +1,13 @@
-/* Dario Grigoletti Secondary Skeleton Button (grigoletti.ch) */
+@font-face {
+  font-family: "PP Neue Corp Tight Ultrabold";
+  src: url("/fonts/pp-neue-corp-tight-ultrabold.woff2") format("woff2"),
+       url("https://framerusercontent.com/assets/8wGC1mLwo6aPeovt0rsUbpRSk.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Dario Grigoletti Projects Button (grigoletti.ch) */
 .gp-root {
   --gp-bg: #ebe9e4;
   --gp-btn-bg: #ebe9e4;
@@ -36,44 +45,93 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px;
+  height: 44px;
+  min-width: 100px;
   border-radius: 4px;
   border: 1px solid var(--gp-border);
   background-color: var(--gp-btn-bg);
-  color: var(--gp-ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   cursor: pointer;
   outline: none;
+  overflow: hidden;
+  padding: 0;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-              color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 220ms ease,
-              transform 120ms ease,
-              box-shadow 220ms ease;
+  transition: transform 120ms ease, box-shadow 200ms ease;
 }
 
-.gp-proj-btn:hover {
+/* Rest layer */
+.gp-layer-rest {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  background-color: var(--gp-btn-bg);
+  color: var(--gp-ink);
+  font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 240ms ease;
+}
+
+/* Hover layer (solid dark expanding pill) */
+.gp-layer-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
   background-color: var(--gp-btn-hover-bg);
   color: var(--gp-ink-hover);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transform: scale(0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 340ms cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 240ms ease;
 }
 
+/* Dual-layer spring pop on hover */
+.gp-proj-btn:hover .gp-layer-rest {
+  transform: scale(0.65);
+  opacity: 0;
+}
+
+.gp-proj-btn:hover .gp-layer-hover {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Active tactile click depression */
 .gp-proj-btn:active {
   transform: scale(0.96);
   transition: transform 60ms ease;
 }
 
 .gp-proj-btn:focus-visible {
-  outline: 2px solid #111111;
+  outline: 2px solid var(--gp-border);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gp-proj-btn {
+  .gp-layer-rest, .gp-layer-hover, .gp-proj-btn {
     transition: none;
   }
 }
