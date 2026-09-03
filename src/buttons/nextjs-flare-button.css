@@ -2,26 +2,25 @@
    https://vgpu.sh/examples/nextjs-flare in Three.js / WebGL. */
 
 .nextjs-flare-root {
-  --njf-bg: #07080c;
+  --njf-bg: transparent;
   --njf-ink: #f0f4fc;
-  --njf-border: rgba(255, 255, 255, 0.14);
-  --njf-border-hover: rgba(255, 255, 255, 0.35);
+  --njf-border: rgba(255, 255, 255, 0.16);
+  --njf-border-hover: rgba(255, 255, 255, 0.38);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
   min-height: 140px;
-  background-color: var(--njf-bg);
-  color-scheme: dark;
+  background-color: transparent;
   position: relative;
   overflow: hidden;
   border-radius: inherit;
 }
 
 .nextjs-flare-root[data-mode="light"] {
-  --njf-bg: #0d111a;
-  --njf-ink: #ffffff;
+  --njf-bg: transparent;
+  --njf-ink: #f0f4fc;
 }
 
 .nextjs-flare-root *,
@@ -30,15 +29,20 @@
   box-sizing: border-box;
 }
 
+/* Button wrapper: sized to button pill, clips all light & canvas to the button */
 .njf-wrap {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 320px;
-  height: 140px;
+  border-radius: 9999px;
+  overflow: hidden; /* CLIPS EVERYTHING TO THE BUTTON */
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.4);
+  isolation: isolate;
+  background: #090b10;
 }
 
+/* Canvas fills the button pill exactly, clipped by border-radius and overflow */
 .njf-canvas {
   position: absolute;
   inset: 0;
@@ -46,6 +50,7 @@
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  border-radius: 9999px;
 }
 
 .btn-nextjs-flare {
@@ -59,9 +64,9 @@
   height: 50px;
   padding: 0 20px;
   border-radius: 9999px;
-  background: rgba(9, 11, 16, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(9, 11, 16, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--njf-border);
   color: var(--njf-ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -74,18 +79,18 @@
   transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
               border-color 220ms ease,
               box-shadow 220ms ease,
+              background-color 220ms ease,
               color 220ms ease;
-  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.6);
 }
 
-.btn-nextjs-flare:hover {
-  transform: scale(1.03);
+.njf-wrap:hover .btn-nextjs-flare {
+  transform: scale(1.02);
   border-color: var(--njf-border-hover);
-  box-shadow: 0 12px 36px -2px rgba(0, 0, 0, 0.7);
+  background: rgba(9, 11, 16, 0.4);
   color: #ffffff;
 }
 
-.btn-nextjs-flare:active {
+.njf-wrap:active .btn-nextjs-flare {
   transform: scale(0.97);
   transition: transform 60ms ease;
 }
@@ -103,7 +108,7 @@
   transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-nextjs-flare:hover .njf-icon {
+.njf-wrap:hover .njf-icon {
   transform: translateX(2px);
 }
 
@@ -112,7 +117,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-nextjs-flare {
+  .btn-nextjs-flare, .njf-icon {
     transition: none;
   }
 }
