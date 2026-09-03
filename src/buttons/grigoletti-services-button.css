@@ -7,7 +7,7 @@
   font-weight: 700;
 }
 
-/* Dario Grigoletti Segmented Services Dropdown Button (grigoletti.ch) */
+/* Dario Grigoletti Segmented Services Button (grigoletti.ch) */
 .gs-root {
   display: flex;
   align-items: center;
@@ -25,10 +25,6 @@
   --gs-ink: #ffffff;
   --gs-btn-hover-bg: #ffffff;
   --gs-ink-hover: #111111;
-  --gs-menu-bg: #1c1e21;
-  --gs-menu-border: rgba(255, 255, 255, 0.16);
-  --gs-menu-ink: #eceef1;
-  --gs-menu-hover-bg: rgba(255, 255, 255, 0.08);
 }
 
 [data-theme="light"] .gs-root,
@@ -39,10 +35,6 @@
   --gs-ink: #111111;
   --gs-btn-hover-bg: #111111;
   --gs-ink-hover: #ffffff;
-  --gs-menu-bg: #ffffff;
-  --gs-menu-border: rgba(0, 0, 0, 0.12);
-  --gs-menu-ink: #111111;
-  --gs-menu-hover-bg: rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] .gs-root,
@@ -53,10 +45,6 @@
   --gs-ink: #ffffff;
   --gs-btn-hover-bg: #ffffff;
   --gs-ink-hover: #111111;
-  --gs-menu-bg: #1c1e21;
-  --gs-menu-border: rgba(255, 255, 255, 0.16);
-  --gs-menu-ink: #eceef1;
-  --gs-menu-hover-bg: rgba(255, 255, 255, 0.08);
 }
 
 .gs-root *, .gs-root *::before, .gs-root *::after {
@@ -82,9 +70,8 @@
   transform: translateZ(0) scale(1.04);
 }
 
-/* Base button segments: hardware-accelerated transparent containers */
-.gs-serv-btn,
-.gs-toggle-btn {
+/* Base button: hardware-accelerated transparent container */
+.gs-serv-btn {
   position: relative;
   height: 44px;
   border: none;
@@ -92,26 +79,14 @@
   cursor: pointer;
   outline: none;
   padding: 0;
+  min-width: 90px;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   backface-visibility: hidden;
   transition: transform 120ms ease;
 }
 
-/* Left text segment */
-.gs-serv-btn {
-  min-width: 90px;
-}
-
-/* Right chevron toggle segment */
-.gs-toggle-btn {
-  width: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Left segment layers */
+/* Text layer – rest state */
 .gs-serv-btn .gs-layer-rest {
   position: relative;
   z-index: 1;
@@ -121,10 +96,8 @@
   width: 100%;
   height: 100%;
   padding: 0 16px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-radius: 4px;
   border: 1px solid var(--gs-border);
-  border-right: none;
   background-color: var(--gs-btn-bg);
   color: var(--gs-ink);
   font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -142,6 +115,7 @@
               opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Text layer – hover state */
 .gs-serv-btn .gs-layer-hover {
   position: absolute;
   inset: 0;
@@ -152,10 +126,8 @@
   width: 100%;
   height: 100%;
   padding: 0 16px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-radius: 4px;
   border: 1px solid var(--gs-btn-hover-bg);
-  border-right: none;
   background-color: var(--gs-btn-hover-bg);
   color: var(--gs-ink-hover);
   font-family: "PP Neue Corp Tight Ultrabold", "PP Neue Corp Tight", Impact, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -174,150 +146,32 @@
               opacity 340ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Right toggle segment layers */
-.gs-toggle-btn .gs-layer-rest {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border: 1px solid var(--gs-border);
-  background-color: var(--gs-btn-bg);
-  color: var(--gs-ink);
-  transform: translateZ(0) scale(1);
-  opacity: 1;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  box-sizing: border-box;
-  transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.gs-toggle-btn .gs-layer-hover {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border: 1px solid var(--gs-btn-hover-bg);
-  background-color: var(--gs-btn-hover-bg);
-  color: var(--gs-ink-hover);
-  transform: translateZ(0) scale(0.6);
-  opacity: 0;
-  pointer-events: none;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  box-sizing: border-box;
-  transition: transform 460ms cubic-bezier(0.19, 1.08, 0.22, 1),
-              opacity 340ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Chevron SVG */
-.gs-chevron {
-  width: 13px;
-  height: 13px;
-  stroke: currentColor;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Hover dynamics: rest stroke scales down smoothly, hover stroke scales up smoothly */
-.gs-serv-btn:hover .gs-layer-rest,
-.gs-toggle-btn:hover .gs-layer-rest {
+/* Hover dynamics: rest scales down, hover scales up */
+.gs-serv-btn:hover .gs-layer-rest {
   transform: translateZ(0) scale(0.6);
   opacity: 0;
 }
 
-.gs-serv-btn:hover .gs-layer-hover,
-.gs-toggle-btn:hover .gs-layer-hover {
+.gs-serv-btn:hover .gs-layer-hover {
   transform: translateZ(0) scale(1);
   opacity: 1;
 }
 
 /* Active depression */
-.gs-serv-btn:active,
-.gs-toggle-btn:active {
+.gs-serv-btn:active {
   transform: translateZ(0) scale(0.96);
   transition: transform 80ms ease;
 }
 
-/* When dropdown menu is open */
-.gs-container[data-open="true"] .gs-chevron {
-  transform: rotate(180deg);
-}
-
-/* Interactive Dropdown Menu */
-.gs-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  min-width: 180px;
-  background-color: var(--gs-menu-bg);
-  border: 1px solid var(--gs-menu-border);
-  border-radius: 4px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  padding: 8px 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  animation: gs-menu-enter 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.gs-menu-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  color: var(--gs-menu-ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  transition: background-color 150ms ease, color 150ms ease;
-}
-
-.gs-menu-item:hover {
-  background-color: var(--gs-menu-hover-bg);
-}
-
+/* Focus-visible ring */
 .gs-serv-btn:focus-visible .gs-layer-rest,
-.gs-serv-btn:focus-visible .gs-layer-hover,
-.gs-toggle-btn:focus-visible .gs-layer-rest,
-.gs-toggle-btn:focus-visible .gs-layer-hover {
+.gs-serv-btn:focus-visible .gs-layer-hover {
   outline: 2px solid var(--gs-border);
   outline-offset: 3px;
 }
 
-@keyframes gs-menu-enter {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .gs-layer-rest, .gs-layer-hover, .gs-group, .gs-chevron {
+  .gs-layer-rest, .gs-layer-hover, .gs-group {
     transition: none;
   }
 }
