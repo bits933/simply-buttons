@@ -40,6 +40,11 @@ const CSS = `@font-face {
   display: inline-flex;
   align-items: center;
   height: 44px;
+  transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gs-container:hover .gs-group {
+  transform: scale(1.05);
 }
 
 .gs-serv-btn,

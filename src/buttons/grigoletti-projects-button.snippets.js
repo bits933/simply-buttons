@@ -44,7 +44,13 @@ const CSS = `@font-face {
   overflow: hidden;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 120ms ease, box-shadow 200ms ease;
+  transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 300ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gp-proj-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 .gp-layer-rest {
