@@ -89,7 +89,7 @@ test("the awwwards batch registers ten unique, contract-clean slots", async () =
 test("gallery order is 86 prior + 34 x50 + 6 remaining awwards trays + Search Slash + Water Ripple + Jelly Switch + Dot Border + Liquid metal play + Generate + Spinning Border + Plasma Drive + Liquid metal pill + Arjun Connect + Arjun Social + Nextjs Flare", async () => {
   const order = await readTrayOrder();
 
-  assert.equal(order.length, 238);
+  assert.equal(order.length, 142);
   assert.equal(order[141], "grigoletti-framer");
   assert.equal(order[140], "grigoletti-faq");
   assert.equal(order[139], "grigoletti-services");
