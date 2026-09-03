@@ -42,7 +42,14 @@ const CSS = `@font-face {
   outline: none;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 120ms ease;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gp-proj-btn:hover {
+  transform: translateZ(0) scale(1.04);
 }
 
 .gp-layer-rest {
@@ -64,11 +71,13 @@ const CSS = `@font-face {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: scale(1);
+  transform: translateZ(0) scale(1);
   opacity: 1;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   box-sizing: border-box;
-  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 200ms ease;
+  transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gp-layer-hover {
@@ -91,27 +100,29 @@ const CSS = `@font-face {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: scale(0.5);
+  transform: translateZ(0) scale(0.6);
   opacity: 0;
   pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   box-sizing: border-box;
-  transition: transform 360ms cubic-bezier(0.2, 1.25, 0.4, 1),
-              opacity 200ms ease;
+  transition: transform 460ms cubic-bezier(0.19, 1.08, 0.22, 1),
+              opacity 340ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gp-proj-btn:hover .gp-layer-rest {
-  transform: scale(0.5);
+  transform: translateZ(0) scale(0.6);
   opacity: 0;
 }
 
 .gp-proj-btn:hover .gp-layer-hover {
-  transform: scale(1);
+  transform: translateZ(0) scale(1);
   opacity: 1;
 }
 
 .gp-proj-btn:active {
-  transform: scale(0.96);
-  transition: transform 60ms ease;
+  transform: translateZ(0) scale(0.96);
+  transition: transform 80ms ease;
 }
 
 .gp-proj-btn:focus-visible .gp-layer-rest,

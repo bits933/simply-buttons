@@ -18,7 +18,7 @@ test("Grigoletti services has distinctive marker, accessible button contracts, a
   assert.match(css, /\.gs-layer-rest/);
   assert.match(css, /\.gs-layer-hover/);
   assert.match(css, /PP Neue Corp Tight Ultrabold/);
-  assert.match(css, /scale\(0\.5\)/);
+  assert.match(css, /scale\(0\.6\)/);
   assert.match(css, /prefers-reduced-motion: reduce/);
 
   const jsx = readFileSync(join(dir, "GrigolettiServicesButton.jsx"), "utf8");

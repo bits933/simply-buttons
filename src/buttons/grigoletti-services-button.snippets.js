@@ -40,6 +40,12 @@ const CSS = `@font-face {
   display: inline-flex;
   align-items: center;
   height: 44px;
+  transform: translateZ(0);
+  transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gs-container:hover .gs-group {
+  transform: translateZ(0) scale(1.04);
 }
 
 .gs-serv-btn,
@@ -52,6 +58,8 @@ const CSS = `@font-face {
   outline: none;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
   transition: transform 120ms ease;
 }
 
@@ -85,11 +93,13 @@ const CSS = `@font-face {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: scale(1);
+  transform: translateZ(0) scale(1);
   opacity: 1;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   box-sizing: border-box;
-  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 200ms ease;
+  transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gs-serv-btn .gs-layer-hover {
@@ -112,12 +122,14 @@ const CSS = `@font-face {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: scale(0.5);
+  transform: translateZ(0) scale(0.6);
   opacity: 0;
   pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   box-sizing: border-box;
-  transition: transform 360ms cubic-bezier(0.2, 1.25, 0.4, 1),
-              opacity 200ms ease;
+  transition: transform 460ms cubic-bezier(0.19, 1.08, 0.22, 1),
+              opacity 340ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gs-toggle-btn .gs-layer-rest {
@@ -133,11 +145,13 @@ const CSS = `@font-face {
   border-left: none;
   background-color: var(--gs-btn-bg);
   color: var(--gs-ink);
-  transform: scale(1);
+  transform: translateZ(0) scale(1);
   opacity: 1;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   box-sizing: border-box;
-  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 200ms ease;
+  transition: transform 440ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gs-toggle-btn .gs-layer-hover {
@@ -154,12 +168,14 @@ const CSS = `@font-face {
   border-left: none;
   background-color: var(--gs-btn-hover-bg);
   color: var(--gs-ink-hover);
-  transform: scale(0.5);
+  transform: translateZ(0) scale(0.6);
   opacity: 0;
   pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   box-sizing: border-box;
-  transition: transform 360ms cubic-bezier(0.2, 1.25, 0.4, 1),
-              opacity 200ms ease;
+  transition: transform 460ms cubic-bezier(0.19, 1.08, 0.22, 1),
+              opacity 340ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gs-toggle-btn .gs-layer-rest,
@@ -175,25 +191,25 @@ const CSS = `@font-face {
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gs-serv-btn:hover .gs-layer-rest,
 .gs-toggle-btn:hover .gs-layer-rest {
-  transform: scale(0.5);
+  transform: translateZ(0) scale(0.6);
   opacity: 0;
 }
 
 .gs-serv-btn:hover .gs-layer-hover,
 .gs-toggle-btn:hover .gs-layer-hover {
-  transform: scale(1);
+  transform: translateZ(0) scale(1);
   opacity: 1;
 }
 
 .gs-serv-btn:active,
 .gs-toggle-btn:active {
-  transform: scale(0.96);
-  transition: transform 60ms ease;
+  transform: translateZ(0) scale(0.96);
+  transition: transform 80ms ease;
 }
 
 .gs-container[data-open="true"] .gs-chevron {
@@ -212,6 +228,7 @@ const CSS = `@font-face {
   z-index: 100;
   display: flex;
   flex-direction: column;
+  animation: gs-menu-enter 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .gs-menu-item {
@@ -240,9 +257,15 @@ const CSS = `@font-face {
   color: #ffffff;
 }
 
+@keyframes gs-menu-enter {
+  from { opacity: 0; transform: translateY(-4px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gs-layer-rest, .gs-layer-hover, .gs-chevron, .gs-dropdown {
     transition: none;
+    animation: none;
   }
 }`;
 
