@@ -1,0 +1,90 @@
+/* Dario Grigoletti Services Dropdown Nav Button (grigoletti.ch) */
+.gs-root {
+  --gs-bg: #ebe9e4;
+  --gs-btn-bg: #ebe9e4;
+  --gs-btn-hover-bg: #111111;
+  --gs-border: #111111;
+  --gs-ink: #111111;
+  --gs-ink-hover: #ebe9e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  background-color: var(--gs-bg);
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.gs-root[data-mode="dark"] {
+  --gs-bg: #14161a;
+  --gs-btn-bg: #14161a;
+  --gs-border: #ebe9e4;
+  --gs-ink: #ebe9e4;
+  --gs-btn-hover-bg: #ebe9e4;
+  --gs-ink-hover: #111111;
+}
+
+.gs-root *, .gs-root *::before, .gs-root *::after {
+  box-sizing: border-box;
+}
+
+.gs-serv-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--gs-border);
+  background-color: var(--gs-btn-bg);
+  color: var(--gs-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 120ms ease;
+}
+
+.gs-chevron {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gs-serv-btn:hover {
+  background-color: var(--gs-btn-hover-bg);
+  color: var(--gs-ink-hover);
+}
+
+.gs-serv-btn:hover .gs-chevron {
+  transform: rotate(180deg);
+}
+
+.gs-serv-btn:active {
+  transform: scale(0.96);
+  transition: transform 60ms ease;
+}
+
+.gs-serv-btn:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-serv-btn, .gs-chevron {
+    transition: none;
+  }
+}

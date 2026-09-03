@@ -1,0 +1,95 @@
+/* Dario Grigoletti Signature Primary CTA Button (grigoletti.ch) */
+.gc-root {
+  --gc-bg: #ebe9e4;
+  --gc-btn-bg: #111111;
+  --gc-btn-hover-bg: #ff4c24;
+  --gc-ink: #ebe9e4;
+  --gc-ink-hover: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  background-color: var(--gc-bg);
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.gc-root[data-mode="dark"] {
+  --gc-bg: #14161a;
+  --gc-btn-bg: #1c1d22;
+}
+
+.gc-root *, .gc-root *::before, .gc-root *::after {
+  box-sizing: border-box;
+}
+
+.gc-call-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 18px 7px 7px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-color: var(--gc-btn-bg);
+  color: var(--gc-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 220ms ease,
+              transform 120ms ease,
+              box-shadow 220ms ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.gc-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 2px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gc-label {
+  display: inline-block;
+  line-height: 1;
+}
+
+.gc-call-btn:hover {
+  background-color: var(--gc-btn-hover-bg);
+  color: var(--gc-ink-hover);
+  border-color: #111111;
+  box-shadow: 0 4px 16px rgba(255, 76, 36, 0.38);
+}
+
+.gc-call-btn:hover .gc-avatar {
+  transform: scale(1.08);
+}
+
+.gc-call-btn:active {
+  transform: scale(0.96);
+  transition: transform 60ms ease;
+}
+
+.gc-call-btn:focus-visible {
+  outline: 2px solid #ff4c24;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc-call-btn, .gc-avatar {
+    transition: none;
+  }
+}

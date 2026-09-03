@@ -463,6 +463,36 @@ import {
   NEXTJS_FLARE_META,
   NEXTJS_FLARE_SNIPPETS,
 } from "./buttons/nextjs-flare-button.snippets.js";
+import { GrigolettiCallButtonPreview } from "./buttons/GrigolettiCallButton.jsx";
+import {
+  GRIGOLETTI_CALL_META,
+  GRIGOLETTI_CALL_SNIPPETS,
+} from "./buttons/grigoletti-call-button.snippets.js";
+import { GrigolettiProjectsButtonPreview } from "./buttons/GrigolettiProjectsButton.jsx";
+import {
+  GRIGOLETTI_PROJECTS_META,
+  GRIGOLETTI_PROJECTS_SNIPPETS,
+} from "./buttons/grigoletti-projects-button.snippets.js";
+import { GrigolettiServicesButtonPreview } from "./buttons/GrigolettiServicesButton.jsx";
+import {
+  GRIGOLETTI_SERVICES_META,
+  GRIGOLETTI_SERVICES_SNIPPETS,
+} from "./buttons/grigoletti-services-button.snippets.js";
+import { GrigolettiWorkRowButtonPreview } from "./buttons/GrigolettiWorkRowButton.jsx";
+import {
+  GRIGOLETTI_WORK_ROW_META,
+  GRIGOLETTI_WORK_ROW_SNIPPETS,
+} from "./buttons/grigoletti-work-row-button.snippets.js";
+import { GrigolettiFaqButtonPreview } from "./buttons/GrigolettiFaqButton.jsx";
+import {
+  GRIGOLETTI_FAQ_META,
+  GRIGOLETTI_FAQ_SNIPPETS,
+} from "./buttons/grigoletti-faq-button.snippets.js";
+import { GrigolettiFramerButtonPreview } from "./buttons/GrigolettiFramerButton.jsx";
+import {
+  GRIGOLETTI_FRAMER_META,
+  GRIGOLETTI_FRAMER_SNIPPETS,
+} from "./buttons/grigoletti-framer-button.snippets.js";
 
 const RAW = [
   {
@@ -1728,6 +1758,60 @@ const RAW = [
         keywords: NEXTJS_FLARE_META.keywords,
         preview: NextjsFlareButtonPreview,
         snippets: NEXTJS_FLARE_SNIPPETS,
+      },
+      {
+        id: "grigoletti-call",
+        name: GRIGOLETTI_CALL_META.name,
+        blurb: GRIGOLETTI_CALL_META.blurb,
+        states: GRIGOLETTI_CALL_META.states,
+        keywords: GRIGOLETTI_CALL_META.keywords,
+        preview: GrigolettiCallButtonPreview,
+        snippets: GRIGOLETTI_CALL_SNIPPETS,
+      },
+      {
+        id: "grigoletti-projects",
+        name: GRIGOLETTI_PROJECTS_META.name,
+        blurb: GRIGOLETTI_PROJECTS_META.blurb,
+        states: GRIGOLETTI_PROJECTS_META.states,
+        keywords: GRIGOLETTI_PROJECTS_META.keywords,
+        preview: GrigolettiProjectsButtonPreview,
+        snippets: GRIGOLETTI_PROJECTS_SNIPPETS,
+      },
+      {
+        id: "grigoletti-services",
+        name: GRIGOLETTI_SERVICES_META.name,
+        blurb: GRIGOLETTI_SERVICES_META.blurb,
+        states: GRIGOLETTI_SERVICES_META.states,
+        keywords: GRIGOLETTI_SERVICES_META.keywords,
+        preview: GrigolettiServicesButtonPreview,
+        snippets: GRIGOLETTI_SERVICES_SNIPPETS,
+      },
+      {
+        id: "grigoletti-work-row",
+        name: GRIGOLETTI_WORK_ROW_META.name,
+        blurb: GRIGOLETTI_WORK_ROW_META.blurb,
+        states: GRIGOLETTI_WORK_ROW_META.states,
+        keywords: GRIGOLETTI_WORK_ROW_META.keywords,
+        preview: GrigolettiWorkRowButtonPreview,
+        snippets: GRIGOLETTI_WORK_ROW_SNIPPETS,
+      },
+      {
+        id: "grigoletti-faq",
+        name: GRIGOLETTI_FAQ_META.name,
+        blurb: GRIGOLETTI_FAQ_META.blurb,
+        states: GRIGOLETTI_FAQ_META.states,
+        keywords: GRIGOLETTI_FAQ_META.keywords,
+        preview: GrigolettiFaqButtonPreview,
+        snippets: GRIGOLETTI_FAQ_SNIPPETS,
+      },
+      {
+        id: "grigoletti-framer",
+        name: GRIGOLETTI_FRAMER_META.name,
+        blurb: GRIGOLETTI_FRAMER_META.blurb,
+        states: GRIGOLETTI_FRAMER_META.states,
+        keywords: GRIGOLETTI_FRAMER_META.keywords,
+        preview: GrigolettiFramerButtonPreview,
+        snippets: GRIGOLETTI_FRAMER_SNIPPETS,
       },
     ],
   },

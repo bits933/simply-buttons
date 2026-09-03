@@ -44,7 +44,7 @@ const GALLERY_AW_KEPT = [
   "aw-lenis-swap",
 ];
 
-const CATEGORY_IDS = new Set(["styles", "loaders", "states", "awwwards"]);
+const CATEGORY_IDS = new Set(["styles", "loaders", "states", "awwwards", "webgl-three"]);
 
 async function readTrayOrder() {
   const source = await readFile(new URL("../slots.js", import.meta.url), "utf8");
@@ -89,7 +89,13 @@ test("the awwwards batch registers ten unique, contract-clean slots", async () =
 test("gallery order is 86 prior + 34 x50 + 6 remaining awwards trays + Search Slash + Water Ripple + Jelly Switch + Dot Border + Liquid metal play + Generate + Spinning Border + Plasma Drive + Liquid metal pill + Arjun Connect + Arjun Social + Nextjs Flare", async () => {
   const order = await readTrayOrder();
 
-  assert.equal(order.length, 138);
+  assert.equal(order.length, 144);
+  assert.equal(order[143], "grigoletti-framer");
+  assert.equal(order[142], "grigoletti-faq");
+  assert.equal(order[141], "grigoletti-work-row");
+  assert.equal(order[140], "grigoletti-services");
+  assert.equal(order[139], "grigoletti-projects");
+  assert.equal(order[138], "grigoletti-call");
   assert.equal(order[137], "nextjs-flare");
   assert.equal(order[136], "arjun-social");
   assert.equal(order[135], "arjun-connect");
