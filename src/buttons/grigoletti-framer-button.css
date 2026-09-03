@@ -1,21 +1,47 @@
 /* Dario Grigoletti Official Framer Pro Expert Badge (grigoletti.ch) */
 .gfb-root {
-  --gfb-bg: #0d0e12;
-  --gfb-btn-bg: #000000;
-  --gfb-border: rgba(255, 255, 255, 0.2);
-  --gfb-border-hover: rgba(255, 255, 255, 0.5);
-  --gfb-ink: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   min-height: 140px;
-  background-color: var(--gfb-bg);
-  color-scheme: dark;
+  background-color: transparent;
   border-radius: inherit;
   position: relative;
   overflow: hidden;
+  /* Default: dark theme tokens (white button) */
+  --gfb-border: #ffffff;
+  --gfb-btn-bg: transparent;
+  --gfb-ink: #ffffff;
+  --gfb-btn-hover-bg: #ffffff;
+  --gfb-ink-hover: #000000;
+  --gfb-border-hover: #ffffff;
+  --gfb-shadow-hover: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="light"] .gfb-root,
+.gfb-root[data-mode="light"] {
+  background-color: transparent;
+  --gfb-border: #111111;
+  --gfb-btn-bg: transparent;
+  --gfb-ink: #111111;
+  --gfb-btn-hover-bg: #111111;
+  --gfb-ink-hover: #ffffff;
+  --gfb-border-hover: #111111;
+  --gfb-shadow-hover: rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="dark"] .gfb-root,
+.gfb-root[data-mode="dark"] {
+  background-color: transparent;
+  --gfb-border: #ffffff;
+  --gfb-btn-bg: transparent;
+  --gfb-ink: #ffffff;
+  --gfb-btn-hover-bg: #ffffff;
+  --gfb-ink-hover: #000000;
+  --gfb-border-hover: #ffffff;
+  --gfb-shadow-hover: rgba(255, 255, 255, 0.18);
 }
 
 .gfb-root *, .gfb-root *::before, .gfb-root *::after {
@@ -39,17 +65,20 @@
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
               border-color 200ms ease,
+              background-color 200ms ease,
+              color 200ms ease,
               box-shadow 200ms ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .gfb-logo {
   width: 11px;
   height: 16px;
-  fill: #ffffff;
+  fill: currentColor;
   flex-shrink: 0;
+  transition: fill 200ms ease;
 }
 
 .gfb-label {
@@ -60,7 +89,9 @@
 .gfb-framer-btn:hover {
   transform: scale(1.03);
   border-color: var(--gfb-border-hover);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.12);
+  background-color: var(--gfb-btn-hover-bg);
+  color: var(--gfb-ink-hover);
+  box-shadow: 0 6px 20px var(--gfb-shadow-hover);
 }
 
 .gfb-framer-btn:active {
@@ -69,7 +100,7 @@
 }
 
 .gfb-framer-btn:focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid var(--gfb-border);
   outline-offset: 3px;
 }
 
