@@ -1,6 +1,6 @@
 import { Component, useEffect, useMemo, useRef, useState } from "react";
 import { createRoot, events, extend, useFrame, useThree } from "@react-three/fiber";
-import { ContactShadows } from "@react-three/drei";
+import { ContactShadows, Environment, Lightformer } from "@react-three/drei";
 import * as THREE from "three";
 import { DestructibleMesh, FractureOptions } from "@dgreenheck/three-pinata";
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
@@ -60,6 +60,19 @@ function Stage({ label, resetSignal, activateSignal, activationEvent, disabled, 
   onFailureRef.current = onFailure;
   const [broken, setBroken] = useState(false);
 
+  const [fontReady, setFontReady] = useState(() =>
+    typeof document !== "undefined" && document.fonts ? document.fonts.check('16px "Koulen"') : true,
+  );
+
+  useEffect(() => {
+    if (typeof document !== "undefined" && document.fonts && !fontReady) {
+      document.fonts.load('48px "Koulen"').then(() => {
+        setFontReady(true);
+        invalidate();
+      });
+    }
+  }, [fontReady, invalidate]);
+
   const blockResource = useMemo(() => {
     const textures = createConcreteTextures(label);
     let geometry = new THREE.ExtrudeGeometry(roundedRectShape(BLOCK_W, BLOCK_H, CORNER_R), {
@@ -74,14 +87,29 @@ function Stage({ label, resetSignal, activateSignal, activationEvent, disabled, 
     geometry = mergeVertices(geometry);
     geometry.center();
     remapExtrudeUVsForAtlas(geometry, BLOCK_W, BLOCK_H);
-    const outer = new THREE.MeshStandardMaterial({ map: textures.map, normalMap: textures.normalMap, normalScale: new THREE.Vector2(0.7, 0.7), roughnessMap: textures.roughnessMap, roughness: 1, metalness: 0 });
-    const inner = new THREE.MeshStandardMaterial({ map: textures.innerMap, normalMap: textures.innerNormalMap, normalScale: new THREE.Vector2(1.1, 1.1), roughness: 1, metalness: 0 });
+    const outer = new THREE.MeshStandardMaterial({
+      map: textures.map,
+      normalMap: textures.normalMap,
+      normalScale: new THREE.Vector2(0.85, 0.85),
+      roughnessMap: textures.roughnessMap,
+      roughness: 0.58,
+      metalness: 0.08,
+      envMapIntensity: 1.15,
+    });
+    const inner = new THREE.MeshStandardMaterial({
+      map: textures.innerMap,
+      normalMap: textures.innerNormalMap,
+      normalScale: new THREE.Vector2(1.15, 1.15),
+      roughness: 0.9,
+      metalness: 0.02,
+      envMapIntensity: 0.6,
+    });
     const block = new DestructibleMesh(geometry, outer, inner);
     block.castShadow = true;
     block.receiveShadow = true;
     block.position.set(0, BASE_Y, 0);
     return { block, textures, materials: [outer, inner] };
-  }, [label]);
+  }, [label, fontReady]);
   const block = blockResource.block;
   const dust = useMemo(() => new DustBurst(240), []);
 
@@ -338,10 +366,17 @@ function Stage({ label, resetSignal, activateSignal, activationEvent, disabled, 
   });
 
   return <>
+    <Environment>
+      <Lightformer form="rect" intensity={3.5} color="#ffffff" scale={[8, 4, 1]} position={[4, 6, 5]} />
+      <Lightformer form="rect" intensity={1.8} color="#ffe8d1" scale={[5, 5, 1]} position={[-5, 3, 3]} />
+      <Lightformer form="ring" intensity={2.2} color="#a8d8ff" scale={5} position={[0, 4, -4]} />
+      <Lightformer form="rect" intensity={0.9} color="#e5ded2" scale={[10, 10, 1]} position={[0, -2, 0]} rotation={[Math.PI / 2, 0, 0]} />
+    </Environment>
+
     <hemisphereLight args={["#fffefa", "#d6d0c0", 0.7]} />
     <directionalLight position={[4.5, 7, 4.5]} intensity={1.9} color="#fff7ea" />
     <directionalLight position={[-5, 3, -2]} intensity={0.35} color="#dfe8ff" />
-    <ContactShadows key={`${resetSignal}-${broken}`} position={[0, 0.002, 0]} opacity={0.42} scale={15} blur={2.4} far={5} resolution={256} frames={broken ? 24 : 1} color="#3a352c" />
+    <ContactShadows key={`${resetSignal}-${broken}`} position={[0, 0.002, 0]} opacity={0.48} scale={15} blur={2.0} far={5} resolution={512} frames={broken ? 24 : 1} color="#3a352c" />
     <primitive object={block} onPointerDown={(event) => {
       if (disabled || stateRef.current !== "idle") return;
       event.stopPropagation();

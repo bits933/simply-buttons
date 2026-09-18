@@ -97,7 +97,7 @@ class SceneBoundary extends Component {
 }
 
 export function ConcreteDestroyButton({
-  label = "DESTROY",
+  label = "POST",
   disabled = false,
   className = "",
   onClick,

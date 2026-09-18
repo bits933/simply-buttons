@@ -112,18 +112,29 @@ function paintConcrete(context, width, height, field, options) {
 
 function paintLabel(context, width, height, label) {
   context.clearRect(0, 0, width, height);
-  const fontPx = height * 0.32;
-  context.font = `900 ${fontPx}px "Arial Black", "Helvetica Neue", Arial, sans-serif`;
-  context.textBaseline = "middle";
+  const fontPx = height * 0.50;
+  context.font = `400 ${fontPx}px "Koulen", sans-serif`;
+  context.textBaseline = "alphabetic";
   context.textAlign = "left";
-  const tracking = fontPx * 0.017;
+
+  // The 3D button has aspect ratio BLOCK_W / BLOCK_H = 3.2 / 1.5 = 2.1333.
+  // The square 512x512 texture is stretched by 2.133x in 3D space.
+  // Counter-scale X by (1 / aspect) so Koulen renders in its authentic compact, tall proportions:
+  const aspect = BLOCK_W / BLOCK_H;
+  const compactScaleX = (1 / aspect) * 1.05;
+  const tracking = fontPx * 0.07;
   const glyphs = [...label];
   const naturalWidth = glyphs.reduce((sum, glyph) => sum + context.measureText(glyph).width, 0) + tracking * Math.max(0, glyphs.length - 1);
-  const targetWidth = width * 0.7;
-  const scale = Math.min(1, targetWidth / naturalWidth);
+
+  // Exact vertical center alignment using the font's actual rendered bounding box:
+  const metrics = context.measureText(label);
+  const ascent = metrics.actualBoundingBoxAscent || fontPx * 0.72;
+  const descent = metrics.actualBoundingBoxDescent || 0;
+  const yBaseline = height / 2 + (ascent - descent) / 2;
+
   context.save();
-  context.translate(width / 2, height * 0.52);
-  context.scale(scale, 1);
+  context.translate(width / 2, yBaseline);
+  context.scale(compactScaleX, 1);
   let x = -naturalWidth / 2;
   for (const glyph of glyphs) {
     context.fillText(glyph, x, 0);

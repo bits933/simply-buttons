@@ -146,9 +146,16 @@ export function App() {
 
       <header className="topbar">
         <TopbarBand />
-        <a className="mark" href="#top">
-          <span className="mark-tick" aria-hidden="true" />
-          Simply buttons
+        <a className="mark" href="#top" aria-label="Simply buttons">
+          <img
+            src="/favicon.svg"
+            alt=""
+            className="mark-logo"
+            width="20"
+            height="20"
+            aria-hidden="true"
+          />
+          <span>Simply buttons</span>
         </a>
         <div className="topbar-actions">
           <div className={`search ${searchOpen ? "is-open" : ""}`}>

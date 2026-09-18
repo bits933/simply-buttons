@@ -252,10 +252,21 @@ a {
   letter-spacing: -0.02em;
 }
 
+.mark-logo {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mark:hover .mark-logo {
+  transform: rotate(-8deg) scale(1.1);
+}
+
 .mark-tick {
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
+  display: none;
 }
 
 .topbar-actions {

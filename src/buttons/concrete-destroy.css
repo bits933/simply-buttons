@@ -1,5 +1,5 @@
 .concrete-destroy-root {
-  --concrete-button-surface: #e8eaee;
+  --concrete-button-surface: transparent;
   position: relative;
   display: grid;
   place-items: center;
@@ -9,7 +9,7 @@
 }
 
 :root[data-theme="dark"] .concrete-destroy-root {
-  --concrete-button-surface: #121315;
+  --concrete-button-surface: transparent;
 }
 
 .concrete-destroy-button {
@@ -22,7 +22,7 @@
   overflow: hidden;
   border: 0;
   border-radius: 12px;
-  background: var(--concrete-button-surface);
+  background: transparent;
   color: #22221f;
   cursor: pointer;
   isolation: isolate;

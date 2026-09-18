@@ -18,7 +18,7 @@ const FALLBACK_CSS = `
 .concrete-fallback:disabled { cursor: not-allowed; opacity: 0.5; }
 `.trim();
 
-const FALLBACK_MARKUP = `<button class="concrete-fallback" type="button" aria-label="Destroy">DESTROY</button>`;
+const FALLBACK_MARKUP = `<button class="concrete-fallback" type="button" aria-label="Post">POST</button>`;
 
 const HTML_PAGE = `<!doctype html>
 <html lang="en">
@@ -51,7 +51,7 @@ export const CONCRETE_DESTROY_SNIPPETS = {
 import { ConcreteDestroyButton } from "./ConcreteDestroyButton.jsx";
 
 export default function Example() {
-  return <ConcreteDestroyButton label="DESTROY" onClick={() => console.log("fractured")} />;
+  return <ConcreteDestroyButton label="POST" onClick={() => console.log("fractured")} />;
 }
 `,
   node: `import { createServer } from "node:http";
