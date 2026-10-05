@@ -27,6 +27,9 @@
   --stack-radius: 8px;
   --stack-h: 44px;
   --slot-preview-h: 200px;
+  --theme-x: calc(100% - 46px);
+  --theme-y: 32px;
+  --theme-r: 160vmax;
 }
 
 [data-theme="dark"] {
@@ -441,6 +444,10 @@ a {
 .theme-toggle {
   border: 1px solid var(--line);
   background: var(--surface);
+  overflow: visible;
+  transition:
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 160ms ease;
 }
 
 .theme-toggle:hover {
@@ -449,7 +456,103 @@ a {
 
 .search-button:active,
 .theme-toggle:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+}
+
+.theme-icon {
+  display: block;
+  overflow: visible;
+}
+
+.theme-icon-disc,
+.theme-icon-cut,
+.theme-icon-rays {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+}
+
+.theme-icon-disc {
+  fill: currentColor;
+  transition: transform 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.theme-icon-cut {
+  transition: transform 400ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.theme-icon-rays {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  transition:
+    transform 400ms cubic-bezier(0.77, 0, 0.175, 1),
+    opacity 280ms ease;
+}
+
+.theme-toggle[data-icon="moon"] .theme-icon-disc {
+  transform: scale(1.28);
+}
+
+.theme-toggle[data-icon="moon"] .theme-icon-cut {
+  transform: translate(5px, -4px);
+}
+
+.theme-toggle[data-icon="moon"] .theme-icon-rays {
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.45);
+}
+
+.theme-toggle[data-icon="sun"] .theme-icon-disc {
+  transform: scale(1);
+}
+
+.theme-toggle[data-icon="sun"] .theme-icon-cut {
+  transform: translate(10px, -11px);
+}
+
+.theme-toggle[data-icon="sun"] .theme-icon-rays {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-icon-snap .theme-icon-disc,
+.theme-icon-snap .theme-icon-cut,
+.theme-icon-snap .theme-icon-rays {
+  transition-duration: 0s;
+}
+
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  animation: theme-circle-reveal 550ms cubic-bezier(0.77, 0, 0.175, 1) both;
+  mix-blend-mode: normal;
+  z-index: 2;
+}
+
+::view-transition-group(root) {
+  animation-duration: 550ms;
+}
+
+@keyframes theme-circle-reveal {
+  from {
+    clip-path: circle(18px at var(--theme-x) var(--theme-y));
+  }
+
+  to {
+    clip-path: circle(var(--theme-r) at var(--theme-x) var(--theme-y));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }
 
 .intro {
@@ -1284,6 +1387,188 @@ a {
   .intro {
     padding-top: 36px;
   }
-
-
 }
+
+/* ══ Slide to confirm ══════════════════════════════════════
+   A handle crossing a track, and on commit the handle IS the
+   confirmation — it unfurls leftward and fills what it crossed.
+   See SlideConfirm.tsx for why the right edge stays put. */
+.sld {
+  /* Bencho design tokens mapped locally to project equivalents */
+  --font-ui: var(--font);
+  --card: var(--surface);
+  --fill-slab: var(--surface);
+  --fill-on: var(--ink);
+  --ink-rgb: 26, 27, 30;
+  --fill-on-rgb: var(--ink-rgb);
+  --pane-edge: var(--line);
+
+  box-sizing: border-box;
+  font-family: var(--font-ui);
+  color: var(--fill-on, var(--ink));
+}
+
+[data-theme="dark"] .sld,
+:root[data-theme="dark"] .sld {
+  --ink-rgb: 236, 238, 241;
+  --fill-on-rgb: 236, 238, 241;
+}
+
+.sld-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /* ── the track is the SLAB, the handle is the INK ─────────
+     It was the other way round — a translucent wash for the
+     track on the reasoning that a groove is darker than what
+     it is cut into. True, and it has nothing to be cut into:
+     this track IS the whole block, so there is no surrounding
+     surface and a 7% wash had no opaque ground under it. On a
+     dark fill that left a near-invisible track with a dark
+     circle sitting on it. Measured: track
+     rgba(244,243,241,0.07) over a light stage.
+
+     Slab and ink is the pair the liquid toggle uses and it
+     inverts from one rule: white track with a near-black
+     handle in light, near-black track with a light handle in
+     dark. And on commit the handle fills the track, so the
+     confirmed state is a solid ink pill in both. */
+  background: var(--fill-slab, var(--card));
+  /* the drag is the component; the browser may not take the
+     gesture for panning */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+[data-stroke="on"] .sld-track {
+  box-shadow: inset 0 0 0 1px var(--pane-edge);
+}
+
+/* ── the ground already covered ─────────────────────────────
+   THE SAME INK AS THE HANDLE, which turns this from a trail
+   into the handle's own body. It was an 8% tint, and a tint is
+   read as a progress bar: a track filling up behind a knob that
+   slides along it. Two objects.
+
+   The geometry was already right for one. This runs from the
+   left pad to `x + GRIP` — the handle's RIGHT edge, not its
+   left — with the handle's own corner radius, so the pair
+   describes a single capsule with a rounded cap at each end and
+   the handle's cap doing the work at the leading edge. Only the
+   colour said otherwise. Matched, there is no seam to find: the
+   dot stretches out of the corner it started in and the far end
+   is still the dot.
+
+   It cannot be the ink at 100% and also sit UNDER the words. */
+.sld-wash {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 4px;
+  background: var(--fill-on, var(--ink));
+  /* ── above the label, so it WIPES it ─────────────────────
+     Beneath it, the label's remaining ink sat on a surface its
+     own colour and went muddy rather than away — the fade
+     reaches zero at 55% of the travel and the capsule's edge
+     arrives at the first letter around 30%, so there is a
+     stretch where the two overlap. Painted over, the words are
+     covered by the advancing cap instead: they leave under a
+     rounded edge that is the handle's own shape, which reads as
+     the thing eating them rather than as a wipe.
+     The handle is `auto` and later in the DOM, and `auto` loses
+     to any z-index at all, so it needs one of its own. */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sld-say {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  /* ── CENTRED IN THE PILL, not in the room beside it ──────
+     It was inset by the handle's width, on the reasoning that
+     the words should be centred in the space actually left to
+     them. That is the right rule for a label sharing a row with
+     a control, and the wrong one here: the track IS the object,
+     and a label pushed 24px right of its middle reads as
+     off-centre rather than as considerate — there is nothing
+     for it to be centred against except the pill.
+
+     It costs nothing at rest — the words start well clear of
+     the handle — and the overlap it was avoiding is now the
+     point, since the capsule wipes them as it comes. */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  color: rgba(var(--fill-on-rgb, var(--ink-rgb)), 0.45);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.sld-grip {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: var(--fill-on, var(--ink));
+  color: var(--fill-slab, var(--card));
+  cursor: grab;
+  /* ── it takes the pointer now, and the track still wins ───
+     It was `none`, so the track owned the gesture outright.
+     The handle has to know when a cursor is ON it to swell,
+     and a press still reaches the track by BUBBLING — the
+     handle is inside it — so nothing about the drag changed.
+     Once the track captures the pointer every later event is
+     retargeted there anyway, which is why a drag that wanders
+     off the handle keeps reporting. */
+  pointer-events: auto;
+  /* the wall it lands against, so the squash compresses
+     toward the end of the track rather than about its middle */
+  transform-origin: 0% 50%;
+  /* it is placed by a motion value, so nothing here may
+     transition `transform` or the two fight every frame */
+  transition: none;
+  /* over the wash, which had to claim a layer to cover the
+     label — see .sld-wash */
+  z-index: 2;
+}
+
+.sld-track[data-held] .sld-grip { cursor: grabbing; }
+
+/* ── two contents, both ABSOLUTE ────────────────────────────
+   Stacked so neither has to make room for the other and the
+   handle's width is free to be whatever the morph says it is.
+
+   They were one grid cell, and that put the arrow 21.3px right
+   of the handle's centre. "Confirmed" is 59px wide and the
+   resting handle is 42, so the shared track was wider than the
+   box holding it — and an overflowing grid item resolves
+   `center` to `start`, which shoved both to one side. The same
+   rule caught the carousel inside the Pro sheet.
+
+   Absolute with `inset: 0` has no such rule: each fills the
+   handle and centres its own content, at every width the morph
+   passes through, and neither can size the handle. */
+.sld-arrow,
+.sld-done {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sld-done { transition-duration: 1ms; }
+}
