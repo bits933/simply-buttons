@@ -1,0 +1,227 @@
+/* Arrow fill — Framer ArrowFillButton (hpx-afb).
+   Orange pill, white end-cap circle that expands to fill on hover,
+   clipped fill label, and a swapping arrow. Gallery size is locked to
+   the Framer intrinsic 56px height (vw units from the source would
+   explode inside a slot). */
+
+.arrow-fill-root,
+.hpx-afb {
+  --hpx-afb-marker: 1;
+  --btn-bg: #ff5f00;
+  --btn-text: #ffffff;
+  --btn-fill-bg: #ffffff;
+  --btn-fill-text: #ff5f00;
+  --btn-fill-bg-hover: #ffffff;
+  --btn-fill-text-hover: #ff5f00;
+  --btn-arrow: #ff5f00;
+  --btn-arrow-hover: #ff5f00;
+  --btn-duration: 450ms;
+  --btn-ease: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --icon-circle: 41px;
+  --icon-right: 7px;
+  --pad-x: 40px;
+  --pad-tail: 27px;
+  --circle-inset-y: calc((100% - var(--icon-circle)) / 2);
+}
+
+.arrow-fill-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 12px;
+}
+
+.arrow-fill-root *,
+.arrow-fill-root *::before,
+.arrow-fill-root *::after {
+  box-sizing: border-box;
+}
+
+.hpx-afb {
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 56px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 var(--pad-x);
+  padding-right: calc(var(--icon-circle) + var(--icon-right) + var(--pad-tail));
+  overflow: hidden;
+  border: 0;
+  border-radius: 9999px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-rendering: geometricPrecision;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 200ms var(--btn-ease);
+}
+
+.hpx-afb__label {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 1px;
+}
+
+.hpx-afb__circle {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  border-radius: 9999px;
+  background-color: var(--btn-fill-bg);
+  top: var(--circle-inset-y);
+  bottom: var(--circle-inset-y);
+  right: var(--icon-right);
+  left: calc(100% - var(--icon-right) - var(--icon-circle));
+  transition:
+    background-color var(--btn-duration) var(--btn-ease),
+    inset var(--btn-duration) var(--btn-ease);
+}
+
+.hpx-afb:hover .hpx-afb__circle,
+.hpx-afb:focus-visible .hpx-afb__circle,
+.hpx-afb[data-pressed="true"] .hpx-afb__circle {
+  background-color: var(--btn-fill-bg-hover);
+  inset: 0;
+}
+
+.hpx-afb__mask {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--pad-x);
+  padding-right: calc(var(--icon-circle) + var(--icon-right) + var(--pad-tail));
+  color: var(--btn-fill-text);
+  clip-path: inset(
+    var(--circle-inset-y)
+    var(--icon-right)
+    var(--circle-inset-y)
+    calc(100% - var(--icon-right) - var(--icon-circle))
+  );
+  transition:
+    color var(--btn-duration) var(--btn-ease),
+    clip-path var(--btn-duration) var(--btn-ease);
+}
+
+.hpx-afb:hover .hpx-afb__mask,
+.hpx-afb:focus-visible .hpx-afb__mask,
+.hpx-afb[data-pressed="true"] .hpx-afb__mask {
+  color: var(--btn-fill-text-hover);
+  clip-path: inset(0 0 0 0);
+}
+
+.hpx-afb__mask-label {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 1px;
+  white-space: nowrap;
+}
+
+.hpx-afb__icon {
+  pointer-events: none;
+  position: absolute;
+  right: var(--icon-right);
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  height: var(--icon-circle);
+  width: var(--icon-circle);
+  flex-shrink: 0;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: var(--btn-fill-bg);
+  color: var(--btn-arrow);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  transition:
+    background-color var(--btn-duration) var(--btn-ease),
+    color var(--btn-duration) var(--btn-ease);
+}
+
+.hpx-afb:hover .hpx-afb__icon,
+.hpx-afb:focus-visible .hpx-afb__icon,
+.hpx-afb[data-pressed="true"] .hpx-afb__icon {
+  background-color: var(--btn-fill-bg-hover);
+  color: var(--btn-arrow-hover);
+}
+
+.hpx-afb__icon-svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform-origin: center;
+  color: currentColor;
+  transition: transform var(--btn-duration) var(--btn-ease);
+}
+
+.hpx-afb__icon-svg--enter {
+  transform: translate(-170%, -50%) scale(0);
+}
+
+.hpx-afb:hover .hpx-afb__icon-svg--enter,
+.hpx-afb:focus-visible .hpx-afb__icon-svg--enter,
+.hpx-afb[data-pressed="true"] .hpx-afb__icon-svg--enter {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hpx-afb__icon-svg--exit {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hpx-afb:hover .hpx-afb__icon-svg--exit,
+.hpx-afb:focus-visible .hpx-afb__icon-svg--exit,
+.hpx-afb[data-pressed="true"] .hpx-afb__icon-svg--exit {
+  transform: translate(70%, -50%) scale(0);
+}
+
+.hpx-afb:active {
+  transform: scale(0.98);
+}
+
+.hpx-afb:focus {
+  outline: none;
+}
+
+.hpx-afb:focus-visible {
+  outline: 2px solid var(--btn-bg);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hpx-afb,
+  .hpx-afb__circle,
+  .hpx-afb__mask,
+  .hpx-afb__icon,
+  .hpx-afb__icon-svg {
+    transition: none;
+  }
+
+  .hpx-afb:active {
+    transform: none;
+  }
+}

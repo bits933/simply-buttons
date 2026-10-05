@@ -483,6 +483,13 @@ import {
   GRIGOLETTI_FRAMER_META,
   GRIGOLETTI_FRAMER_SNIPPETS,
 } from "./buttons/grigoletti-framer-button.snippets.js";
+import { GemsButtonPreview } from "./buttons/GemsButton.jsx";
+import { GEMS_META, GEMS_SNIPPETS } from "./buttons/gems-button.snippets.js";
+import { ArrowFillButtonPreview } from "./buttons/ArrowFillButton.jsx";
+import {
+  ARROW_FILL_META,
+  ARROW_FILL_SNIPPETS,
+} from "./buttons/arrow-fill-button.snippets.js";
 
 const RAW = [
   {
@@ -1784,6 +1791,24 @@ const RAW = [
         keywords: GRIGOLETTI_FRAMER_META.keywords,
         preview: GrigolettiFramerButtonPreview,
         snippets: GRIGOLETTI_FRAMER_SNIPPETS,
+      },
+      {
+        id: "gems",
+        name: GEMS_META.name,
+        blurb: GEMS_META.blurb,
+        states: GEMS_META.states,
+        keywords: GEMS_META.keywords,
+        preview: GemsButtonPreview,
+        snippets: GEMS_SNIPPETS,
+      },
+      {
+        id: "arrow-fill",
+        name: ARROW_FILL_META.name,
+        blurb: ARROW_FILL_META.blurb,
+        states: ARROW_FILL_META.states,
+        keywords: ARROW_FILL_META.keywords,
+        preview: ArrowFillButtonPreview,
+        snippets: ARROW_FILL_SNIPPETS,
       },
     ],
   },

@@ -1,0 +1,125 @@
+/* Gems — TokenMeter circular add button (Figma 207:135 idle / 207:146 pressed).
+   52px orange gloss disc, white plus, top-right specular, diagonal rim stroke.
+   Press interpolates the inner shadow from a 4px inset well to a 1px edge kiss. */
+
+.gems-root,
+.gems-btn {
+  --gems-marker: 1;
+  --gems-size: 52px;
+  --gems-fill-top: #ff7032;
+  --gems-fill-bot: #e95a37;
+  --gems-base: #f3f3f3;
+  --gems-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --gems-shadow:
+    0 0 15.4px rgba(0, 0, 0, 0.25),
+    0 4px 4px rgba(0, 0, 0, 0.25);
+  --gems-inset:
+    inset 1px -1px 4px rgba(0, 0, 0, 0.21),
+    inset -1px 0 0 rgba(0, 0, 0, 0);
+  --gems-inset-press:
+    inset 1px 0 0 rgba(0, 0, 0, 0.05),
+    inset -1px 0 0 rgba(0, 0, 0, 0.05);
+  --gems-focus: #ff7032;
+}
+
+.gems-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 18px;
+}
+
+.gems-root *,
+.gems-root *::before,
+.gems-root *::after {
+  box-sizing: border-box;
+}
+
+.gems-btn {
+  appearance: none;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--gems-size);
+  height: var(--gems-size);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: var(--gems-shadow);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 200ms var(--gems-ease);
+}
+
+.gems-face {
+  position: relative;
+  display: block;
+  width: var(--gems-size);
+  height: var(--gems-size);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--gems-base);
+  background-image: linear-gradient(180deg, var(--gems-fill-top) 0%, var(--gems-fill-bot) 100%);
+  box-shadow: var(--gems-inset);
+  pointer-events: none;
+  transition: box-shadow 260ms var(--gems-ease);
+}
+
+.gems-art {
+  position: absolute;
+  inset: 0;
+  width: var(--gems-size);
+  height: var(--gems-size);
+  display: block;
+  pointer-events: none;
+}
+
+.gems-btn:hover,
+.gems-btn:focus-visible {
+  transform: scale(1);
+}
+
+.gems-btn:active,
+.gems-btn.is-pressed {
+  transform: scale(0.97);
+}
+
+.gems-btn:active .gems-face,
+.gems-btn.is-pressed .gems-face {
+  box-shadow: var(--gems-inset-press);
+}
+
+.gems-btn:focus {
+  outline: none;
+}
+
+.gems-btn:focus-visible {
+  outline: 2px solid var(--gems-focus);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gems-btn:hover:not(:active) {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gems-btn,
+  .gems-face {
+    transition: none;
+  }
+
+  .gems-btn:active {
+    transform: none;
+  }
+}
