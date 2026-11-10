@@ -1,6 +1,7 @@
 import { GithubLogo, MagnifyingGlass, Star } from "@phosphor-icons/react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Lottie } from "lottie-react";
+import { Analytics } from "@vercel/analytics/react";
 import diceCubeJson from "./assets/wired-outline-1471-dice-cube.json";
 import { Seo } from "./Seo.jsx";
 import { Slot } from "./Slot.jsx";
@@ -291,6 +292,7 @@ export function App() {
           </a>
         </div>
       </footer>
+      <Analytics />
     </>
   );
 }
